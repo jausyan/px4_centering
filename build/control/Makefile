@@ -210,6 +210,19 @@ control_lidar/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/build
 .PHONY : control_lidar/fast
 
+#=============================================================================
+# Target rules for targets named test_lidar
+
+# Build rule for target.
+test_lidar: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_lidar
+.PHONY : test_lidar
+
+# fast build rule for target.
+test_lidar/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/build
+.PHONY : test_lidar/fast
+
 src/mission/control.o: src/mission/control.cpp.o
 .PHONY : src/mission/control.o
 
@@ -234,12 +247,37 @@ src/mission/control.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/src/mission/control.cpp.s
 .PHONY : src/mission/control.cpp.s
 
+src/mission/test.o: src/mission/test.cpp.o
+.PHONY : src/mission/test.o
+
+# target to build an object file
+src/mission/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/mission/test.cpp.o
+.PHONY : src/mission/test.cpp.o
+
+src/mission/test.i: src/mission/test.cpp.i
+.PHONY : src/mission/test.i
+
+# target to preprocess a source file
+src/mission/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/mission/test.cpp.i
+.PHONY : src/mission/test.cpp.i
+
+src/mission/test.s: src/mission/test.cpp.s
+.PHONY : src/mission/test.s
+
+# target to generate assembly for a file
+src/mission/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/mission/test.cpp.s
+.PHONY : src/mission/test.cpp.s
+
 src/testing/drone_controller.o: src/testing/drone_controller.cpp.o
 .PHONY : src/testing/drone_controller.o
 
 # target to build an object file
 src/testing/drone_controller.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/testing/drone_controller.cpp.o
 .PHONY : src/testing/drone_controller.cpp.o
 
 src/testing/drone_controller.i: src/testing/drone_controller.cpp.i
@@ -248,6 +286,7 @@ src/testing/drone_controller.i: src/testing/drone_controller.cpp.i
 # target to preprocess a source file
 src/testing/drone_controller.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/testing/drone_controller.cpp.i
 .PHONY : src/testing/drone_controller.cpp.i
 
 src/testing/drone_controller.s: src/testing/drone_controller.cpp.s
@@ -256,6 +295,7 @@ src/testing/drone_controller.s: src/testing/drone_controller.cpp.s
 # target to generate assembly for a file
 src/testing/drone_controller.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/src/testing/drone_controller.cpp.s
 .PHONY : src/testing/drone_controller.cpp.s
 
 utils/control_.o: utils/control_.cpp.o
@@ -264,6 +304,7 @@ utils/control_.o: utils/control_.cpp.o
 # target to build an object file
 utils/control_.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/control_.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/control_.cpp.o
 .PHONY : utils/control_.cpp.o
 
 utils/control_.i: utils/control_.cpp.i
@@ -272,6 +313,7 @@ utils/control_.i: utils/control_.cpp.i
 # target to preprocess a source file
 utils/control_.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/control_.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/control_.cpp.i
 .PHONY : utils/control_.cpp.i
 
 utils/control_.s: utils/control_.cpp.s
@@ -280,6 +322,7 @@ utils/control_.s: utils/control_.cpp.s
 # target to generate assembly for a file
 utils/control_.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/control_.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/control_.cpp.s
 .PHONY : utils/control_.cpp.s
 
 utils/geo_.o: utils/geo_.cpp.o
@@ -288,6 +331,7 @@ utils/geo_.o: utils/geo_.cpp.o
 # target to build an object file
 utils/geo_.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/geo_.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/geo_.cpp.o
 .PHONY : utils/geo_.cpp.o
 
 utils/geo_.i: utils/geo_.cpp.i
@@ -296,6 +340,7 @@ utils/geo_.i: utils/geo_.cpp.i
 # target to preprocess a source file
 utils/geo_.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/geo_.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/geo_.cpp.i
 .PHONY : utils/geo_.cpp.i
 
 utils/geo_.s: utils/geo_.cpp.s
@@ -304,6 +349,7 @@ utils/geo_.s: utils/geo_.cpp.s
 # target to generate assembly for a file
 utils/geo_.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/geo_.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/geo_.cpp.s
 .PHONY : utils/geo_.cpp.s
 
 utils/math_.o: utils/math_.cpp.o
@@ -312,6 +358,7 @@ utils/math_.o: utils/math_.cpp.o
 # target to build an object file
 utils/math_.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/math_.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/math_.cpp.o
 .PHONY : utils/math_.cpp.o
 
 utils/math_.i: utils/math_.cpp.i
@@ -320,6 +367,7 @@ utils/math_.i: utils/math_.cpp.i
 # target to preprocess a source file
 utils/math_.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/math_.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/math_.cpp.i
 .PHONY : utils/math_.cpp.i
 
 utils/math_.s: utils/math_.cpp.s
@@ -328,6 +376,7 @@ utils/math_.s: utils/math_.cpp.s
 # target to generate assembly for a file
 utils/math_.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/utils/math_.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/utils/math_.cpp.s
 .PHONY : utils/math_.cpp.s
 
 # Help Target
@@ -346,9 +395,13 @@ help:
 	@echo "... control_uninstall"
 	@echo "... uninstall"
 	@echo "... control_lidar"
+	@echo "... test_lidar"
 	@echo "... src/mission/control.o"
 	@echo "... src/mission/control.i"
 	@echo "... src/mission/control.s"
+	@echo "... src/mission/test.o"
+	@echo "... src/mission/test.i"
+	@echo "... src/mission/test.s"
 	@echo "... src/testing/drone_controller.o"
 	@echo "... src/testing/drone_controller.i"
 	@echo "... src/testing/drone_controller.s"

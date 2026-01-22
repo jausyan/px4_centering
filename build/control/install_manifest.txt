@@ -1,6 +1,5 @@
+/home/el-system/centering_experiment/install/control/lib/control/test_lidar
 /home/el-system/centering_experiment/install/control/lib/control/control_lidar
-/home/el-system/centering_experiment/install/control/share/control/launch/px4_mavros.launch.py
-/home/el-system/centering_experiment/install/control/share/control/launch/control_only.launch.py
 /home/el-system/centering_experiment/install/control/share/control/config/config.yaml
 /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control
 /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control

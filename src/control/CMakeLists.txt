@@ -27,7 +27,11 @@ find_package(rclcpp REQUIRED)
 add_executable(control_lidar src/mission/control.cpp ${projectLibSources})
 ament_target_dependencies(control_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
 
+add_executable(test_lidar src/mission/test.cpp ${projectLibSources})
+ament_target_dependencies(test_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
+
 install(TARGETS
+  test_lidar
   control_lidar
   DESTINATION lib/${PROJECT_NAME}
 )

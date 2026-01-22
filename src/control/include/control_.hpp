@@ -641,7 +641,8 @@ void centeringGateLivoxSimple(
     bool &status,
     float max_velocity = 0.2,
     float proportional_gain = 0.5,
-    float max_time = 30.0);
+    float max_time = 30.0,
+    bool test_mode = false);
     /**
      * SIMPLE gate centering with Livox Mid-360 using grid binning (similar to 2D lidar)
      * 

@@ -64,10 +64,12 @@ CMAKE_BINARY_DIR = /home/el-system/centering_experiment/build/control
 
 # The main recursive "all" target.
 all: CMakeFiles/control_lidar.dir/all
+all: CMakeFiles/test_lidar.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/control_lidar.dir/codegen
+codegen: CMakeFiles/test_lidar.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -78,6 +80,7 @@ preinstall:
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/control_uninstall.dir/clean
 clean: CMakeFiles/control_lidar.dir/clean
+clean: CMakeFiles/test_lidar.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -175,6 +178,38 @@ CMakeFiles/control_lidar.dir/codegen:
 CMakeFiles/control_lidar.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/control_lidar.dir/build.make CMakeFiles/control_lidar.dir/clean
 .PHONY : CMakeFiles/control_lidar.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_lidar.dir
+
+# All Build rule for target.
+CMakeFiles/test_lidar.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/el-system/centering_experiment/build/control/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target test_lidar"
+.PHONY : CMakeFiles/test_lidar.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_lidar.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/el-system/centering_experiment/build/control/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_lidar.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/el-system/centering_experiment/build/control/CMakeFiles 0
+.PHONY : CMakeFiles/test_lidar.dir/rule
+
+# Convenience name for target.
+test_lidar: CMakeFiles/test_lidar.dir/rule
+.PHONY : test_lidar
+
+# codegen rule for target.
+CMakeFiles/test_lidar.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/el-system/centering_experiment/build/control/CMakeFiles --progress-num=7,8,9,10,11,12 "Finished codegen for target test_lidar"
+.PHONY : CMakeFiles/test_lidar.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_lidar.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_lidar.dir/build.make CMakeFiles/test_lidar.dir/clean
+.PHONY : CMakeFiles/test_lidar.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

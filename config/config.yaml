@@ -1,8 +1,9 @@
 /**:
   ros__parameters:
     gate_centering:
+      test_mode: false              
       takeoff_altitude: 1.3
-      forward_distance: 3.0
+      forward_distance: 10.0
       gate_width: 1.5               
       centering_tolerance: 0.15     
       waypoint_tolerance: 0.3
@@ -13,11 +14,11 @@
       
       detection_range_min: 1.5      # Min forward distance for gate detection (m)
       detection_range_max: 2.5      # Max forward distance for gate detection (m)
-      roi_lateral: 0.5              # Lateral ROI width (±m from center)
-      cluster_epsilon: 0.15         # Max distance to group points as single pole (m)
-      min_cluster_points: 10        # Min points required per pole cluster
-      min_pole_height: 0.5          # Min vertical span for valid pole (m)
-      target_height: 0.75           # Target center height (0.75m = center of 1.5m gate)          
+      roi_lateral: 0.5              # offset
+      cluster_epsilon: 0.15         # Max distance to group points 
+      min_cluster_points: 10        
+      min_pole_height: 0.5          
+      target_height: 0.75                    
 
     
       

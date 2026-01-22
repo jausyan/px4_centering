@@ -812,4 +812,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   "CMakeFiles/control_uninstall.dir/DependInfo.cmake"
   "CMakeFiles/control_lidar.dir/DependInfo.cmake"
+  "CMakeFiles/test_lidar.dir/DependInfo.cmake"
   )

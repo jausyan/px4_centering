@@ -3874,12 +3874,19 @@ void centeringGateLivoxSimple(
     bool &status,
     float max_velocity,
     float proportional_gain,
-    float max_time)
+    float max_time,
+    bool test_mode)
 {
-    RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+    if (test_mode) {
+        RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
+    } else {
+        RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+    }
     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
                 gate_width, tolerance);
-    RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+    if (!test_mode) {
+        RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+    }
     
     // ROI parameters
     const float x_min = 1.5f;  // Forward distance min
@@ -3938,9 +3945,11 @@ void centeringGateLivoxSimple(
                 "Waiting for LiDAR data on /livox/lidar...");
             
             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
-            hold_pose = node->getCurrentLocalPose();
-            hold_pose.header.stamp = node->now();
-            node->publishLocalPosition(hold_pose);
+            if (!test_mode) {
+                hold_pose = node->getCurrentLocalPose();
+                hold_pose.header.stamp = node->now();
+                node->publishLocalPosition(hold_pose);
+            }
             
             rclcpp::spin_some(node);
             rate.sleep();
@@ -4004,19 +4013,21 @@ void centeringGateLivoxSimple(
                 total_roi_points, min_points_per_pole * 2);
             
             // Stop lateral movement but maintain altitude
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.05f) {
-                vz_global = 0.4f * altitude_error;
-                vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+            if (!test_mode) {
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.05f) {
+                    vz_global = 0.4f * altitude_error;
+                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+                }
+                
+                geometry_msgs::msg::TwistStamped stop_cmd;
+                stop_cmd.header.stamp = node->now();
+                stop_cmd.header.frame_id = "map";
+                stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
+                node->publishLocalVelocity(stop_cmd);
             }
-            
-            geometry_msgs::msg::TwistStamped stop_cmd;
-            stop_cmd.header.stamp = node->now();
-            stop_cmd.header.frame_id = "map";
-            stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
-            node->publishLocalVelocity(stop_cmd);
             
             consecutive_centered_count = 0;
             rclcpp::spin_some(node);
@@ -4043,19 +4054,21 @@ void centeringGateLivoxSimple(
                 first_peak_count, min_points_per_pole);
             
             // Stop lateral movement but maintain altitude
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.05f) {
-                vz_global = 0.4f * altitude_error;
-                vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+            if (!test_mode) {
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.05f) {
+                    vz_global = 0.4f * altitude_error;
+                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+                }
+                
+                geometry_msgs::msg::TwistStamped stop_cmd;
+                stop_cmd.header.stamp = node->now();
+                stop_cmd.header.frame_id = "map";
+                stop_cmd.twist.linear.z = vz_global;
+                node->publishLocalVelocity(stop_cmd);
             }
-            
-            geometry_msgs::msg::TwistStamped stop_cmd;
-            stop_cmd.header.stamp = node->now();
-            stop_cmd.header.frame_id = "map";
-            stop_cmd.twist.linear.z = vz_global;
-            node->publishLocalVelocity(stop_cmd);
             
             consecutive_centered_count = 0;
             rclcpp::spin_some(node);
@@ -4084,19 +4097,21 @@ void centeringGateLivoxSimple(
                 second_peak_count, min_points_per_pole);
             
             // Stop lateral movement but maintain altitude
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.05f) {
-                vz_global = 0.4f * altitude_error;
-                vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+            if (!test_mode) {
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.05f) {
+                    vz_global = 0.4f * altitude_error;
+                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+                }
+                
+                geometry_msgs::msg::TwistStamped stop_cmd;
+                stop_cmd.header.stamp = node->now();
+                stop_cmd.header.frame_id = "map";
+                stop_cmd.twist.linear.z = vz_global;
+                node->publishLocalVelocity(stop_cmd);
             }
-            
-            geometry_msgs::msg::TwistStamped stop_cmd;
-            stop_cmd.header.stamp = node->now();
-            stop_cmd.header.frame_id = "map";
-            stop_cmd.twist.linear.z = vz_global;
-            node->publishLocalVelocity(stop_cmd);
             
             consecutive_centered_count = 0;
             rclcpp::spin_some(node);
@@ -4122,19 +4137,21 @@ void centeringGateLivoxSimple(
                 detected_width, gate_width_min, gate_width_max);
             
             // Stop lateral movement but maintain altitude
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.05f) {
-                vz_global = 0.4f * altitude_error;
-                vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+            if (!test_mode) {
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.05f) {
+                    vz_global = 0.4f * altitude_error;
+                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+                }
+                
+                geometry_msgs::msg::TwistStamped stop_cmd;
+                stop_cmd.header.stamp = node->now();
+                stop_cmd.header.frame_id = "map";
+                stop_cmd.twist.linear.z = vz_global;
+                node->publishLocalVelocity(stop_cmd);
             }
-            
-            geometry_msgs::msg::TwistStamped stop_cmd;
-            stop_cmd.header.stamp = node->now();
-            stop_cmd.header.frame_id = "map";
-            stop_cmd.twist.linear.z = vz_global;
-            node->publishLocalVelocity(stop_cmd);
             
             consecutive_centered_count = 0;
             rclcpp::spin_some(node);
@@ -4154,33 +4171,46 @@ void centeringGateLivoxSimple(
         if (is_centered) {
             consecutive_centered_count++;
             
-            RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
-                "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm | Pts[L:%d R:%d]",
-                consecutive_centered_count, required_centered_frames,
-                left_y, right_y, detected_width, lateral_error,
-                bins[left_idx], bins[right_idx]);
-            
-            // Stop lateral movement when centered, but maintain altitude!
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            
-            // Altitude control (gentle correction to maintain initial altitude)
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
-                vz_global = 0.4f * altitude_error;  // Slightly more aggressive
-                vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+            if (test_mode) {
+                RCLCPP_INFO(node->get_logger(),
+                    "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+                    consecutive_centered_count, required_centered_frames,
+                    left_y, right_y, detected_width, lateral_error);
+            } else {
+                RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+                    "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm | Pts[L:%d R:%d]",
+                    consecutive_centered_count, required_centered_frames,
+                    left_y, right_y, detected_width, lateral_error,
+                    bins[left_idx], bins[right_idx]);
             }
             
-            geometry_msgs::msg::TwistStamped stop_cmd;
-            stop_cmd.header.stamp = node->now();
-            stop_cmd.header.frame_id = "map";
-            stop_cmd.twist.linear.x = 0.0;  // No forward/backward
-            stop_cmd.twist.linear.y = 0.0;  // No lateral movement
-            stop_cmd.twist.linear.z = vz_global;  // ✅ Maintain altitude!
-            node->publishLocalVelocity(stop_cmd);
+            // Stop lateral movement when centered, but maintain altitude!
+            if (!test_mode) {
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                
+                // Altitude control (gentle correction to maintain initial altitude)
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
+                    vz_global = 0.4f * altitude_error;  // Slightly more aggressive
+                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+                }
+                
+                geometry_msgs::msg::TwistStamped stop_cmd;
+                stop_cmd.header.stamp = node->now();
+                stop_cmd.header.frame_id = "map";
+                stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+                stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+                stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+                node->publishLocalVelocity(stop_cmd);
+            }
             
             if (consecutive_centered_count >= required_centered_frames) {
-                RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+                if (test_mode) {
+                    RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+                } else {
+                    RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+                }
                 status = true;
                 break;
             }
@@ -4203,44 +4233,54 @@ void centeringGateLivoxSimple(
             // Apply velocity limits
             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
             
-            // Get current pose for frame transformation
-            geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-            float current_yaw = getHeading(current_pose.pose.orientation);
-            
-            // Transform velocity from BODY frame to GLOBAL frame (map)
-            // This is critical for correct movement regardless of drone orientation!
-            // Global frame transformation:
-            // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
-            // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
-            float vx_body = 0.0;  // No forward/backward during centering
-            float vy_body = target_velocity_body_y;
-            
-            float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
-            float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
-            
-            // Altitude control (gentle correction)
-            float altitude_error = initial_z - current_pose.pose.position.z;
-            float vz_global = 0.0;
-            if (std::abs(altitude_error) > 0.1f) {
-                vz_global = 0.3f * altitude_error;  // Gentle proportional control
-                vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+            if (test_mode) {
+                std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
+                
+                RCLCPP_INFO(node->get_logger(),
+                    "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
+                    left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
             }
             
-            // Publish velocity command in GLOBAL frame (map/odom)
-            geometry_msgs::msg::TwistStamped twist_cmd;
-            twist_cmd.header.stamp = node->now();
-            twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
-            twist_cmd.twist.linear.x = vx_global;
-            twist_cmd.twist.linear.y = vy_global;
-            twist_cmd.twist.linear.z = vz_global;
-            
-            node->publishLocalVelocity(twist_cmd);
-            
-            RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
-                "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm | Vel_body_y:%.3f | Vel_map[x:%.3f y:%.3f] | Yaw:%.1f° | Pts[L:%d R:%d]",
-                left_y, right_y, detected_width, lateral_error, target_velocity_body_y, 
-                vx_global, vy_global, current_yaw * 180.0 / M_PI,
-                bins[left_idx], bins[right_idx]);
+            if (!test_mode) {
+                // Get current pose for frame transformation
+                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                float current_yaw = getHeading(current_pose.pose.orientation);
+                
+                // Transform velocity from BODY frame to GLOBAL frame (map)
+                // This is critical for correct movement regardless of drone orientation!
+                // Global frame transformation:
+                // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
+                // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
+                float vx_body = 0.0;  // No forward/backward during centering
+                float vy_body = target_velocity_body_y;
+                
+                float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+                float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+                // Altitude control (gentle correction)
+                float altitude_error = initial_z - current_pose.pose.position.z;
+                float vz_global = 0.0;
+                if (std::abs(altitude_error) > 0.1f) {
+                    vz_global = 0.3f * altitude_error;  // Gentle proportional control
+                    vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+                }
+                
+                // Publish velocity command in GLOBAL frame (map/odom)
+                geometry_msgs::msg::TwistStamped twist_cmd;
+                twist_cmd.header.stamp = node->now();
+                twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
+                twist_cmd.twist.linear.x = vx_global;
+                twist_cmd.twist.linear.y = vy_global;
+                twist_cmd.twist.linear.z = vz_global;
+                
+                node->publishLocalVelocity(twist_cmd);
+                
+                RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+                    "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm | Vel_body_y:%.3f | Vel_map[x:%.3f y:%.3f] | Yaw:%.1f° | Pts[L:%d R:%d]",
+                    left_y, right_y, detected_width, lateral_error, target_velocity_body_y, 
+                    vx_global, vy_global, current_yaw * 180.0 / M_PI,
+                    bins[left_idx], bins[right_idx]);
+            }
         }
         
         rclcpp::spin_some(node);
@@ -4248,15 +4288,25 @@ void centeringGateLivoxSimple(
     }
     
     // Final stop
-    geometry_msgs::msg::TwistStamped stop_cmd;
-    stop_cmd.header.stamp = node->now();
-    stop_cmd.header.frame_id = "map";
-    node->publishLocalVelocity(stop_cmd);
+    if (!test_mode) {
+        geometry_msgs::msg::TwistStamped stop_cmd;
+        stop_cmd.header.stamp = node->now();
+        stop_cmd.header.frame_id = "map";
+        node->publishLocalVelocity(stop_cmd);
+    }
     
     if (status) {
-        RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+        if (test_mode) {
+            RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
+        } else {
+            RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+        }
     } else {
-        RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+        if (test_mode) {
+            RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
+        } else {
+            RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+        }
     }
 }
 

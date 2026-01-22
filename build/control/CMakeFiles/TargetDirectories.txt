@@ -1,6 +1,7 @@
 /home/el-system/centering_experiment/build/control/CMakeFiles/uninstall.dir
 /home/el-system/centering_experiment/build/control/CMakeFiles/control_uninstall.dir
 /home/el-system/centering_experiment/build/control/CMakeFiles/control_lidar.dir
+/home/el-system/centering_experiment/build/control/CMakeFiles/test_lidar.dir
 /home/el-system/centering_experiment/build/control/CMakeFiles/test.dir
 /home/el-system/centering_experiment/build/control/CMakeFiles/edit_cache.dir
 /home/el-system/centering_experiment/build/control/CMakeFiles/rebuild_cache.dir
