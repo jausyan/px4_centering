@@ -151,12 +151,23 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
      * - rel_alt: float value representing the relative altitude to be maintained at the correct rangefinder reading.
      */
     
+    // USER CONFIRMATION
+    RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
+    RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
+    int confirmation;
+    std::cin >> confirmation;
+    
+    if (confirmation != 1) {
+        RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
+        return;
+    }
+    
     // Get current position
     geometry_msgs::msg::PoseStamped target_pose = node->getCurrentLocalPose();
     target_pose.pose.position.z = takeoff_alt;
     
     RCLCPP_INFO(node->get_logger(), "=== TAKEOFF ===");
-    RCLCPP_INFO(node->get_logger(), "Step 1: Streaming setpoints for 2 seconds before OFFBOARD...");
+    RCLCPP_INFO(node->get_logger(), "taking off...");
     
     // PX4 CRITICAL: Stream setpoints BEFORE switching to OFFBOARD mode
     // Send at least 100 setpoints at 20Hz (2 seconds) before mode switch
@@ -168,7 +179,7 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
         fast_rate.sleep();
     }
     
-    RCLCPP_INFO(node->get_logger(), "Step 2: Setting OFFBOARD mode...");
+    RCLCPP_INFO(node->get_logger(), "Setting OFFBOARD mode...");
     auto set_mode_request = std::make_shared<mavros_msgs::srv::SetMode::Request>();
     set_mode_request->custom_mode = "OFFBOARD";   
     
@@ -196,7 +207,7 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
         fast_rate.sleep();
     }
     
-    RCLCPP_INFO(node->get_logger(), "Step 3: Arming vehicle...");
+    RCLCPP_INFO(node->get_logger(), "Arming vehicle...");
     auto arm_request = std::make_shared<mavros_msgs::srv::CommandBool::Request>();
     arm_request->value = true;
 
@@ -224,7 +235,7 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
         fast_rate.sleep();
     }
 
-    RCLCPP_INFO(node->get_logger(), "Step 4: Ascending to %.2f meters...", takeoff_alt);
+    RCLCPP_INFO(node->get_logger(), "Ascending to %.2f meters...", takeoff_alt);
     
     // For PX4 OFFBOARD: Just stream position setpoints, no separate takeoff command needed
     // The drone will automatically follow the z position setpoint
