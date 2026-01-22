@@ -1,0 +1,99 @@
+[0.000000] (-) TimerEvent: {}
+[0.000913] (control) JobQueued: {'identifier': 'control', 'dependencies': OrderedDict()}
+[0.000991] (control) JobStarted: {'identifier': 'control'}
+[0.008692] (control) JobProgress: {'identifier': 'control', 'progress': 'cmake'}
+[0.009573] (control) JobProgress: {'identifier': 'control', 'progress': 'build'}
+[0.010543] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/el-system/centering_experiment/build/control', '--', '-j12', '-l12'], 'cwd': '/home/el-system/centering_experiment/build/control', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('OLDPWD', '/home/el-system'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'id_ID.UTF-8'), ('MANAGERPID', '1721'), ('SYSTEMD_EXEC_PID', '2134'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4439'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/centering_experiment/install:/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:21589'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'el-system'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1922,unix/el-tech:/tmp/.ICE-unix/1922'), ('INVOCATION_ID', '4ccefc4e7e1a432faa6cb262d19f1c2c'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:50bae9d7-eba9-4f82-a3f5-4740204e2556'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/el-system/centering_experiment/build/control'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[0.094070] (control) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CXX object CMakeFiles/control_lidar.dir/src/mission/control.cpp.o\x1b[0m\n'}
+[0.099826] (-) TimerEvent: {}
+[0.100438] (control) StdoutLine: {'line': b'[ 58%] Built target test_lidar\n'}
+[0.119414] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[0.119769] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/src/mission/control.cpp:1\x1b[m\x1b[K:\n'}
+[0.119916] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/drone_controller_.hpp:162:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[0.120051] (control) StderrLine: {'line': b'  162 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[0.120195] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[0.120333] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/src/mission/control.cpp:1\x1b[m\x1b[K:\n'}
+[0.120454] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:63:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[0.120578] (control) StderrLine: {'line': b'   63 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[0.120697] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[0.124878] (control) StdoutLine: {'line': b'[ 66%] \x1b[1m\x1b[32mLinking CXX executable control_lidar\x1b[0m\n'}
+[0.199952] (-) TimerEvent: {}
+[0.300497] (-) TimerEvent: {}
+[0.400960] (-) TimerEvent: {}
+[0.501743] (-) TimerEvent: {}
+[0.602223] (-) TimerEvent: {}
+[0.702722] (-) TimerEvent: {}
+[0.803482] (-) TimerEvent: {}
+[0.903990] (-) TimerEvent: {}
+[1.004551] (-) TimerEvent: {}
+[1.105021] (-) TimerEvent: {}
+[1.205613] (-) TimerEvent: {}
+[1.306045] (-) TimerEvent: {}
+[1.406765] (-) TimerEvent: {}
+[1.507510] (-) TimerEvent: {}
+[1.608158] (-) TimerEvent: {}
+[1.708689] (-) TimerEvent: {}
+[1.809105] (-) TimerEvent: {}
+[1.909613] (-) TimerEvent: {}
+[2.010033] (-) TimerEvent: {}
+[2.110515] (-) TimerEvent: {}
+[2.210930] (-) TimerEvent: {}
+[2.311349] (-) TimerEvent: {}
+[2.411840] (-) TimerEvent: {}
+[2.512214] (-) TimerEvent: {}
+[2.612628] (-) TimerEvent: {}
+[2.713144] (-) TimerEvent: {}
+[2.813551] (-) TimerEvent: {}
+[2.914001] (-) TimerEvent: {}
+[3.014501] (-) TimerEvent: {}
+[3.114946] (-) TimerEvent: {}
+[3.215498] (-) TimerEvent: {}
+[3.316008] (-) TimerEvent: {}
+[3.416440] (-) TimerEvent: {}
+[3.516830] (-) TimerEvent: {}
+[3.617419] (-) TimerEvent: {}
+[3.717987] (-) TimerEvent: {}
+[3.818512] (-) TimerEvent: {}
+[3.919018] (-) TimerEvent: {}
+[4.019564] (-) TimerEvent: {}
+[4.120202] (-) TimerEvent: {}
+[4.220663] (-) TimerEvent: {}
+[4.321286] (-) TimerEvent: {}
+[4.421959] (-) TimerEvent: {}
+[4.522514] (-) TimerEvent: {}
+[4.622955] (-) TimerEvent: {}
+[4.723418] (-) TimerEvent: {}
+[4.823851] (-) TimerEvent: {}
+[4.924318] (-) TimerEvent: {}
+[5.024795] (-) TimerEvent: {}
+[5.122840] (control) StdoutLine: {'line': b'[100%] Built target control_lidar\n'}
+[5.124925] (-) TimerEvent: {}
+[5.133049] (control) CommandEnded: {'returncode': 0}
+[5.134622] (control) JobProgress: {'identifier': 'control', 'progress': 'install'}
+[5.142350] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/home/el-system/centering_experiment/build/control'], 'cwd': '/home/el-system/centering_experiment/build/control', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('OLDPWD', '/home/el-system'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'id_ID.UTF-8'), ('MANAGERPID', '1721'), ('SYSTEMD_EXEC_PID', '2134'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4439'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/centering_experiment/install:/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:21589'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'el-system'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1922,unix/el-tech:/tmp/.ICE-unix/1922'), ('INVOCATION_ID', '4ccefc4e7e1a432faa6cb262d19f1c2c'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:50bae9d7-eba9-4f82-a3f5-4740204e2556'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/el-system/centering_experiment/build/control'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[5.147104] (control) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[5.147416] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/lib/control/test_lidar\n'}
+[5.147669] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/centering_experiment/install/control/lib/control/control_lidar\n'}
+[5.184384] (control) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/el-system/centering_experiment/install/control/lib/control/control_lidar" to ""\n'}
+[5.185384] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/launch\n'}
+[5.185738] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/config\n'}
+[5.186150] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/config/config.yaml\n'}
+[5.186441] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control\n'}
+[5.186678] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control\n'}
+[5.186885] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh\n'}
+[5.187077] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv\n'}
+[5.187816] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/path.sh\n'}
+[5.189751] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/path.dsv\n'}
+[5.190054] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.bash\n'}
+[5.190810] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.sh\n'}
+[5.191012] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.zsh\n'}
+[5.191348] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.dsv\n'}
+[5.191518] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/centering_experiment/install/control/share/control/package.dsv\n'}
+[5.191633] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/packages/control\n'}
+[5.191749] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/cmake/controlConfig.cmake\n'}
+[5.191853] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake\n'}
+[5.191966] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/package.xml\n'}
+[5.192066] (control) CommandEnded: {'returncode': 0}
+[5.225036] (-) TimerEvent: {}
+[5.234010] (control) JobEnded: {'identifier': 'control', 'rc': 0}
+[5.236327] (-) EventReactorShutdown: {}

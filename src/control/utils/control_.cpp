@@ -152,15 +152,15 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
      */
     
     // USER CONFIRMATION
-    RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
-    RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
-    int confirmation;
-    std::cin >> confirmation;
+    // RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
+    // RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
+    // int confirmation;
+    // std::cin >> confirmation;
     
-    if (confirmation != 1) {
-        RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
-        return;
-    }
+    // if (confirmation != 1) {
+    //     RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
+    //     return;
+    // }
     
     // Get current position
     geometry_msgs::msg::PoseStamped target_pose = node->getCurrentLocalPose();
@@ -225,6 +225,16 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
             RCLCPP_ERROR(node->get_logger(), "Failed to arm vehicle");
             return;
         }
+    }
+
+    RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
+    RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
+    int confirmation;
+    std::cin >> confirmation;
+    
+    if (confirmation != 1) {
+        RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
+        return;
     }
     
     // Continue streaming during arm

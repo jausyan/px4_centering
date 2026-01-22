@@ -1,0 +1,796 @@
+[0.000000] (-) TimerEvent: {}
+[0.000438] (control) JobQueued: {'identifier': 'control', 'dependencies': OrderedDict()}
+[0.000502] (control) JobStarted: {'identifier': 'control'}
+[0.008272] (control) JobProgress: {'identifier': 'control', 'progress': 'cmake'}
+[0.009117] (control) JobProgress: {'identifier': 'control', 'progress': 'build'}
+[0.010063] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/el-system/centering_experiment/build/control', '--', '-j12', '-l12'], 'cwd': '/home/el-system/centering_experiment/build/control', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('OLDPWD', '/home/el-system'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'id_ID.UTF-8'), ('MANAGERPID', '1721'), ('SYSTEMD_EXEC_PID', '2134'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4439'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/centering_experiment/install:/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:21589'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'el-system'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1922,unix/el-tech:/tmp/.ICE-unix/1922'), ('INVOCATION_ID', '4ccefc4e7e1a432faa6cb262d19f1c2c'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:50bae9d7-eba9-4f82-a3f5-4740204e2556'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/el-system/centering_experiment/build/control'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[0.053118] (control) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/control_.cpp.o\x1b[0m\n'}
+[0.057939] (control) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/control_.cpp.o\x1b[0m\n'}
+[0.099083] (-) TimerEvent: {}
+[0.199523] (-) TimerEvent: {}
+[0.299933] (-) TimerEvent: {}
+[0.400390] (-) TimerEvent: {}
+[0.500909] (-) TimerEvent: {}
+[0.601504] (-) TimerEvent: {}
+[0.702121] (-) TimerEvent: {}
+[0.802702] (-) TimerEvent: {}
+[0.903265] (-) TimerEvent: {}
+[1.003850] (-) TimerEvent: {}
+[1.104419] (-) TimerEvent: {}
+[1.205176] (-) TimerEvent: {}
+[1.305762] (-) TimerEvent: {}
+[1.406282] (-) TimerEvent: {}
+[1.506826] (-) TimerEvent: {}
+[1.607344] (-) TimerEvent: {}
+[1.707844] (-) TimerEvent: {}
+[1.808333] (-) TimerEvent: {}
+[1.909248] (-) TimerEvent: {}
+[2.010192] (-) TimerEvent: {}
+[2.110680] (-) TimerEvent: {}
+[2.211192] (-) TimerEvent: {}
+[2.311723] (-) TimerEvent: {}
+[2.412190] (-) TimerEvent: {}
+[2.512633] (-) TimerEvent: {}
+[2.613189] (-) TimerEvent: {}
+[2.713665] (-) TimerEvent: {}
+[2.814185] (-) TimerEvent: {}
+[2.914724] (-) TimerEvent: {}
+[3.015234] (-) TimerEvent: {}
+[3.116107] (-) TimerEvent: {}
+[3.216613] (-) TimerEvent: {}
+[3.317072] (-) TimerEvent: {}
+[3.417534] (-) TimerEvent: {}
+[3.517944] (-) TimerEvent: {}
+[3.618320] (-) TimerEvent: {}
+[3.718699] (-) TimerEvent: {}
+[3.819349] (-) TimerEvent: {}
+[3.920103] (-) TimerEvent: {}
+[4.020948] (-) TimerEvent: {}
+[4.121543] (-) TimerEvent: {}
+[4.222091] (-) TimerEvent: {}
+[4.323509] (-) TimerEvent: {}
+[4.428157] (-) TimerEvent: {}
+[4.529945] (-) TimerEvent: {}
+[4.630756] (-) TimerEvent: {}
+[4.731594] (-) TimerEvent: {}
+[4.832239] (-) TimerEvent: {}
+[4.932794] (-) TimerEvent: {}
+[5.033336] (-) TimerEvent: {}
+[5.133837] (-) TimerEvent: {}
+[5.234530] (-) TimerEvent: {}
+[5.335054] (-) TimerEvent: {}
+[5.435713] (-) TimerEvent: {}
+[5.536188] (-) TimerEvent: {}
+[5.636528] (-) TimerEvent: {}
+[5.736882] (-) TimerEvent: {}
+[5.837421] (-) TimerEvent: {}
+[5.937824] (-) TimerEvent: {}
+[6.038287] (-) TimerEvent: {}
+[6.138742] (-) TimerEvent: {}
+[6.239182] (-) TimerEvent: {}
+[6.339623] (-) TimerEvent: {}
+[6.440070] (-) TimerEvent: {}
+[6.540498] (-) TimerEvent: {}
+[6.640918] (-) TimerEvent: {}
+[6.741362] (-) TimerEvent: {}
+[6.841918] (-) TimerEvent: {}
+[6.942634] (-) TimerEvent: {}
+[7.043227] (-) TimerEvent: {}
+[7.143796] (-) TimerEvent: {}
+[7.244210] (-) TimerEvent: {}
+[7.344665] (-) TimerEvent: {}
+[7.445209] (-) TimerEvent: {}
+[7.545919] (-) TimerEvent: {}
+[7.646376] (-) TimerEvent: {}
+[7.746933] (-) TimerEvent: {}
+[7.847375] (-) TimerEvent: {}
+[7.947775] (-) TimerEvent: {}
+[8.048224] (-) TimerEvent: {}
+[8.148670] (-) TimerEvent: {}
+[8.249071] (-) TimerEvent: {}
+[8.349515] (-) TimerEvent: {}
+[8.449964] (-) TimerEvent: {}
+[8.550402] (-) TimerEvent: {}
+[8.650843] (-) TimerEvent: {}
+[8.751283] (-) TimerEvent: {}
+[8.851747] (-) TimerEvent: {}
+[8.952243] (-) TimerEvent: {}
+[9.052815] (-) TimerEvent: {}
+[9.153581] (-) TimerEvent: {}
+[9.254036] (-) TimerEvent: {}
+[9.354476] (-) TimerEvent: {}
+[9.454934] (-) TimerEvent: {}
+[9.555388] (-) TimerEvent: {}
+[9.655821] (-) TimerEvent: {}
+[9.756257] (-) TimerEvent: {}
+[9.856680] (-) TimerEvent: {}
+[9.957118] (-) TimerEvent: {}
+[10.057638] (-) TimerEvent: {}
+[10.158073] (-) TimerEvent: {}
+[10.258537] (-) TimerEvent: {}
+[10.358968] (-) TimerEvent: {}
+[10.459389] (-) TimerEvent: {}
+[10.559849] (-) TimerEvent: {}
+[10.660411] (-) TimerEvent: {}
+[10.761086] (-) TimerEvent: {}
+[10.861502] (-) TimerEvent: {}
+[10.961920] (-) TimerEvent: {}
+[11.062440] (-) TimerEvent: {}
+[11.163381] (-) TimerEvent: {}
+[11.263878] (-) TimerEvent: {}
+[11.364308] (-) TimerEvent: {}
+[11.464751] (-) TimerEvent: {}
+[11.565280] (-) TimerEvent: {}
+[11.665814] (-) TimerEvent: {}
+[11.766316] (-) TimerEvent: {}
+[11.866860] (-) TimerEvent: {}
+[11.967318] (-) TimerEvent: {}
+[12.067777] (-) TimerEvent: {}
+[12.170376] (-) TimerEvent: {}
+[12.270930] (-) TimerEvent: {}
+[12.371428] (-) TimerEvent: {}
+[12.471895] (-) TimerEvent: {}
+[12.572407] (-) TimerEvent: {}
+[12.673970] (-) TimerEvent: {}
+[12.774665] (-) TimerEvent: {}
+[12.875161] (-) TimerEvent: {}
+[12.975791] (-) TimerEvent: {}
+[13.076620] (-) TimerEvent: {}
+[13.177377] (-) TimerEvent: {}
+[13.277923] (-) TimerEvent: {}
+[13.378439] (-) TimerEvent: {}
+[13.478922] (-) TimerEvent: {}
+[13.579364] (-) TimerEvent: {}
+[13.679833] (-) TimerEvent: {}
+[13.780304] (-) TimerEvent: {}
+[13.880734] (-) TimerEvent: {}
+[13.981146] (-) TimerEvent: {}
+[14.081631] (-) TimerEvent: {}
+[14.182055] (-) TimerEvent: {}
+[14.282501] (-) TimerEvent: {}
+[14.382941] (-) TimerEvent: {}
+[14.483389] (-) TimerEvent: {}
+[14.583827] (-) TimerEvent: {}
+[14.684232] (-) TimerEvent: {}
+[14.784676] (-) TimerEvent: {}
+[14.885110] (-) TimerEvent: {}
+[14.985546] (-) TimerEvent: {}
+[15.086029] (-) TimerEvent: {}
+[15.189541] (-) TimerEvent: {}
+[15.290258] (-) TimerEvent: {}
+[15.390659] (-) TimerEvent: {}
+[15.491049] (-) TimerEvent: {}
+[15.591462] (-) TimerEvent: {}
+[15.692068] (-) TimerEvent: {}
+[15.792511] (-) TimerEvent: {}
+[15.892951] (-) TimerEvent: {}
+[15.993411] (-) TimerEvent: {}
+[16.093889] (-) TimerEvent: {}
+[16.194307] (-) TimerEvent: {}
+[16.294688] (-) TimerEvent: {}
+[16.395157] (-) TimerEvent: {}
+[16.495770] (-) TimerEvent: {}
+[16.596404] (-) TimerEvent: {}
+[16.696926] (-) TimerEvent: {}
+[16.801424] (-) TimerEvent: {}
+[16.902011] (-) TimerEvent: {}
+[17.002611] (-) TimerEvent: {}
+[17.103191] (-) TimerEvent: {}
+[17.203759] (-) TimerEvent: {}
+[17.304287] (-) TimerEvent: {}
+[17.405024] (-) TimerEvent: {}
+[17.505526] (-) TimerEvent: {}
+[17.606016] (-) TimerEvent: {}
+[17.706580] (-) TimerEvent: {}
+[17.807037] (-) TimerEvent: {}
+[17.907487] (-) TimerEvent: {}
+[18.007923] (-) TimerEvent: {}
+[18.108378] (-) TimerEvent: {}
+[18.208822] (-) TimerEvent: {}
+[18.309274] (-) TimerEvent: {}
+[18.409827] (-) TimerEvent: {}
+[18.510249] (-) TimerEvent: {}
+[18.610736] (-) TimerEvent: {}
+[18.711156] (-) TimerEvent: {}
+[18.811600] (-) TimerEvent: {}
+[18.912057] (-) TimerEvent: {}
+[19.012548] (-) TimerEvent: {}
+[19.112991] (-) TimerEvent: {}
+[19.213465] (-) TimerEvent: {}
+[19.313974] (-) TimerEvent: {}
+[19.414676] (-) TimerEvent: {}
+[19.515196] (-) TimerEvent: {}
+[19.615976] (-) TimerEvent: {}
+[19.716546] (-) TimerEvent: {}
+[19.817061] (-) TimerEvent: {}
+[19.917543] (-) TimerEvent: {}
+[20.018803] (-) TimerEvent: {}
+[20.119379] (-) TimerEvent: {}
+[20.220064] (-) TimerEvent: {}
+[20.320632] (-) TimerEvent: {}
+[20.421391] (-) TimerEvent: {}
+[20.521879] (-) TimerEvent: {}
+[20.622338] (-) TimerEvent: {}
+[20.722754] (-) TimerEvent: {}
+[20.823214] (-) TimerEvent: {}
+[20.924224] (-) TimerEvent: {}
+[21.025539] (-) TimerEvent: {}
+[21.126040] (-) TimerEvent: {}
+[21.226531] (-) TimerEvent: {}
+[21.327053] (-) TimerEvent: {}
+[21.429197] (-) TimerEvent: {}
+[21.529870] (-) TimerEvent: {}
+[21.630597] (-) TimerEvent: {}
+[21.731152] (-) TimerEvent: {}
+[21.831709] (-) TimerEvent: {}
+[21.932364] (-) TimerEvent: {}
+[22.009440] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[22.010891] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[22.011753] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/drone_controller_.hpp:162:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[22.011940] (control) StderrLine: {'line': b'  162 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[22.012099] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.012251] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[22.012425] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:63:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[22.012585] (control) StderrLine: {'line': b'   63 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[22.012728] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.012869] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:51:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[22.013023] (control) StderrLine: {'line': b'   51 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result){\n'}
+[22.013169] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.013337] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid safeLanding(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.013492] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:474:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.013634] (control) StderrLine: {'line': b'  474 | void safeLanding(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped &posee, float descent_rate = 0.3) {\n'}
+[22.013795] (control) StderrLine: {'line': b'      |                                                               \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[22.013933] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringPayload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float, float, float, float, float, float, float, std::string, std::string)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.014077] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:650:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KdropAlt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.014214] (control) StderrLine: {'line': b'  650 |     const float \x1b[01;35m\x1b[KdropAlt\x1b[m\x1b[K = 0.6;\n'}
+[22.014370] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[22.014515] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:653:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.014783] (control) StderrLine: {'line': b'  653 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[22.014898] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[22.014972] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:654:59:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.015056] (control) StderrLine: {'line': b'  654 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[22.015123] (control) StderrLine: {'line': b'      |                                                           \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.015192] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:654:79:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.015260] (control) StderrLine: {'line': b'  654 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[22.015371] (control) StderrLine: {'line': b'      |                                                                               \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.015453] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringEmber(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.015527] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.015600] (control) StderrLine: {'line': b'  926 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[22.015674] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.015753] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.015824] (control) StderrLine: {'line': b'  926 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[22.015909] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[22.015982] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.016068] (control) StderrLine: {'line': b'  926 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[22.016182] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[22.016304] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:927:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.016430] (control) StderrLine: {'line': b'  927 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[22.016528] (control) StderrLine: {'line': b'      |                                                         \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.016601] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:927:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.016664] (control) StderrLine: {'line': b'  927 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[22.016725] (control) StderrLine: {'line': b'      |                                                                             \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.016785] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGate(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.016847] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1204:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.016932] (control) StderrLine: {'line': b' 1204 |             for(int j = 0; \x1b[01;35m\x1b[Kj < x_points.size()\x1b[m\x1b[K; j++) {\n'}
+[22.017005] (control) StderrLine: {'line': b'      |                            \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.017066] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1194:15:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx1_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.017125] (control) StderrLine: {'line': b' 1194 |         float \x1b[01;35m\x1b[Kx1_min\x1b[m\x1b[K = -1.0, x2_min = -1.0;\n'}
+[22.017193] (control) StderrLine: {'line': b'      |               \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[22.017286] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1194:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx2_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.017380] (control) StderrLine: {'line': b' 1194 |         float x1_min = -1.0, \x1b[01;35m\x1b[Kx2_min\x1b[m\x1b[K = -1.0;\n'}
+[22.017446] (control) StderrLine: {'line': b'      |                              \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[22.017504] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringBunder(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.017566] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.017635] (control) StderrLine: {'line': b' 1342 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[22.017702] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.017772] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.017842] (control) StderrLine: {'line': b' 1342 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[22.017934] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[22.018026] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[22.018116] (control) StderrLine: {'line': b' 1342 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[22.018196] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[22.018267] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1343:58:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.018369] (control) StderrLine: {'line': b' 1343 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[22.018468] (control) StderrLine: {'line': b'      |                                                          \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.018557] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1343:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.018649] (control) StderrLine: {'line': b' 1343 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[22.018713] (control) StderrLine: {'line': b'      |                                                                              \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.018772] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.018844] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1537:55:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Ki\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.018907] (control) StderrLine: {'line': b' 1537 |     float last_x, last_y, distance, progress=0.0; int \x1b[01;35m\x1b[Ki\x1b[m\x1b[K =0;\n'}
+[22.018970] (control) StderrLine: {'line': b'      |                                                       \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[22.019030] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1521:156:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kangle\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.019089] (control) StderrLine: {'line': b' 1521 | void moveToPoint(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float x, float y, float z, \x1b[01;35m\x1b[Kfloat angle\x1b[m\x1b[K, float speed, float tolerance) {\n'}
+[22.019151] (control) StderrLine: {'line': b'      |                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[22.019213] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, geometry_msgs::msg::Pose, float, float, bool, bool, bool)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.019278] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1583:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdistance_to_target\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.019359] (control) StderrLine: {'line': b' 1583 |     float \x1b[01;35m\x1b[Kdistance_to_target\x1b[m\x1b[K = dist(posee.pose.position, target.position);\n'}
+[22.019420] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.019603] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid holdPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.019686] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1723:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.019749] (control) StderrLine: {'line': b' 1723 | void holdPosition(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped& posee, float duration){\n'}
+[22.019818] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[22.019883] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[22.019944] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[22.020005] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[22.020075] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[22.020162] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[22.020228] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[22.020344] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[22.020442] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[22.020507] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[22.020569] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[22.020630] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[22.020690] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[22.020749] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[22.020809] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid waitForPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, mavros_msgs::msg::GlobalPositionTarget, double, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.020877] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[22.020946] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, \x1b[32m\x1b[Kdistance\x1b[m\x1b[K, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[22.021012] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~\x1b[m\x1b[K\n'}
+[22.021078] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[22.021142] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[22.021207] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:43:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[22.021270] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), "\x1b[01;36m\x1b[K%d\x1b[m\x1b[K - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[22.021361] (control) StderrLine: {'line': b'      |                                          \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[22.021428] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[22.021501] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[22.021569] (control) StderrLine: {'line': b'      |                                          \x1b[32m\x1b[K%f\x1b[m\x1b[K\n'}
+[22.021633] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[22.021696] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[22.021759] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[22.021824] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[22.021889] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[22.021951] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[22.022013] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[22.022076] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[22.022137] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[22.022198] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[22.022264] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[22.022342] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[22.022405] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[22.022465] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%f\x1b[m\x1b[K\xe2\x80\x99 expects a matching \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 argument [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[22.022531] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[22.022591] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.022650] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:93:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[22.022711] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), "%d - CURRR DISTANCEE: %f, meter: %.2f, payload: \x1b[01;36m\x1b[K%.2f\x1b[m\x1b[K", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[22.022774] (control) StderrLine: {'line': b'      |                                                                                          \x1b[01;36m\x1b[K~~~^\x1b[m\x1b[K\n'}
+[22.022834] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[22.022894] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[22.022956] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1781:16:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdalt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[22.023018] (control) StderrLine: {'line': b' 1781 |         double \x1b[01;35m\x1b[Kdalt\x1b[m\x1b[K = raw.altitude - node->getCurrentGPSPosition().altitude;\n'}
+[22.023079] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[22.023142] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1763:177:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.023202] (control) StderrLine: {'line': b' 1763 | void waitForPosition(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, mavros_msgs::msg::GlobalPositionTarget raw, double tolerance, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[22.023265] (control) StderrLine: {'line': b'      |                                                                                                                                                                           \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.023346] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawAsync(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.023409] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1853:171:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.023469] (control) StderrLine: {'line': b' 1853 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[22.023530] (control) StderrLine: {'line': b'      |                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.023588] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1853:194:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.023675] (control) StderrLine: {'line': b' 1853 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[22.023773] (control) StderrLine: {'line': b'      |                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.023879] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, LatLonAlt, double, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.023983] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1901:203:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.024090] (control) StderrLine: {'line': b' 1901 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[22.024230] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.024354] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1901:226:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.024424] (control) StderrLine: {'line': b' 1901 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[22.024516] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.024584] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[22.024647] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[22.024707] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[22.024768] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[22.024827] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[22.024885] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[22.024945] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[22.025015] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[22.025076] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[22.025134] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[22.025192] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[22.025248] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[22.025316] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[22.025376] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid pushMission(const std::shared_ptr<DroneController>&, std::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.025445] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2002:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[22.025517] (control) StderrLine: {'line': b' 2002 |     RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"Pushing mission of size %d"\x1b[m\x1b[K, \x1b[32m\x1b[Kwaypoints.size()\x1b[m\x1b[K);\n'}
+[22.025584] (control) StderrLine: {'line': b'      |                                     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.025643] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[22.025704] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type {aka long unsigned int}\x1b[m\x1b[K\n'}
+[22.025764] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2002:63:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[22.025820] (control) StderrLine: {'line': b' 2002 |     RCLCPP_INFO(node->get_logger(), "Pushing mission of size \x1b[01;36m\x1b[K%d\x1b[m\x1b[K", waypoints.size());\n'}
+[22.025878] (control) StderrLine: {'line': b'      |                                                              \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[22.025933] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[22.025991] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[22.026049] (control) StderrLine: {'line': b'      |                                                              \x1b[32m\x1b[K%ld\x1b[m\x1b[K\n'}
+[22.026109] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveWithLaser(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, bool, bool, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.026170] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2128:422:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[22.026230] (control) StderrLine: {'line': b' 2128 |         vel_pose.pose.position.x = x ? limit(max_speed, P_maju*err_x + I_maju*total_error_maju + D_maju*last_error_maju) : (front + back <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(front - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (back == 2.1f && front != 2.1f ? limit(koreksi_max_speed, P_koreksi*(front - 1.25 ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kfront == 2.1f\x1b[m\x1b[K & back != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[22.026309] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[22.026381] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2129:421:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[22.026441] (control) StderrLine: {'line': b' 2129 |         vel_pose.pose.position.y = y ? limit(max_speed, P_maju*err_y + I_maju*total_error_maju + D_maju*last_error_maju) : (left + right <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(left - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (right == 2.1f && left != 2.1f ? limit(koreksi_max_speed, P_koreksi*(left - 1.25  ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kleft == 2.1f\x1b[m\x1b[K & right != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[22.026504] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[22.026565] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kfloat getYawError(const std::shared_ptr<DroneController>&, rclcpp::Rate&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.026624] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2304:24:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.026698] (control) StderrLine: {'line': b' 2304 |         if(\x1b[01;35m\x1b[Kright_index > curr_scan.ranges.size()\x1b[m\x1b[K) {\n'}
+[22.026764] (control) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.026854] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2286:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.026952] (control) StderrLine: {'line': b' 2286 | float getYawError(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K)\n'}
+[22.027050] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[22.027140] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid printTitik(std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, double, double)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.027241] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2324:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.027317] (control) StderrLine: {'line': b' 2324 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[22.027380] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.027439] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2326:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.027504] (control) StderrLine: {'line': b' 2326 |             if(\x1b[01;35m\x1b[Ki != lat_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[22.027565] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.027622] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2330:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.027683] (control) StderrLine: {'line': b' 2330 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[22.027748] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.027810] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2332:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.027883] (control) StderrLine: {'line': b' 2332 |             if(\x1b[01;35m\x1b[Ki != lon_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[22.027951] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.028039] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2340:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.028138] (control) StderrLine: {'line': b' 2340 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[22.028209] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.028281] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2342:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.028365] (control) StderrLine: {'line': b' 2342 |             if(\x1b[01;35m\x1b[Ki != lat_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[22.028427] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.028484] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2346:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.028547] (control) StderrLine: {'line': b' 2346 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[22.028608] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.028666] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2348:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[22.028728] (control) StderrLine: {'line': b' 2348 |             if(\x1b[01;35m\x1b[Ki != lon_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[22.028795] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[22.028852] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid executeLocalWaypointMove(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.028915] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2355:90:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.028975] (control) StderrLine: {'line': b' 2355 | void executeLocalWaypointMove(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K,\n'}
+[22.029036] (control) StderrLine: {'line': b'      |                                                                            \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[22.029095] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGateNear(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.029176] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:3249:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kposee\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.029248] (control) StderrLine: {'line': b' 3249 |                        \x1b[01;35m\x1b[Kgeometry_msgs::msg::PoseStamped &posee\x1b[m\x1b[K, float gate_width,\n'}
+[22.029323] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[22.029390] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGateLivoxSimple(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, bool)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[22.029454] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:3892:38:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kposee\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[22.029515] (control) StderrLine: {'line': b' 3892 |     \x1b[01;35m\x1b[Kgeometry_msgs::msg::PoseStamped &posee\x1b[m\x1b[K,\n'}
+[22.029577] (control) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[22.029637] (control) StdoutLine: {'line': b'[ 25%] \x1b[1m\x1b[32mLinking CXX executable control_lidar\x1b[0m\n'}
+[22.032486] (-) TimerEvent: {}
+[22.133015] (-) TimerEvent: {}
+[22.233638] (-) TimerEvent: {}
+[22.334335] (-) TimerEvent: {}
+[22.434848] (-) TimerEvent: {}
+[22.535576] (-) TimerEvent: {}
+[22.636228] (-) TimerEvent: {}
+[22.736720] (-) TimerEvent: {}
+[22.837401] (-) TimerEvent: {}
+[22.938803] (-) TimerEvent: {}
+[23.039342] (-) TimerEvent: {}
+[23.139916] (-) TimerEvent: {}
+[23.188612] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[23.189187] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[23.189556] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/drone_controller_.hpp:162:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[23.189883] (control) StderrLine: {'line': b'  162 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[23.190197] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.190548] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[23.190863] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:63:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[23.191193] (control) StderrLine: {'line': b'   63 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[23.191496] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.193225] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:51:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[23.195640] (control) StderrLine: {'line': b'   51 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result){\n'}
+[23.195907] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.196066] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid safeLanding(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.196206] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:474:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.196361] (control) StderrLine: {'line': b'  474 | void safeLanding(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped &posee, float descent_rate = 0.3) {\n'}
+[23.196532] (control) StderrLine: {'line': b'      |                                                               \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[23.196659] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringPayload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float, float, float, float, float, float, float, std::string, std::string)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.196815] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:650:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KdropAlt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.196940] (control) StderrLine: {'line': b'  650 |     const float \x1b[01;35m\x1b[KdropAlt\x1b[m\x1b[K = 0.6;\n'}
+[23.198529] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[23.198995] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:653:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.199389] (control) StderrLine: {'line': b'  653 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[23.200760] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[23.201072] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:654:59:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.201352] (control) StderrLine: {'line': b'  654 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[23.201633] (control) StderrLine: {'line': b'      |                                                           \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.201874] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:654:79:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.202141] (control) StderrLine: {'line': b'  654 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[23.202419] (control) StderrLine: {'line': b'      |                                                                               \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.202714] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringEmber(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.202954] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.203188] (control) StderrLine: {'line': b'  926 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[23.203448] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.203689] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.203916] (control) StderrLine: {'line': b'  926 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[23.204141] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[23.204431] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:926:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.204693] (control) StderrLine: {'line': b'  926 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[23.204919] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[23.205152] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:927:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.205467] (control) StderrLine: {'line': b'  927 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[23.205719] (control) StderrLine: {'line': b'      |                                                         \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.205955] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:927:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.206203] (control) StderrLine: {'line': b'  927 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[23.206520] (control) StderrLine: {'line': b'      |                                                                             \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.206795] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGate(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.207042] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1204:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.207322] (control) StderrLine: {'line': b' 1204 |             for(int j = 0; \x1b[01;35m\x1b[Kj < x_points.size()\x1b[m\x1b[K; j++) {\n'}
+[23.207577] (control) StderrLine: {'line': b'      |                            \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.207808] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1194:15:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx1_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.208828] (control) StderrLine: {'line': b' 1194 |         float \x1b[01;35m\x1b[Kx1_min\x1b[m\x1b[K = -1.0, x2_min = -1.0;\n'}
+[23.209141] (control) StderrLine: {'line': b'      |               \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[23.209475] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1194:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx2_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.209751] (control) StderrLine: {'line': b' 1194 |         float x1_min = -1.0, \x1b[01;35m\x1b[Kx2_min\x1b[m\x1b[K = -1.0;\n'}
+[23.210009] (control) StderrLine: {'line': b'      |                              \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[23.210265] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringBunder(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.210569] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.210818] (control) StderrLine: {'line': b' 1342 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[23.211049] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.211281] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.211551] (control) StderrLine: {'line': b' 1342 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[23.211852] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[23.212079] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1342:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[23.212313] (control) StderrLine: {'line': b' 1342 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[23.212562] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[23.212796] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1343:58:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.213045] (control) StderrLine: {'line': b' 1343 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[23.213352] (control) StderrLine: {'line': b'      |                                                          \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.213621] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1343:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.213899] (control) StderrLine: {'line': b' 1343 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[23.214155] (control) StderrLine: {'line': b'      |                                                                              \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.214445] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.214768] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1537:55:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Ki\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.215051] (control) StderrLine: {'line': b' 1537 |     float last_x, last_y, distance, progress=0.0; int \x1b[01;35m\x1b[Ki\x1b[m\x1b[K =0;\n'}
+[23.215367] (control) StderrLine: {'line': b'      |                                                       \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[23.217352] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1521:156:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kangle\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.217771] (control) StderrLine: {'line': b' 1521 | void moveToPoint(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float x, float y, float z, \x1b[01;35m\x1b[Kfloat angle\x1b[m\x1b[K, float speed, float tolerance) {\n'}
+[23.218039] (control) StderrLine: {'line': b'      |                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[23.218278] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, geometry_msgs::msg::Pose, float, float, bool, bool, bool)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.218552] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1583:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdistance_to_target\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.218783] (control) StderrLine: {'line': b' 1583 |     float \x1b[01;35m\x1b[Kdistance_to_target\x1b[m\x1b[K = dist(posee.pose.position, target.position);\n'}
+[23.219014] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.219237] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid holdPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.220257] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1723:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.220713] (control) StderrLine: {'line': b' 1723 | void holdPosition(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped& posee, float duration){\n'}
+[23.220960] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[23.221188] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[23.221475] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[23.221721] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[23.221947] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[23.222172] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[23.222487] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[23.222728] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[23.222956] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[23.223183] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[23.223445] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[23.223729] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[23.223967] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[23.224214] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[23.224481] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid waitForPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, mavros_msgs::msg::GlobalPositionTarget, double, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.224738] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[23.224992] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, \x1b[32m\x1b[Kdistance\x1b[m\x1b[K, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[23.226507] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~\x1b[m\x1b[K\n'}
+[23.226794] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[23.227054] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[23.227280] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:43:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[23.227976] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), "\x1b[01;36m\x1b[K%d\x1b[m\x1b[K - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[23.228240] (control) StderrLine: {'line': b'      |                                          \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[23.228569] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[23.228842] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[23.229080] (control) StderrLine: {'line': b'      |                                          \x1b[32m\x1b[K%f\x1b[m\x1b[K\n'}
+[23.229333] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[23.229602] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[23.229829] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[23.230071] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[23.230363] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[23.230623] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[23.230845] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[23.231076] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[23.231325] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[23.231586] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[23.231818] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[23.232055] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[23.232316] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[23.232574] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%f\x1b[m\x1b[K\xe2\x80\x99 expects a matching \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 argument [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[23.232869] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[23.233124] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.233438] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1786:93:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[23.233683] (control) StderrLine: {'line': b' 1786 |         RCLCPP_INFO(node->get_logger(), "%d - CURRR DISTANCEE: %f, meter: %.2f, payload: \x1b[01;36m\x1b[K%.2f\x1b[m\x1b[K", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[23.233956] (control) StderrLine: {'line': b'      |                                                                                          \x1b[01;36m\x1b[K~~~^\x1b[m\x1b[K\n'}
+[23.234229] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[23.234517] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[23.234757] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1781:16:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdalt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[23.234998] (control) StderrLine: {'line': b' 1781 |         double \x1b[01;35m\x1b[Kdalt\x1b[m\x1b[K = raw.altitude - node->getCurrentGPSPosition().altitude;\n'}
+[23.235225] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[23.235483] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1763:177:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.235803] (control) StderrLine: {'line': b' 1763 | void waitForPosition(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, mavros_msgs::msg::GlobalPositionTarget raw, double tolerance, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[23.236046] (control) StderrLine: {'line': b'      |                                                                                                                                                                           \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.236279] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawAsync(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.236561] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1853:171:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.236801] (control) StderrLine: {'line': b' 1853 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[23.237042] (control) StderrLine: {'line': b'      |                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.237312] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1853:194:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.237592] (control) StderrLine: {'line': b' 1853 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[23.237875] (control) StderrLine: {'line': b'      |                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.238136] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, LatLonAlt, double, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.238440] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1901:203:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.238692] (control) StderrLine: {'line': b' 1901 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[23.238933] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.239169] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1901:226:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.239506] (control) StderrLine: {'line': b' 1901 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[23.239784] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.240024] (-) TimerEvent: {}
+[23.240442] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[23.240770] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[23.241037] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[23.241284] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[23.241570] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[23.241803] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[23.242050] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[23.242309] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[23.242591] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[23.242826] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[23.243059] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[23.243312] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[23.243590] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[23.243833] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid pushMission(const std::shared_ptr<DroneController>&, std::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.244102] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2002:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[23.244378] (control) StderrLine: {'line': b' 2002 |     RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"Pushing mission of size %d"\x1b[m\x1b[K, \x1b[32m\x1b[Kwaypoints.size()\x1b[m\x1b[K);\n'}
+[23.244639] (control) StderrLine: {'line': b'      |                                     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.244868] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[23.245100] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type {aka long unsigned int}\x1b[m\x1b[K\n'}
+[23.245351] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2002:63:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[23.245604] (control) StderrLine: {'line': b' 2002 |     RCLCPP_INFO(node->get_logger(), "Pushing mission of size \x1b[01;36m\x1b[K%d\x1b[m\x1b[K", waypoints.size());\n'}
+[23.245846] (control) StderrLine: {'line': b'      |                                                              \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[23.246075] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[23.246317] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[23.246573] (control) StderrLine: {'line': b'      |                                                              \x1b[32m\x1b[K%ld\x1b[m\x1b[K\n'}
+[23.246820] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveWithLaser(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, bool, bool, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.247087] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2128:422:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[23.247377] (control) StderrLine: {'line': b' 2128 |         vel_pose.pose.position.x = x ? limit(max_speed, P_maju*err_x + I_maju*total_error_maju + D_maju*last_error_maju) : (front + back <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(front - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (back == 2.1f && front != 2.1f ? limit(koreksi_max_speed, P_koreksi*(front - 1.25 ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kfront == 2.1f\x1b[m\x1b[K & back != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[23.247676] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[23.247932] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2129:421:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[23.248172] (control) StderrLine: {'line': b' 2129 |         vel_pose.pose.position.y = y ? limit(max_speed, P_maju*err_y + I_maju*total_error_maju + D_maju*last_error_maju) : (left + right <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(left - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (right == 2.1f && left != 2.1f ? limit(koreksi_max_speed, P_koreksi*(left - 1.25  ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kleft == 2.1f\x1b[m\x1b[K & right != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[23.248615] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[23.248910] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kfloat getYawError(const std::shared_ptr<DroneController>&, rclcpp::Rate&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.249176] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2304:24:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.249465] (control) StderrLine: {'line': b' 2304 |         if(\x1b[01;35m\x1b[Kright_index > curr_scan.ranges.size()\x1b[m\x1b[K) {\n'}
+[23.249707] (control) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.249974] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2286:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.250209] (control) StderrLine: {'line': b' 2286 | float getYawError(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K)\n'}
+[23.250513] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[23.250768] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid printTitik(std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, double, double)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.251028] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2324:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.251328] (control) StderrLine: {'line': b' 2324 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[23.251600] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.251832] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2326:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.252080] (control) StderrLine: {'line': b' 2326 |             if(\x1b[01;35m\x1b[Ki != lat_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[23.252458] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.252741] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2330:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.252964] (control) StderrLine: {'line': b' 2330 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[23.253180] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.253433] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2332:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.253670] (control) StderrLine: {'line': b' 2332 |             if(\x1b[01;35m\x1b[Ki != lon_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[23.253917] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.254141] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2340:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.254399] (control) StderrLine: {'line': b' 2340 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[23.254635] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.254857] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2342:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.255096] (control) StderrLine: {'line': b' 2342 |             if(\x1b[01;35m\x1b[Ki != lat_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[23.255328] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.255570] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2346:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.255990] (control) StderrLine: {'line': b' 2346 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[23.256189] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.256391] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2348:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[23.256506] (control) StderrLine: {'line': b' 2348 |             if(\x1b[01;35m\x1b[Ki != lon_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[23.256595] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[23.256689] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid executeLocalWaypointMove(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.256825] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:2355:90:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.256965] (control) StderrLine: {'line': b' 2355 | void executeLocalWaypointMove(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K,\n'}
+[23.257074] (control) StderrLine: {'line': b'      |                                                                            \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[23.257178] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGateNear(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.257334] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:3249:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kposee\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.257459] (control) StderrLine: {'line': b' 3249 |                        \x1b[01;35m\x1b[Kgeometry_msgs::msg::PoseStamped &posee\x1b[m\x1b[K, float gate_width,\n'}
+[23.257551] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[23.257656] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGateLivoxSimple(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, bool)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[23.257792] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/centering_experiment/src/control/utils/control_.cpp:3892:38:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kposee\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[23.257918] (control) StderrLine: {'line': b' 3892 |     \x1b[01;35m\x1b[Kgeometry_msgs::msg::PoseStamped &posee\x1b[m\x1b[K,\n'}
+[23.258030] (control) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[23.258140] (control) StdoutLine: {'line': b'[ 33%] \x1b[1m\x1b[32mLinking CXX executable test_lidar\x1b[0m\n'}
+[23.340263] (-) TimerEvent: {}
+[23.445504] (-) TimerEvent: {}
+[23.546099] (-) TimerEvent: {}
+[23.646770] (-) TimerEvent: {}
+[23.747797] (-) TimerEvent: {}
+[23.848487] (-) TimerEvent: {}
+[23.949307] (-) TimerEvent: {}
+[24.049975] (-) TimerEvent: {}
+[24.151512] (-) TimerEvent: {}
+[24.252163] (-) TimerEvent: {}
+[24.352865] (-) TimerEvent: {}
+[24.453521] (-) TimerEvent: {}
+[24.554216] (-) TimerEvent: {}
+[24.655017] (-) TimerEvent: {}
+[24.755690] (-) TimerEvent: {}
+[24.856233] (-) TimerEvent: {}
+[24.956800] (-) TimerEvent: {}
+[25.057666] (-) TimerEvent: {}
+[25.158192] (-) TimerEvent: {}
+[25.258774] (-) TimerEvent: {}
+[25.359437] (-) TimerEvent: {}
+[25.460140] (-) TimerEvent: {}
+[25.560722] (-) TimerEvent: {}
+[25.661313] (-) TimerEvent: {}
+[25.761857] (-) TimerEvent: {}
+[25.862362] (-) TimerEvent: {}
+[25.962858] (-) TimerEvent: {}
+[26.063332] (-) TimerEvent: {}
+[26.163827] (-) TimerEvent: {}
+[26.264226] (-) TimerEvent: {}
+[26.365052] (-) TimerEvent: {}
+[26.465540] (-) TimerEvent: {}
+[26.565954] (-) TimerEvent: {}
+[26.666438] (-) TimerEvent: {}
+[26.766846] (-) TimerEvent: {}
+[26.867737] (-) TimerEvent: {}
+[26.969193] (-) TimerEvent: {}
+[27.069683] (-) TimerEvent: {}
+[27.170150] (-) TimerEvent: {}
+[27.270620] (-) TimerEvent: {}
+[27.371196] (-) TimerEvent: {}
+[27.471990] (-) TimerEvent: {}
+[27.572563] (-) TimerEvent: {}
+[27.673020] (-) TimerEvent: {}
+[27.773512] (-) TimerEvent: {}
+[27.873964] (-) TimerEvent: {}
+[27.974386] (-) TimerEvent: {}
+[28.074827] (-) TimerEvent: {}
+[28.175326] (-) TimerEvent: {}
+[28.275945] (-) TimerEvent: {}
+[28.376475] (-) TimerEvent: {}
+[28.477000] (-) TimerEvent: {}
+[28.577668] (-) TimerEvent: {}
+[28.679022] (-) TimerEvent: {}
+[28.779659] (-) TimerEvent: {}
+[28.880241] (-) TimerEvent: {}
+[28.980825] (-) TimerEvent: {}
+[29.070215] (control) StdoutLine: {'line': b'[ 66%] Built target control_lidar\n'}
+[29.080960] (-) TimerEvent: {}
+[29.182314] (-) TimerEvent: {}
+[29.282796] (-) TimerEvent: {}
+[29.383195] (-) TimerEvent: {}
+[29.483995] (-) TimerEvent: {}
+[29.584541] (-) TimerEvent: {}
+[29.685100] (-) TimerEvent: {}
+[29.785616] (-) TimerEvent: {}
+[29.886112] (-) TimerEvent: {}
+[29.940580] (control) StdoutLine: {'line': b'[100%] Built target test_lidar\n'}
+[29.952873] (control) CommandEnded: {'returncode': 0}
+[29.954678] (control) JobProgress: {'identifier': 'control', 'progress': 'install'}
+[29.962572] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/home/el-system/centering_experiment/build/control'], 'cwd': '/home/el-system/centering_experiment/build/control', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('OLDPWD', '/home/el-system'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'id_ID.UTF-8'), ('MANAGERPID', '1721'), ('SYSTEMD_EXEC_PID', '2134'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4439'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/centering_experiment/install:/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:21589'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'el-system'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1922,unix/el-tech:/tmp/.ICE-unix/1922'), ('INVOCATION_ID', '4ccefc4e7e1a432faa6cb262d19f1c2c'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:50bae9d7-eba9-4f82-a3f5-4740204e2556'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/el-system/centering_experiment/build/control'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/centering_experiment/install/control:/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[29.971362] (control) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[29.972957] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/centering_experiment/install/control/lib/control/test_lidar\n'}
+[29.986388] (-) TimerEvent: {}
+[30.033563] (control) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/el-system/centering_experiment/install/control/lib/control/test_lidar" to ""\n'}
+[30.034038] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/centering_experiment/install/control/lib/control/control_lidar\n'}
+[30.080045] (control) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/el-system/centering_experiment/install/control/lib/control/control_lidar" to ""\n'}
+[30.080610] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/launch\n'}
+[30.081043] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/config\n'}
+[30.081262] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/config/config.yaml\n'}
+[30.081655] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control\n'}
+[30.081886] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control\n'}
+[30.082099] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh\n'}
+[30.082334] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv\n'}
+[30.083172] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/path.sh\n'}
+[30.083911] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/environment/path.dsv\n'}
+[30.084884] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.bash\n'}
+[30.084994] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.sh\n'}
+[30.085086] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.zsh\n'}
+[30.085165] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/local_setup.dsv\n'}
+[30.085249] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/centering_experiment/install/control/share/control/package.dsv\n'}
+[30.085363] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/ament_index/resource_index/packages/control\n'}
+[30.085956] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/cmake/controlConfig.cmake\n'}
+[30.086049] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake\n'}
+[30.086132] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/centering_experiment/install/control/share/control/package.xml\n'}
+[30.086216] (control) CommandEnded: {'returncode': 0}
+[30.086827] (-) TimerEvent: {}
+[30.123908] (control) JobEnded: {'identifier': 'control', 'rc': 0}
+[30.156240] (-) EventReactorShutdown: {}
