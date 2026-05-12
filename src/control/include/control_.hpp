@@ -29,12 +29,37 @@
 #include "geo_.hpp"
 #include "drone_controller_.hpp"
 #include <sensor_msgs/msg/nav_sat_fix.hpp>
+// #include <livox_ros_driver2/msg/custom_msg.hpp>
+// #include <livox_ros_driver2/msg/custom_point.hpp>
 #include <string>
 #include <iostream>
 #include <iomanip>
 #include <limits>
 
 #define RATE 10.0
+
+struct PathWaypoint {
+    float x;
+    float y;
+    float z;
+    float yaw;
+};
+
+struct PathConfig {
+    std::vector<PathWaypoint> waypoints;
+    float speed;
+    float tolerance;
+    bool auto_heading;
+    bool enable_bspline_smoothing;
+    float bspline_smoothness;
+    int bspline_degree;
+    int num_interpolation_points;
+    bool enable_rdp_simplification;
+    float rdp_epsilon;
+    float slow_down_distance;
+    bool enable_lateral_compensation;
+    float lateral_compensation_factor;
+};
 
 bool payloadDetected(const std::shared_ptr<DroneController>&node);
     /**
@@ -95,6 +120,7 @@ void initFrame(const std::shared_ptr<DroneController>& node, geometry_msgs::msg:
      * - pose: reference to the geometry_msgs::msg::PoseStamped object to be initialized.
      */
     
+void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float forward_x, float left_y, float up_z, float yaw_angle, float max_velocity, float tolerance);
 
 void setParam(const std::shared_ptr<DroneController>&node, const std::string &id, int integer_value);
     /**
@@ -207,7 +233,21 @@ void centeringPayload(const std::shared_ptr<DroneController>&node, rclcpp::Rate 
      * 
      * returns:
      * - posee: reference to where the last drone position when this function is called, it will be modified to the last drone position when this function returns.
-     * - status: reference to a boolean indicating whether centering is successful or not. Modified by the function (true if successful, false otherwise)
+      * - status: reference to a boolean indicating whether centering is successful or not. Modified by the function (true if successful, false otherwise)
+      */
+
+void centering_payload(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, bool &centering_status, float step = 0.2, float tolerance = 10.0, float timeout = 3.0, float max_time = 30.0, float log_interval = 0.5, int min_centered_frames = 1);
+    /**
+     * Center payload in down-facing camera frame (640x480) using /payload_pose topic data.
+     * Topic data is interpreted as x(pixel), y(pixel), and center_dist in z.
+     * 
+     * parameters:
+     * - step: max command velocity per axis (default 0.2 m/s)
+     * - tolerance: center distance threshold to mark centered
+     * - timeout: stop when no object is detected for this duration (seconds)
+     * - max_time: overall maximum centering duration (seconds)
+     * - log_interval: status logging interval in seconds (default 0.5)
+     * - min_centered_frames: minimum consecutive centered frames before success
      */
 
 
@@ -675,4 +715,38 @@ void centeringGateLivoxSimple(
      * - status: true if centering successful, false if timeout or error
      */
 
-#endif // CONTROL__HPP
+void centeringGateLivoxSimpleRear(
+    const std::shared_ptr<DroneController>&node,
+    rclcpp::Rate &rate,
+    geometry_msgs::msg::PoseStamped &posee,
+    float gate_width,
+    float tolerance,
+    bool &status,
+    float max_velocity = 0.2,
+    float proportional_gain = 0.5,
+    float max_time = 30.0,
+    bool test_mode = false);
+
+void centeringGateLivoxFast(
+    const std::shared_ptr<DroneController>&node,
+    rclcpp::Rate &rate,
+    geometry_msgs::msg::PoseStamped &posee,
+    float gate_width,
+    float tolerance,
+    bool &status,
+    float max_velocity = 0.2,
+    float proportional_gain = 0.5,
+    float max_time = 30.0,
+    bool test_mode = false);
+
+void followPath(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const std::vector<PathWaypoint>& waypoints, float speed, float tolerance, bool allow_centering_payload = false, bool allow_centering_ember = false, bool disable_z_lock = false, bool stabilize_at_waypoint = true, float stabilize_duration = 2.0);
+
+void followPathFromConfig(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const PathConfig& config);
+
+std::vector<PathWaypoint> smoothPathBSpline(const std::vector<PathWaypoint>& waypoints, float smoothness, int degree, int num_points);
+
+std::vector<PathWaypoint> ramerDouglasPeucker(const std::vector<PathWaypoint>& path, float epsilon);
+
+void followPathVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const std::vector<PathWaypoint>& path, float max_speed, float step_tolerance, float slow_down_distance, bool enable_lateral_comp, float lateral_comp_factor);
+    
+#endif  // CONTROL__CONTROL__HPP_

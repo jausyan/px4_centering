@@ -1,0 +1,909 @@
+[0.010s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[0.049s] [  8%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o[0m
+[0.050s] [ 16%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/testing/drone_controller.cpp.o[0m
+[0.050s] [ 25%] [32mBuilding CXX object CMakeFiles/test_centering.dir/utils/control_.cpp.o[0m
+[0.051s] [ 33%] [32mBuilding CXX object CMakeFiles/control.dir/src/mission/control.cpp.o[0m
+[0.054s] [ 41%] [32mBuilding CXX object CMakeFiles/control.dir/src/testing/drone_controller.cpp.o[0m
+[0.058s] [ 50%] [32mBuilding CXX object CMakeFiles/control.dir/utils/control_.cpp.o[0m
+[9.303s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+[9.303s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[9.303s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[9.304s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[9.304s]       |                         [01;35m[K^~~~[m[K
+[9.304s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[9.304s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[9.304s]    88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+[9.304s]       |                                                              [01;35m[K^~~~[m[K
+[10.738s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+[10.738s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1[m[K:
+[10.738s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[10.738s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[10.738s]       |                         [01;35m[K^~~~[m[K
+[10.738s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1[m[K:
+[10.738s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[10.739s]    88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+[10.739s]       |                                                              [01;35m[K^~~~[m[K
+[11.434s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+[11.435s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[11.435s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[11.435s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[11.436s]       |                         [01;35m[K^~~~[m[K
+[11.436s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[11.436s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[11.436s]    88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+[11.436s]       |                                                              [01;35m[K^~~~[m[K
+[11.436s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:57:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[11.436s]    57 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result){
+[11.437s]       |                                                              [01;35m[K^~~~[m[K
+[11.437s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)[m[K’:
+[11.437s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:484:98:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.437s]   484 | void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K,
+[11.437s]       |                                                                                    [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[11.437s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:486:50:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kyaw_angle[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.437s]   486 |                                float up_z, [01;35m[Kfloat yaw_angle[m[K, float max_velocity, float tolerance) {
+[11.438s]       |                                            [01;35m[K~~~~~~^~~~~~~~~[m[K
+[11.438s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid safeLanding(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[11.438s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:881:77:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.438s]   881 | void safeLanding(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K, geometry_msgs::msg::PoseStamped &posee, float descent_rate = 0.3) {
+[11.438s]       |                                                               [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[11.438s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringPayload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float, float, float, float, float, float, float, std::string, std::string)[m[K’:
+[11.438s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1138:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KdropAlt[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.439s]  1138 |     const float [01;35m[KdropAlt[m[K = 0.6;
+[11.439s]       |                 [01;35m[K^~~~~~~[m[K
+[11.439s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1141:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.439s]  1141 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[11.439s]       |                             [01;35m[K^~~~~~~~[m[K
+[11.439s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1142:59:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.439s]  1142 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[11.440s]       |                                                           [01;35m[K^~~~~~~~~~[m[K
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1142:79:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.440s]  1142 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[11.440s]       |                                                                               [01;35m[K^~~~~~~~~~~[m[K
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringEmber(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)[m[K’:
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kroll[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.440s]  1414 |     float [01;35m[Kroll[m[K, pitch; bool detected = false;
+[11.440s]       |           [01;35m[K^~~~[m[K
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:17:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kpitch[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.440s]  1414 |     float roll, [01;35m[Kpitch[m[K; bool detected = false;
+[11.440s]       |                 [01;35m[K^~~~~[m[K
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.440s]  1414 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[11.440s]       |                             [01;35m[K^~~~~~~~[m[K
+[11.440s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1415:57:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.441s]  1415 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[11.441s]       |                                                         [01;35m[K^~~~~~~~~~[m[K
+[11.441s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1415:77:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.441s]  1415 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[11.441s]       |                                                                             [01;35m[K^~~~~~~~~~~[m[K
+[11.441s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringGate(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[11.441s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1692:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.441s]  1692 |             for(int j = 0; [01;35m[Kj < x_points.size()[m[K; j++) {
+[11.441s]       |                            [01;35m[K~~^~~~~~~~~~~~~~~~~[m[K
+[11.441s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1682:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kx1_min[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.441s]  1682 |         float [01;35m[Kx1_min[m[K = -1.0, x2_min = -1.0;
+[11.442s]       |               [01;35m[K^~~~~~[m[K
+[11.442s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1682:30:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kx2_min[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.442s]  1682 |         float x1_min = -1.0, [01;35m[Kx2_min[m[K = -1.0;
+[11.442s]       |                              [01;35m[K^~~~~~[m[K
+[11.442s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringBunder(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)[m[K’:
+[11.442s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kroll[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.442s]  1830 |     float [01;35m[Kroll[m[K, pitch; bool detected = false;
+[11.442s]       |           [01;35m[K^~~~[m[K
+[11.442s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:17:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kpitch[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.443s]  1830 |     float roll, [01;35m[Kpitch[m[K; bool detected = false;
+[11.443s]       |                 [01;35m[K^~~~~[m[K
+[11.443s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[11.443s]  1830 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[11.443s]       |                             [01;35m[K^~~~~~~~[m[K
+[11.443s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1831:58:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.443s]  1831 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[11.443s]       |                                                          [01;35m[K^~~~~~~~~~[m[K
+[11.443s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1831:78:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.443s]  1831 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[11.444s]       |                                                                              [01;35m[K^~~~~~~~~~~[m[K
+[11.444s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)[m[K’:
+[11.444s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2025:55:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.444s]  2025 |     float last_x, last_y, distance, progress=0.0; int [01;35m[Ki[m[K =0;
+[11.444s]       |                                                       [01;35m[K^[m[K
+[11.445s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2009:156:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kangle[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.445s]  2009 | void moveToPoint(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float x, float y, float z, [01;35m[Kfloat angle[m[K, float speed, float tolerance) {
+[11.445s]       |                                                                                                                                                      [01;35m[K~~~~~~^~~~~[m[K
+[11.445s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, geometry_msgs::msg::Pose, float, float, bool, bool, bool)[m[K’:
+[11.445s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2071:11:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdistance_to_target[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.445s]  2071 |     float [01;35m[Kdistance_to_target[m[K = dist(posee.pose.position, target.position);
+[11.445s]       |           [01;35m[K^~~~~~~~~~~~~~~~~~[m[K
+[11.446s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid holdPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[11.446s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2211:78:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.446s]  2211 | void holdPosition(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K, geometry_msgs::msg::PoseStamped& posee, float duration){
+[11.446s]       |                                                                [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[11.446s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[11.446s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[11.447s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[11.448s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[11.448s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[11.448s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[11.448s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[11.448s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid waitForPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, mavros_msgs::msg::GlobalPositionTarget, double, bool, float)[m[K’:
+[11.448s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:41:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 5 has type ‘[01m[Kdouble[m[K’ [[01;35m[K-Wformat=[m[K]
+[11.448s]  2274 |         RCLCPP_INFO(node->get_logger(), [01;35m[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"[m[K, [32m[Kdistance[m[K, dist_m, node->getCurrentPosePayload().pose.position.x);
+[11.449s]       |                                         [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~[m[K
+[11.449s]       |                                                                                                 [32m[K|[m[K
+[11.449s]       |                                                                                                 [32m[Kdouble[m[K
+[11.449s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:43:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[11.449s]  2274 |         RCLCPP_INFO(node->get_logger(), "[01;36m[K%d[m[K - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f", distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[11.449s]       |                                          [01;36m[K~^[m[K
+[11.449s]       |                                           [01;36m[K|[m[K
+[11.450s]       |                                           [01;36m[Kint[m[K
+[11.450s]       |                                          [32m[K%f[m[K
+[11.450s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[11.450s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[11.450s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[11.450s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[11.450s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[11.451s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[11.451s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[11.452s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[11.452s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:41:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%f[m[K’ expects a matching ‘[01m[Kdouble[m[K’ argument [[01;35m[K-Wformat=[m[K]
+[11.452s]  2274 |         RCLCPP_INFO(node->get_logger(), [01;35m[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"[m[K, distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[11.452s]       |                                         [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.452s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:93:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[11.452s]  2274 |         RCLCPP_INFO(node->get_logger(), "%d - CURRR DISTANCEE: %f, meter: %.2f, payload: [01;36m[K%.2f[m[K", distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[11.452s]       |                                                                                          [01;36m[K~~~^[m[K
+[11.453s]       |                                                                                             [01;36m[K|[m[K
+[11.453s]       |                                                                                             [01;36m[Kdouble[m[K
+[11.453s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2269:16:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdalt[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[11.453s]  2269 |         double [01;35m[Kdalt[m[K = raw.altitude - node->getCurrentGPSPosition().altitude;
+[11.453s]       |                [01;35m[K^~~~[m[K
+[11.453s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2251:177:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.453s]  2251 | void waitForPosition(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, mavros_msgs::msg::GlobalPositionTarget raw, double tolerance, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[11.454s]       |                                                                                                                                                                           [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[11.454s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid sendGlobalRawAsync(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, bool, float)[m[K’:
+[11.454s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2341:171:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kallow_centering[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.454s]  2341 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, [01;35m[Kbool allow_centering[m[K, float center_dist) {
+[11.454s]       |                                                                                                                                                                      [01;35m[K~~~~~^~~~~~~~~~~~~~~[m[K
+[11.454s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2341:194:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.454s]  2341 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[11.455s]       |                                                                                                                                                                                            [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[11.455s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, LatLonAlt, double, float, float, float, bool, float)[m[K’:
+[11.455s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2389:203:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kallow_centering[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.455s]  2389 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, [01;35m[Kbool allow_centering[m[K, float center_dist) {
+[11.455s]       |                                                                                                                                                                                                      [01;35m[K~~~~~^~~~~~~~~~~~~~~[m[K
+[11.455s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2389:226:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.455s]  2389 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[11.456s]       |                                                                                                                                                                                                                            [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[11.456s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[11.456s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[11.457s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[11.457s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[11.457s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[11.457s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[11.457s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[11.457s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[11.458s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid pushMission(const std::shared_ptr<DroneController>&, std::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >)[m[K’:
+[11.458s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2490:37:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 5 has type ‘[01m[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[11.458s]  2490 |     RCLCPP_INFO(node->get_logger(), [01;35m[K"Pushing mission of size %d"[m[K, [32m[Kwaypoints.size()[m[K);
+[11.458s]       |                                     [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~~~~~~~~~[m[K
+[11.458s]       |                                                                                 [32m[K|[m[K
+[11.458s]       |                                                                                 [32m[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type {aka long unsigned int}[m[K
+[11.459s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2490:63:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[11.459s]  2490 |     RCLCPP_INFO(node->get_logger(), "Pushing mission of size [01;36m[K%d[m[K", waypoints.size());
+[11.459s]       |                                                              [01;36m[K~^[m[K
+[11.459s]       |                                                               [01;36m[K|[m[K
+[11.459s]       |                                                               [01;36m[Kint[m[K
+[11.459s]       |                                                              [32m[K%ld[m[K
+[11.460s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveWithLaser(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, bool, bool, float, float)[m[K’:
+[11.460s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2616:422:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around comparison in operand of ‘[01m[K&[m[K’ [[01;35m[K-Wparentheses[m[K]
+[11.460s]  2616 |         vel_pose.pose.position.x = x ? limit(max_speed, P_maju*err_x + I_maju*total_error_maju + D_maju*last_error_maju) : (front + back <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(front - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (back == 2.1f && front != 2.1f ? limit(koreksi_max_speed, P_koreksi*(front - 1.25 ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : ([01;35m[Kfront == 2.1f[m[K & back != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));
+[11.460s]       |                                                                                                                                                                                                                                                                                                                                                                                                                                [01;35m[K~~~~~~^~~~~~~[m[K
+[11.460s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2617:421:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around comparison in operand of ‘[01m[K&[m[K’ [[01;35m[K-Wparentheses[m[K]
+[11.460s]  2617 |         vel_pose.pose.position.y = y ? limit(max_speed, P_maju*err_y + I_maju*total_error_maju + D_maju*last_error_maju) : (left + right <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(left - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (right == 2.1f && left != 2.1f ? limit(koreksi_max_speed, P_koreksi*(left - 1.25  ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : ([01;35m[Kleft == 2.1f[m[K & right != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));
+[11.461s]       |                                                                                                                                                                                                                                                                                                                                                                                                                                [01;35m[K~~~~~^~~~~~~[m[K
+[11.461s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kfloat getYawError(const std::shared_ptr<DroneController>&, rclcpp::Rate&)[m[K’:
+[11.461s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2792:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.461s]  2792 |         if([01;35m[Kright_index > curr_scan.ranges.size()[m[K) {
+[11.461s]       |            [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.461s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2774:78:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.462s]  2774 | float getYawError(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K)
+[11.462s]       |                                                                [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[11.462s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid printTitik(std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, double, double)[m[K’:
+[11.462s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2812:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.462s]  2812 |         for(int i = 0; [01;35m[Ki < lat_indoor.size()[m[K; i++) {
+[11.462s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[11.463s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2814:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.463s]  2814 |             if([01;35m[Ki != lat_indoor.size() -1[m[K) {std::cout<<", ";}
+[11.463s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.463s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2818:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.463s]  2818 |         for(int i = 0; [01;35m[Ki < lon_indoor.size()[m[K; i++) {
+[11.463s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[11.464s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2820:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.464s]  2820 |             if([01;35m[Ki != lon_indoor.size() -1[m[K) {std::cout<<", ";}
+[11.464s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.464s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2828:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.464s]  2828 |         for(int i = 0; [01;35m[Ki < lat_outdoor.size()[m[K; i++) {
+[11.464s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[11.465s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2830:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.465s]  2830 |             if([01;35m[Ki != lat_outdoor.size() -1[m[K) {std::cout<<", ";}
+[11.465s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.465s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2834:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.465s]  2834 |         for(int i = 0; [01;35m[Ki < lon_outdoor.size()[m[K; i++) {
+[11.465s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[11.466s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2836:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[11.466s]  2836 |             if([01;35m[Ki != lon_outdoor.size() -1[m[K) {std::cout<<", ";}
+[11.466s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[11.466s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid executeLocalWaypointMove(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float)[m[K’:
+[11.466s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2843:90:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.466s]  2843 | void executeLocalWaypointMove(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K,
+[11.466s]       |                                                                            [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[11.467s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringGateNear(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, float, float)[m[K’:
+[11.467s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:3858:57:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kposee[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[11.467s]  3858 |                        [01;35m[Kgeometry_msgs::msg::PoseStamped &posee[m[K, float gate_width,
+[11.467s]       |                        [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[13.107s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+[13.107s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[13.108s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[13.108s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[13.108s]       |                         [01;35m[K^~~~[m[K
+[13.108s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[13.108s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[13.108s]    88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+[13.108s]       |                                                              [01;35m[K^~~~[m[K
+[13.108s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:57:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[13.109s]    57 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result){
+[13.109s]       |                                                              [01;35m[K^~~~[m[K
+[13.109s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)[m[K’:
+[13.109s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:484:98:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.109s]   484 | void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K,
+[13.109s]       |                                                                                    [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[13.109s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:486:50:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kyaw_angle[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.109s]   486 |                                float up_z, [01;35m[Kfloat yaw_angle[m[K, float max_velocity, float tolerance) {
+[13.110s]       |                                            [01;35m[K~~~~~~^~~~~~~~~[m[K
+[13.110s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid safeLanding(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[13.110s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:881:77:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.110s]   881 | void safeLanding(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K, geometry_msgs::msg::PoseStamped &posee, float descent_rate = 0.3) {
+[13.110s]       |                                                               [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[13.110s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringPayload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float, float, float, float, float, float, float, std::string, std::string)[m[K’:
+[13.110s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1138:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KdropAlt[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.111s]  1138 |     const float [01;35m[KdropAlt[m[K = 0.6;
+[13.111s]       |                 [01;35m[K^~~~~~~[m[K
+[13.111s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1141:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.111s]  1141 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[13.111s]       |                             [01;35m[K^~~~~~~~[m[K
+[13.111s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1142:59:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.111s]  1142 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[13.111s]       |                                                           [01;35m[K^~~~~~~~~~[m[K
+[13.112s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1142:79:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.112s]  1142 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[13.112s]       |                                                                               [01;35m[K^~~~~~~~~~~[m[K
+[13.112s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringEmber(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)[m[K’:
+[13.112s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kroll[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.112s]  1414 |     float [01;35m[Kroll[m[K, pitch; bool detected = false;
+[13.112s]       |           [01;35m[K^~~~[m[K
+[13.112s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:17:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kpitch[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.113s]  1414 |     float roll, [01;35m[Kpitch[m[K; bool detected = false;
+[13.113s]       |                 [01;35m[K^~~~~[m[K
+[13.113s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.113s]  1414 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[13.113s]       |                             [01;35m[K^~~~~~~~[m[K
+[13.113s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1415:57:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.113s]  1415 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[13.113s]       |                                                         [01;35m[K^~~~~~~~~~[m[K
+[13.114s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1415:77:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.114s]  1415 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[13.114s]       |                                                                             [01;35m[K^~~~~~~~~~~[m[K
+[13.114s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringGate(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[13.114s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1692:30:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.114s]  1692 |             for(int j = 0; [01;35m[Kj < x_points.size()[m[K; j++) {
+[13.114s]       |                            [01;35m[K~~^~~~~~~~~~~~~~~~~[m[K
+[13.114s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1682:15:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kx1_min[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.115s]  1682 |         float [01;35m[Kx1_min[m[K = -1.0, x2_min = -1.0;
+[13.115s]       |               [01;35m[K^~~~~~[m[K
+[13.115s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1682:30:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kx2_min[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.115s]  1682 |         float x1_min = -1.0, [01;35m[Kx2_min[m[K = -1.0;
+[13.115s]       |                              [01;35m[K^~~~~~[m[K
+[13.115s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringBunder(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)[m[K’:
+[13.115s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kroll[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.115s]  1830 |     float [01;35m[Kroll[m[K, pitch; bool detected = false;
+[13.116s]       |           [01;35m[K^~~~[m[K
+[13.116s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:17:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kpitch[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.116s]  1830 |     float roll, [01;35m[Kpitch[m[K; bool detected = false;
+[13.116s]       |                 [01;35m[K^~~~~[m[K
+[13.116s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:29:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdetected[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[13.116s]  1830 |     float roll, pitch; bool [01;35m[Kdetected[m[K = false;
+[13.116s]       |                             [01;35m[K^~~~~~~~[m[K
+[13.117s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1831:58:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kavg_sample[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.117s]  1831 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int [01;35m[Kavg_sample[m[K = 1; int buffer_size = 4;
+[13.117s]       |                                                          [01;35m[K^~~~~~~~~~[m[K
+[13.117s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1831:78:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbuffer_size[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.117s]  1831 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int avg_sample = 1; int [01;35m[Kbuffer_size[m[K = 4;
+[13.117s]       |                                                                              [01;35m[K^~~~~~~~~~~[m[K
+[13.117s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)[m[K’:
+[13.117s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2025:55:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ki[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.118s]  2025 |     float last_x, last_y, distance, progress=0.0; int [01;35m[Ki[m[K =0;
+[13.118s]       |                                                       [01;35m[K^[m[K
+[13.118s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2009:156:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kangle[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.118s]  2009 | void moveToPoint(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float x, float y, float z, [01;35m[Kfloat angle[m[K, float speed, float tolerance) {
+[13.118s]       |                                                                                                                                                      [01;35m[K~~~~~~^~~~~[m[K
+[13.118s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, geometry_msgs::msg::Pose, float, float, bool, bool, bool)[m[K’:
+[13.118s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2071:11:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdistance_to_target[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.118s]  2071 |     float [01;35m[Kdistance_to_target[m[K = dist(posee.pose.position, target.position);
+[13.119s]       |           [01;35m[K^~~~~~~~~~~~~~~~~~[m[K
+[13.119s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid holdPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)[m[K’:
+[13.119s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2211:78:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.119s]  2211 | void holdPosition(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K, geometry_msgs::msg::PoseStamped& posee, float duration){
+[13.119s]       |                                                                [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[13.119s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[13.119s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[13.119s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[13.120s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[13.121s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[13.121s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[13.121s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid waitForPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, mavros_msgs::msg::GlobalPositionTarget, double, bool, float)[m[K’:
+[13.121s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:41:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 5 has type ‘[01m[Kdouble[m[K’ [[01;35m[K-Wformat=[m[K]
+[13.121s]  2274 |         RCLCPP_INFO(node->get_logger(), [01;35m[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"[m[K, [32m[Kdistance[m[K, dist_m, node->getCurrentPosePayload().pose.position.x);
+[13.121s]       |                                         [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~[m[K
+[13.121s]       |                                                                                                 [32m[K|[m[K
+[13.121s]       |                                                                                                 [32m[Kdouble[m[K
+[13.122s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:43:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[13.122s]  2274 |         RCLCPP_INFO(node->get_logger(), "[01;36m[K%d[m[K - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f", distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[13.122s]       |                                          [01;36m[K~^[m[K
+[13.122s]       |                                           [01;36m[K|[m[K
+[13.122s]       |                                           [01;36m[Kint[m[K
+[13.122s]       |                                          [32m[K%f[m[K
+[13.122s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[13.122s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[13.123s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[13.124s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[13.124s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[13.124s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[13.124s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:41:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%f[m[K’ expects a matching ‘[01m[Kdouble[m[K’ argument [[01;35m[K-Wformat=[m[K]
+[13.124s]  2274 |         RCLCPP_INFO(node->get_logger(), [01;35m[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"[m[K, distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[13.124s]       |                                         [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.124s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2274:93:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[13.124s]  2274 |         RCLCPP_INFO(node->get_logger(), "%d - CURRR DISTANCEE: %f, meter: %.2f, payload: [01;36m[K%.2f[m[K", distance, dist_m, node->getCurrentPosePayload().pose.position.x);
+[13.125s]       |                                                                                          [01;36m[K~~~^[m[K
+[13.125s]       |                                                                                             [01;36m[K|[m[K
+[13.125s]       |                                                                                             [01;36m[Kdouble[m[K
+[13.125s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2269:16:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdalt[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[13.125s]  2269 |         double [01;35m[Kdalt[m[K = raw.altitude - node->getCurrentGPSPosition().altitude;
+[13.125s]       |                [01;35m[K^~~~[m[K
+[13.125s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2251:177:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.125s]  2251 | void waitForPosition(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, mavros_msgs::msg::GlobalPositionTarget raw, double tolerance, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[13.126s]       |                                                                                                                                                                           [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[13.126s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid sendGlobalRawAsync(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, bool, float)[m[K’:
+[13.126s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2341:171:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kallow_centering[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.126s]  2341 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, [01;35m[Kbool allow_centering[m[K, float center_dist) {
+[13.126s]       |                                                                                                                                                                      [01;35m[K~~~~~^~~~~~~~~~~~~~~[m[K
+[13.126s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2341:194:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.126s]  2341 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[13.126s]       |                                                                                                                                                                                            [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[13.127s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, LatLonAlt, double, float, float, float, bool, float)[m[K’:
+[13.127s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2389:203:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kallow_centering[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.127s]  2389 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, [01;35m[Kbool allow_centering[m[K, float center_dist) {
+[13.127s]       |                                                                                                                                                                                                      [01;35m[K~~~~~^~~~~~~~~~~~~~~[m[K
+[13.127s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2389:226:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kcenter_dist[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.127s]  2389 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, bool allow_centering, [01;35m[Kfloat center_dist[m[K) {
+[13.127s]       |                                                                                                                                                                                                                            [01;35m[K~~~~~~^~~~~~~~~~~[m[K
+[13.128s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[13.128s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[13.129s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[13.129s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[13.129s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[13.129s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4[m[K,
+[13.129s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[13.129s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid pushMission(const std::shared_ptr<DroneController>&, std::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >)[m[K’:
+[13.129s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2490:37:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 5 has type ‘[01m[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wformat=[m[K]
+[13.129s]  2490 |     RCLCPP_INFO(node->get_logger(), [01;35m[K"Pushing mission of size %d"[m[K, [32m[Kwaypoints.size()[m[K);
+[13.130s]       |                                     [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K  [32m[K~~~~~~~~~~~~~~~~[m[K
+[13.130s]       |                                                                                 [32m[K|[m[K
+[13.130s]       |                                                                                 [32m[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type {aka long unsigned int}[m[K
+[13.130s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2490:63:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[13.130s]  2490 |     RCLCPP_INFO(node->get_logger(), "Pushing mission of size [01;36m[K%d[m[K", waypoints.size());
+[13.130s]       |                                                              [01;36m[K~^[m[K
+[13.130s]       |                                                               [01;36m[K|[m[K
+[13.130s]       |                                                               [01;36m[Kint[m[K
+[13.131s]       |                                                              [32m[K%ld[m[K
+[13.131s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid moveWithLaser(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, bool, bool, float, float)[m[K’:
+[13.131s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2616:422:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around comparison in operand of ‘[01m[K&[m[K’ [[01;35m[K-Wparentheses[m[K]
+[13.131s]  2616 |         vel_pose.pose.position.x = x ? limit(max_speed, P_maju*err_x + I_maju*total_error_maju + D_maju*last_error_maju) : (front + back <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(front - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (back == 2.1f && front != 2.1f ? limit(koreksi_max_speed, P_koreksi*(front - 1.25 ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : ([01;35m[Kfront == 2.1f[m[K & back != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));
+[13.131s]       |                                                                                                                                                                                                                                                                                                                                                                                                                                [01;35m[K~~~~~~^~~~~~~[m[K
+[13.131s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2617:421:[m[K [01;35m[Kwarning: [m[Ksuggest parentheses around comparison in operand of ‘[01m[K&[m[K’ [[01;35m[K-Wparentheses[m[K]
+[13.131s]  2617 |         vel_pose.pose.position.y = y ? limit(max_speed, P_maju*err_y + I_maju*total_error_maju + D_maju*last_error_maju) : (left + right <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(left - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (right == 2.1f && left != 2.1f ? limit(koreksi_max_speed, P_koreksi*(left - 1.25  ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : ([01;35m[Kleft == 2.1f[m[K & right != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));
+[13.132s]       |                                                                                                                                                                                                                                                                                                                                                                                                                                [01;35m[K~~~~~^~~~~~~[m[K
+[13.132s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kfloat getYawError(const std::shared_ptr<DroneController>&, rclcpp::Rate&)[m[K’:
+[13.132s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2792:24:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.132s]  2792 |         if([01;35m[Kright_index > curr_scan.ranges.size()[m[K) {
+[13.132s]       |            [01;35m[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.132s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2774:78:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.132s]  2774 | float getYawError(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K)
+[13.132s]       |                                                                [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[13.133s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid printTitik(std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, double, double)[m[K’:
+[13.133s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2812:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.133s]  2812 |         for(int i = 0; [01;35m[Ki < lat_indoor.size()[m[K; i++) {
+[13.133s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[13.133s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2814:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.133s]  2814 |             if([01;35m[Ki != lat_indoor.size() -1[m[K) {std::cout<<", ";}
+[13.133s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.133s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2818:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.134s]  2818 |         for(int i = 0; [01;35m[Ki < lon_indoor.size()[m[K; i++) {
+[13.134s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~[m[K
+[13.134s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2820:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.134s]  2820 |             if([01;35m[Ki != lon_indoor.size() -1[m[K) {std::cout<<", ";}
+[13.134s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.134s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2828:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.136s]  2828 |         for(int i = 0; [01;35m[Ki < lat_outdoor.size()[m[K; i++) {
+[13.136s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[13.136s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2830:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.136s]  2830 |             if([01;35m[Ki != lat_outdoor.size() -1[m[K) {std::cout<<", ";}
+[13.137s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.137s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2834:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.137s]  2834 |         for(int i = 0; [01;35m[Ki < lon_outdoor.size()[m[K; i++) {
+[13.137s]       |                        [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[13.137s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2836:18:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double, std::allocator<double> >::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.137s]  2836 |             if([01;35m[Ki != lon_outdoor.size() -1[m[K) {std::cout<<", ";}
+[13.137s]       |                [01;35m[K~~^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[13.138s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid executeLocalWaypointMove(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float)[m[K’:
+[13.138s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2843:90:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krate[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.138s]  2843 | void executeLocalWaypointMove(const std::shared_ptr<DroneController>&node, [01;35m[Krclcpp::Rate &rate[m[K,
+[13.138s]       |                                                                            [01;35m[K~~~~~~~~~~~~~~^~~~[m[K
+[13.138s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:[m[K In function ‘[01m[Kvoid centeringGateNear(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, float, float)[m[K’:
+[13.138s] [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:3858:57:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kposee[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[13.138s]  3858 |                        [01;35m[Kgeometry_msgs::msg::PoseStamped &posee[m[K, float gate_width,
+[13.138s]       |                        [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
+[47.957s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.957s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[47.957s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[47.957s]       |                         [01;35m[K^~~~[m[K
+[47.958s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kfloat DroneController::getObstacleDistance(float, float)[m[K’:
+[47.958s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:92:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kmin_angle[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[47.958s]    92 |     float [01;35m[Kmin_angle[m[K = angle - angle_tolerance/2;
+[47.958s]       |           [01;35m[K^~~~~~~~~[m[K
+[47.958s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kint DroneController::reset_wp_()[m[K’:
+[47.958s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:111:52:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+[47.958s]   111 | int DroneController::reset_wp_()   {wp_reached = 0;[01;35m[K}[m[K
+[47.958s]       |                                                    [01;35m[K^[m[K
+[47.959s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[47.959s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:250:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.959s]   174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request[01;35m[K)[m[K;}
+[47.959s]       |                                                                                                                                                                                                                                                          [01;35m[K^[m[K
+[47.959s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.959s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.959s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.959s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.960s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.960s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.960s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.961s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.961s]       |     [01;36m[K^~~~~~~~[m[K
+[47.961s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[47.961s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:244:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.961s]   175 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request[01;35m[K)[m[K;}
+[47.961s]       |                                                                                                                                                                                                                                                    [01;35m[K^[m[K
+[47.961s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.961s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.962s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.962s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.962s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.962s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.962s]       |     [01;36m[K^~~~~~~~[m[K
+[47.962s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)[m[K’:
+[47.962s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:248:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.962s]   176 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request[01;35m[K)[m[K;}
+[47.962s]       |                                                                                                                                                                                                                                                        [01;35m[K^[m[K
+[47.962s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.962s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.962s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.962s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.963s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.963s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.963s]       |     [01;36m[K^~~~~~~~[m[K
+[47.963s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)[m[K’:
+[47.963s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.963s]   177 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request[01;35m[K)[m[K;}
+[47.963s]       |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+[47.963s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.963s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.963s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.963s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.963s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.963s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.964s]       |     [01;36m[K^~~~~~~~[m[K
+[47.964s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)[m[K’:
+[47.964s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:246:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.964s]   178 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request[01;35m[K)[m[K;}
+[47.964s]       |                                                                                                                                                                                                                                                      [01;35m[K^[m[K
+[47.964s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.964s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.965s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.965s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.965s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.965s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.965s]       |     [01;36m[K^~~~~~~~[m[K
+[47.965s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[47.966s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.966s]   179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request[01;35m[K)[m[K;}
+[47.966s]       |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+[47.966s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.966s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.966s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.966s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.966s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.967s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.967s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.967s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.967s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.967s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.967s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.967s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.967s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.968s]       |     [01;36m[K^~~~~~~~[m[K
+[47.968s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[47.968s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.968s]   180 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request[01;35m[K)[m[K;}
+[47.968s]       |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+[47.968s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.968s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.968s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.969s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.969s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.969s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.969s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.970s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.970s]       |     [01;36m[K^~~~~~~~[m[K
+[47.970s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)[m[K’:
+[47.970s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.970s]   181 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request[01;35m[K)[m[K;}
+[47.970s]       |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+[47.970s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.970s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.971s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.971s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.972s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.972s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.972s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.972s]       |     [01;36m[K^~~~~~~~[m[K
+[47.972s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)[m[K’:
+[47.972s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:256:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.972s]   182 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request[01;35m[K)[m[K;}
+[47.972s]       |                                                                                                                                                                                                                                                                [01;35m[K^[m[K
+[47.973s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.973s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.974s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.974s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.974s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.974s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.974s]       |     [01;36m[K^~~~~~~~[m[K
+[47.974s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)[m[K’:
+[47.975s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:183:257:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[47.975s]   183 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request[01;35m[K)[m[K;}
+[47.975s]       |                                                                                                                                                                                                                                                                 [01;35m[K^[m[K
+[47.975s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[47.975s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[47.975s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[47.975s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[47.975s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[47.976s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[47.976s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[47.976s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[47.976s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[47.976s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[47.976s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[47.976s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[47.976s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[47.976s]       |     [01;36m[K^~~~~~~~[m[K
+[47.977s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K At global scope:
+[47.977s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:250:38:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[47.977s]   250 | void DroneController::waitForService([01;35m[Kauto[m[K &client) {
+[47.977s]       |                                      [01;35m[K^~~~[m[K
+[47.977s] [ 58%] [1m[32mLinking CXX executable control[0m
+[48.592s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.593s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[48.593s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[48.593s]       |                         [01;35m[K^~~~[m[K
+[48.593s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kfloat DroneController::getObstacleDistance(float, float)[m[K’:
+[48.593s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:92:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kmin_angle[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[48.594s]    92 |     float [01;35m[Kmin_angle[m[K = angle - angle_tolerance/2;
+[48.594s]       |           [01;35m[K^~~~~~~~~[m[K
+[48.594s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kint DroneController::reset_wp_()[m[K’:
+[48.594s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:111:52:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+[48.594s]   111 | int DroneController::reset_wp_()   {wp_reached = 0;[01;35m[K}[m[K
+[48.594s]       |                                                    [01;35m[K^[m[K
+[48.594s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[48.594s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:250:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.595s]   174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request[01;35m[K)[m[K;}
+[48.595s]       |                                                                                                                                                                                                                                                          [01;35m[K^[m[K
+[48.595s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.595s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.595s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.595s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.595s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.595s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.596s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.596s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.596s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.596s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.596s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.596s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.596s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.596s]       |     [01;36m[K^~~~~~~~[m[K
+[48.597s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[48.597s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:244:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.597s]   175 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request[01;35m[K)[m[K;}
+[48.597s]       |                                                                                                                                                                                                                                                    [01;35m[K^[m[K
+[48.597s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.597s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.597s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.597s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.598s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.598s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.598s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.598s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.598s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.598s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.598s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.598s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.598s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.599s]       |     [01;36m[K^~~~~~~~[m[K
+[48.599s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)[m[K’:
+[48.599s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:248:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.599s]   176 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request[01;35m[K)[m[K;}
+[48.599s]       |                                                                                                                                                                                                                                                        [01;35m[K^[m[K
+[48.599s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.599s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.599s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.600s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.600s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.600s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.601s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.601s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.601s]       |     [01;36m[K^~~~~~~~[m[K
+[48.601s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)[m[K’:
+[48.601s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.601s]   177 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request[01;35m[K)[m[K;}
+[48.601s]       |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+[48.601s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.602s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.603s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.603s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.603s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.603s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.603s]       |     [01;36m[K^~~~~~~~[m[K
+[48.603s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)[m[K’:
+[48.603s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:246:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.603s]   178 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request[01;35m[K)[m[K;}
+[48.604s]       |                                                                                                                                                                                                                                                      [01;35m[K^[m[K
+[48.604s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.604s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.605s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.605s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.605s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.605s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.605s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.605s]       |     [01;36m[K^~~~~~~~[m[K
+[48.605s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[48.605s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.606s]   179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request[01;35m[K)[m[K;}
+[48.606s]       |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+[48.606s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.606s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.606s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.606s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.606s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.606s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.607s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.607s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.607s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.607s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.607s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.607s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.607s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.607s]       |     [01;36m[K^~~~~~~~[m[K
+[48.608s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[48.608s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.608s]   180 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request[01;35m[K)[m[K;}
+[48.608s]       |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+[48.608s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.608s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.608s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.608s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.609s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.609s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.609s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.609s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.609s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.609s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.609s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.609s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.610s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.610s]       |     [01;36m[K^~~~~~~~[m[K
+[48.610s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)[m[K’:
+[48.610s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.610s]   181 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request[01;35m[K)[m[K;}
+[48.610s]       |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+[48.610s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.611s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.612s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.612s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.612s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.612s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.612s]       |     [01;36m[K^~~~~~~~[m[K
+[48.612s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)[m[K’:
+[48.612s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:256:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.612s]   182 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request[01;35m[K)[m[K;}
+[48.613s]       |                                                                                                                                                                                                                                                                [01;35m[K^[m[K
+[48.613s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.613s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.614s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.614s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.614s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.614s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.614s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.614s]       |     [01;36m[K^~~~~~~~[m[K
+[48.614s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)[m[K’:
+[48.614s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:183:257:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+[48.615s]   183 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request[01;35m[K)[m[K;}
+[48.615s]       |                                                                                                                                                                                                                                                                 [01;35m[K^[m[K
+[48.615s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[48.615s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[48.615s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[48.615s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[48.615s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[48.616s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[48.616s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[48.616s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[48.616s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[48.616s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+[48.616s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[48.616s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[48.616s]   415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+[48.617s]       |     [01;36m[K^~~~~~~~[m[K
+[48.617s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K At global scope:
+[48.617s] [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:250:38:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[48.617s]   250 | void DroneController::waitForService([01;35m[Kauto[m[K &client) {
+[48.617s]       |                                      [01;35m[K^~~~[m[K
+[48.617s] [ 66%] [1m[32mLinking CXX executable test_centering[0m
+[51.088s] [ 83%] Built target control
+[51.520s] [100%] Built target test_centering
+[51.525s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[51.533s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control
+[51.536s] -- Install configuration: ""
+[51.536s] -- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/control
+[51.556s] -- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/control" to ""
+[51.556s] -- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/test_centering
+[51.574s] -- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/test_centering" to ""
+[51.574s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/launch
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config/config.yaml
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv
+[51.575s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.sh
+[51.576s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.dsv
+[51.576s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.bash
+[51.576s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.sh
+[51.576s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.zsh
+[51.576s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.dsv
+[51.577s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/package.dsv
+[51.577s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/packages/control
+[51.577s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig.cmake
+[51.577s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake
+[51.577s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/package.xml
+[51.577s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control

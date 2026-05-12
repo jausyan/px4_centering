@@ -53,10 +53,10 @@ RM = /opt/cmake-4.1.2-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/el-system/centering_experiment/src/control
+CMAKE_SOURCE_DIR = /home/el-system/backup/centering_experiment/src/control
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/el-system/centering_experiment/build/control
+CMAKE_BINARY_DIR = /home/el-system/backup/centering_experiment/build/control
 
 # Utility rule file for uninstall.
 
@@ -81,6 +81,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/el-system/centering_experiment/build/control && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/el-system/centering_experiment/src/control /home/el-system/centering_experiment/src/control /home/el-system/centering_experiment/build/control /home/el-system/centering_experiment/build/control /home/el-system/centering_experiment/build/control/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/el-system/backup/centering_experiment/build/control && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/el-system/backup/centering_experiment/src/control /home/el-system/backup/centering_experiment/src/control /home/el-system/backup/centering_experiment/build/control /home/el-system/backup/centering_experiment/build/control /home/el-system/backup/centering_experiment/build/control/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/uninstall.dir/depend
 

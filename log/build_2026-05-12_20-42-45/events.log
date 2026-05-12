@@ -1,0 +1,842 @@
+[0.000000] (-) TimerEvent: {}
+[0.000932] (control) JobQueued: {'identifier': 'control', 'dependencies': OrderedDict()}
+[0.001016] (control) JobStarted: {'identifier': 'control'}
+[0.006437] (control) JobProgress: {'identifier': 'control', 'progress': 'cmake'}
+[0.007118] (control) JobProgress: {'identifier': 'control', 'progress': 'build'}
+[0.007237] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/el-system/backup/centering_experiment/build/control', '--', '-j12', '-l12'], 'cwd': '/home/el-system/backup/centering_experiment/build/control', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('COPILOT_LOADER_PID', '17107'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '3'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('CHROME_DESKTOP', 'code.desktop'), ('GIT_CONFIG_COUNT', '1'), ('OLDPWD', '/home/el-system/backup/centering_experiment'), ('TERM_PROGRAM_VERSION', '1.105.1'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('COPILOT_RUN_APP', '1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'id_ID.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1708'), ('COPILOT_CLI', '1'), ('SYSTEMD_EXEC_PID', '2122'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4969'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:22827'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('GEMINI_CLI_IDE_WORKSPACE_PATH', '/home/el-system/backup/centering_experiment'), ('USERNAME', 'el-system'), ('TERM', 'xterm-color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models:/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('GEMINI_CLI_IDE_SERVER_PORT', '39317'), ('WINDOWPATH', '2'), ('GIT_CONFIG_VALUE_0', 'explicit'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/home/el-system/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1908,unix/el-tech:/tmp/.ICE-unix/1908'), ('INVOCATION_ID', 'e97c478e649941f9af7983cea7b4c273'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('PYTHONSTARTUP', '/home/el-system/.config/Code/User/workspaceStorage/e8dc6f5034097679af472282a46f3627/ms-python.python/pythonrc.py'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61027eff45.sock'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('COPILOT_AGENT_SESSION_ID', 'b499b12e-f3b4-4d0c-beb9-2e1a9dfdbcaf'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:13c5e1f6-4135-42e1-9b66-d0dbff8a7cb6'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('GIT_CONFIG_KEY_0', 'safe.bareRepository'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCALHOST'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('GEMINI_CLI_IDE_AUTH_TOKEN', '225797e2-7221-4b42-bfe4-5b7b23ad32d6'), ('PWD', '/home/el-system/backup/centering_experiment/build/control'), ('COPILOT_CLI_BINARY_VERSION', '1.0.45'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[0.048877] (control) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/control.dir/src/mission/control.cpp.o\x1b[0m\n'}
+[0.049715] (control) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/control.dir/src/testing/drone_controller.cpp.o\x1b[0m\n'}
+[0.050818] (control) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/control.dir/utils/control_.cpp.o\x1b[0m\n'}
+[0.099704] (-) TimerEvent: {}
+[0.200080] (-) TimerEvent: {}
+[0.300575] (-) TimerEvent: {}
+[0.401042] (-) TimerEvent: {}
+[0.501539] (-) TimerEvent: {}
+[0.601968] (-) TimerEvent: {}
+[0.702406] (-) TimerEvent: {}
+[0.802872] (-) TimerEvent: {}
+[0.903301] (-) TimerEvent: {}
+[1.003793] (-) TimerEvent: {}
+[1.104320] (-) TimerEvent: {}
+[1.204789] (-) TimerEvent: {}
+[1.305322] (-) TimerEvent: {}
+[1.405890] (-) TimerEvent: {}
+[1.506303] (-) TimerEvent: {}
+[1.606781] (-) TimerEvent: {}
+[1.707261] (-) TimerEvent: {}
+[1.807701] (-) TimerEvent: {}
+[1.908228] (-) TimerEvent: {}
+[2.008716] (-) TimerEvent: {}
+[2.109131] (-) TimerEvent: {}
+[2.209587] (-) TimerEvent: {}
+[2.310032] (-) TimerEvent: {}
+[2.410485] (-) TimerEvent: {}
+[2.510961] (-) TimerEvent: {}
+[2.611543] (-) TimerEvent: {}
+[2.712013] (-) TimerEvent: {}
+[2.812438] (-) TimerEvent: {}
+[2.912879] (-) TimerEvent: {}
+[3.013288] (-) TimerEvent: {}
+[3.113708] (-) TimerEvent: {}
+[3.214159] (-) TimerEvent: {}
+[3.314585] (-) TimerEvent: {}
+[3.415013] (-) TimerEvent: {}
+[3.515517] (-) TimerEvent: {}
+[3.615967] (-) TimerEvent: {}
+[3.719300] (-) TimerEvent: {}
+[3.819884] (-) TimerEvent: {}
+[3.920494] (-) TimerEvent: {}
+[4.021076] (-) TimerEvent: {}
+[4.121617] (-) TimerEvent: {}
+[4.222081] (-) TimerEvent: {}
+[4.322591] (-) TimerEvent: {}
+[4.423064] (-) TimerEvent: {}
+[4.523513] (-) TimerEvent: {}
+[4.623944] (-) TimerEvent: {}
+[4.724391] (-) TimerEvent: {}
+[4.824830] (-) TimerEvent: {}
+[4.925256] (-) TimerEvent: {}
+[5.025668] (-) TimerEvent: {}
+[5.126108] (-) TimerEvent: {}
+[5.226659] (-) TimerEvent: {}
+[5.327227] (-) TimerEvent: {}
+[5.427743] (-) TimerEvent: {}
+[5.528245] (-) TimerEvent: {}
+[5.628693] (-) TimerEvent: {}
+[5.729160] (-) TimerEvent: {}
+[5.829645] (-) TimerEvent: {}
+[5.930143] (-) TimerEvent: {}
+[6.030598] (-) TimerEvent: {}
+[6.131043] (-) TimerEvent: {}
+[6.231526] (-) TimerEvent: {}
+[6.331927] (-) TimerEvent: {}
+[6.432316] (-) TimerEvent: {}
+[6.532742] (-) TimerEvent: {}
+[6.633176] (-) TimerEvent: {}
+[6.733668] (-) TimerEvent: {}
+[6.834110] (-) TimerEvent: {}
+[6.934590] (-) TimerEvent: {}
+[7.035022] (-) TimerEvent: {}
+[7.135502] (-) TimerEvent: {}
+[7.235941] (-) TimerEvent: {}
+[7.336281] (-) TimerEvent: {}
+[7.436681] (-) TimerEvent: {}
+[7.537150] (-) TimerEvent: {}
+[7.637571] (-) TimerEvent: {}
+[7.737969] (-) TimerEvent: {}
+[7.769196] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[7.769626] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1\x1b[m\x1b[K:\n'}
+[7.769818] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.769997] (control) StderrLine: {'line': b'  167 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[7.770154] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[7.770331] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1\x1b[m\x1b[K:\n'}
+[7.770484] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.770637] (control) StderrLine: {'line': b'   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[7.770781] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[7.838128] (-) TimerEvent: {}
+[7.938567] (-) TimerEvent: {}
+[8.039069] (-) TimerEvent: {}
+[8.139448] (-) TimerEvent: {}
+[8.239850] (-) TimerEvent: {}
+[8.340276] (-) TimerEvent: {}
+[8.440803] (-) TimerEvent: {}
+[8.541253] (-) TimerEvent: {}
+[8.641673] (-) TimerEvent: {}
+[8.742119] (-) TimerEvent: {}
+[8.842522] (-) TimerEvent: {}
+[8.942978] (-) TimerEvent: {}
+[9.043386] (-) TimerEvent: {}
+[9.143774] (-) TimerEvent: {}
+[9.244174] (-) TimerEvent: {}
+[9.294125] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[9.294445] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[9.294587] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[9.295600] (control) StderrLine: {'line': b'  167 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[9.295752] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.295878] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[9.295999] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[9.296125] (control) StderrLine: {'line': b'   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[9.296253] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.296374] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:57:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[9.296495] (control) StderrLine: {'line': b'   57 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result){\n'}
+[9.296610] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.296723] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.296843] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:484:98:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.296960] (control) StderrLine: {'line': b'  484 | void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K,\n'}
+[9.297095] (control) StderrLine: {'line': b'      |                                                                                    \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[9.297283] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:486:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kyaw_angle\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.297431] (control) StderrLine: {'line': b'  486 |                                float up_z, \x1b[01;35m\x1b[Kfloat yaw_angle\x1b[m\x1b[K, float max_velocity, float tolerance) {\n'}
+[9.297495] (control) StderrLine: {'line': b'      |                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~\x1b[m\x1b[K\n'}
+[9.297541] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid safeLanding(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.297590] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:881:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.297638] (control) StderrLine: {'line': b'  881 | void safeLanding(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped &posee, float descent_rate = 0.3) {\n'}
+[9.297684] (control) StderrLine: {'line': b'      |                                                               \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[9.297727] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringPayload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float, float, float, float, float, float, float, std::string, std::string)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.297774] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1137:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KdropAlt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.297823] (control) StderrLine: {'line': b' 1137 |     const float \x1b[01;35m\x1b[KdropAlt\x1b[m\x1b[K = 0.6;\n'}
+[9.297866] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~~~\x1b[m\x1b[K\n'}
+[9.297909] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1140:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.297952] (control) StderrLine: {'line': b' 1140 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[9.297993] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[9.298035] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1141:59:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.298078] (control) StderrLine: {'line': b' 1141 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[9.298119] (control) StderrLine: {'line': b'      |                                                           \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.298162] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1141:79:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.298218] (control) StderrLine: {'line': b' 1141 |     geometry_msgs::msg::PoseStamped avg_payload_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[9.298270] (control) StderrLine: {'line': b'      |                                                                               \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.298316] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringEmber(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.298363] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1413:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.298432] (control) StderrLine: {'line': b' 1413 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[9.298500] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.298566] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1413:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.298621] (control) StderrLine: {'line': b' 1413 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[9.298662] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[9.298704] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1413:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.298746] (control) StderrLine: {'line': b' 1413 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[9.298789] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[9.298831] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.298875] (control) StderrLine: {'line': b' 1414 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[9.298918] (control) StderrLine: {'line': b'      |                                                         \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.298961] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1414:77:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.299004] (control) StderrLine: {'line': b' 1414 |     geometry_msgs::msg::PoseStamped avg_ember_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[9.299053] (control) StderrLine: {'line': b'      |                                                                             \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.299094] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGate(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.299137] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1691:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.299184] (control) StderrLine: {'line': b' 1691 |             for(int j = 0; \x1b[01;35m\x1b[Kj < x_points.size()\x1b[m\x1b[K; j++) {\n'}
+[9.299238] (control) StderrLine: {'line': b'      |                            \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.299282] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1681:15:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx1_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.299326] (control) StderrLine: {'line': b' 1681 |         float \x1b[01;35m\x1b[Kx1_min\x1b[m\x1b[K = -1.0, x2_min = -1.0;\n'}
+[9.299367] (control) StderrLine: {'line': b'      |               \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[9.299408] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1681:30:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kx2_min\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.299451] (control) StderrLine: {'line': b' 1681 |         float x1_min = -1.0, \x1b[01;35m\x1b[Kx2_min\x1b[m\x1b[K = -1.0;\n'}
+[9.299493] (control) StderrLine: {'line': b'      |                              \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[9.299536] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringBunder(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, bool&, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.299583] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1829:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kroll\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.299629] (control) StderrLine: {'line': b' 1829 |     float \x1b[01;35m\x1b[Kroll\x1b[m\x1b[K, pitch; bool detected = false;\n'}
+[9.299673] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.299716] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1829:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kpitch\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.299760] (control) StderrLine: {'line': b' 1829 |     float roll, \x1b[01;35m\x1b[Kpitch\x1b[m\x1b[K; bool detected = false;\n'}
+[9.299803] (control) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[9.299849] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1829:29:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kdetected\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[9.299894] (control) StderrLine: {'line': b' 1829 |     float roll, pitch; bool \x1b[01;35m\x1b[Kdetected\x1b[m\x1b[K = false;\n'}
+[9.299936] (control) StderrLine: {'line': b'      |                             \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[9.299978] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:58:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kavg_sample\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.300021] (control) StderrLine: {'line': b' 1830 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int \x1b[01;35m\x1b[Kavg_sample\x1b[m\x1b[K = 1; int buffer_size = 4;\n'}
+[9.300063] (control) StderrLine: {'line': b'      |                                                          \x1b[01;35m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.300104] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1830:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbuffer_size\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.300149] (control) StderrLine: {'line': b' 1830 |     geometry_msgs::msg::PoseStamped avg_bunder_pose; int avg_sample = 1; int \x1b[01;35m\x1b[Kbuffer_size\x1b[m\x1b[K = 4;\n'}
+[9.300199] (control) StderrLine: {'line': b'      |                                                                              \x1b[01;35m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.300251] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.300297] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2024:55:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Ki\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.300343] (control) StderrLine: {'line': b' 2024 |     float last_x, last_y, distance, progress=0.0; int \x1b[01;35m\x1b[Ki\x1b[m\x1b[K =0;\n'}
+[9.300388] (control) StderrLine: {'line': b'      |                                                       \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[9.300430] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2008:156:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kangle\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.300474] (control) StderrLine: {'line': b' 2008 | void moveToPoint(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float x, float y, float z, \x1b[01;35m\x1b[Kfloat angle\x1b[m\x1b[K, float speed, float tolerance) {\n'}
+[9.300520] (control) StderrLine: {'line': b'      |                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[9.300567] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveToPoint(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, geometry_msgs::msg::Pose, float, float, bool, bool, bool)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.300615] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2070:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdistance_to_target\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.300660] (control) StderrLine: {'line': b' 2070 |     float \x1b[01;35m\x1b[Kdistance_to_target\x1b[m\x1b[K = dist(posee.pose.position, target.position);\n'}
+[9.300707] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.300753] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid holdPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.300798] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2210:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.300844] (control) StderrLine: {'line': b' 2210 | void holdPosition(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K, geometry_msgs::msg::PoseStamped& posee, float duration){\n'}
+[9.300888] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[9.300930] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[9.300976] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[9.301018] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[9.301060] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[9.301102] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[9.301143] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[9.301185] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[9.301240] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[9.301285] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[9.301327] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[9.301369] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[9.301410] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[9.301453] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[9.301500] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid waitForPosition(const std::shared_ptr<DroneController>&, rclcpp::Rate&, mavros_msgs::msg::GlobalPositionTarget, double, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.301564] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2273:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[9.301617] (control) StderrLine: {'line': b' 2273 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, \x1b[32m\x1b[Kdistance\x1b[m\x1b[K, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[9.301665] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~\x1b[m\x1b[K\n'}
+[9.301708] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[9.301751] (control) StderrLine: {'line': b'      |                                                                                                 \x1b[32m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[9.301795] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2273:43:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[9.301837] (control) StderrLine: {'line': b' 2273 |         RCLCPP_INFO(node->get_logger(), "\x1b[01;36m\x1b[K%d\x1b[m\x1b[K - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[9.301880] (control) StderrLine: {'line': b'      |                                          \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[9.301921] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[9.301961] (control) StderrLine: {'line': b'      |                                           \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[9.302003] (control) StderrLine: {'line': b'      |                                          \x1b[32m\x1b[K%f\x1b[m\x1b[K\n'}
+[9.302044] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[9.302084] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[9.302128] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[9.302170] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[9.302224] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[9.302269] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[9.302311] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[9.302353] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[9.302395] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[9.302438] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[9.302481] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[9.302522] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[9.302564] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[9.302605] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2273:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%f\x1b[m\x1b[K\xe2\x80\x99 expects a matching \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 argument [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[9.302653] (control) StderrLine: {'line': b' 2273 |         RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"%d - CURRR DISTANCEE: %f, meter: %.2f, payload: %.2f"\x1b[m\x1b[K, distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[9.302697] (control) StderrLine: {'line': b'      |                                         \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.302738] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2273:93:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[9.302781] (control) StderrLine: {'line': b' 2273 |         RCLCPP_INFO(node->get_logger(), "%d - CURRR DISTANCEE: %f, meter: %.2f, payload: \x1b[01;36m\x1b[K%.2f\x1b[m\x1b[K", distance, dist_m, node->getCurrentPosePayload().pose.position.x);\n'}
+[9.302823] (control) StderrLine: {'line': b'      |                                                                                          \x1b[01;36m\x1b[K~~~^\x1b[m\x1b[K\n'}
+[9.302867] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[9.302911] (control) StderrLine: {'line': b'      |                                                                                             \x1b[01;36m\x1b[Kdouble\x1b[m\x1b[K\n'}
+[9.302955] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2268:16:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdalt\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[9.302998] (control) StderrLine: {'line': b' 2268 |         double \x1b[01;35m\x1b[Kdalt\x1b[m\x1b[K = raw.altitude - node->getCurrentGPSPosition().altitude;\n'}
+[9.303042] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[9.303084] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2250:177:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.303127] (control) StderrLine: {'line': b' 2250 | void waitForPosition(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, mavros_msgs::msg::GlobalPositionTarget raw, double tolerance, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[9.303170] (control) StderrLine: {'line': b'      |                                                                                                                                                                           \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.303223] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawAsync(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.303268] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2340:171:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.303311] (control) StderrLine: {'line': b' 2340 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[9.303356] (control) StderrLine: {'line': b'      |                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.303403] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2340:194:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.303448] (control) StderrLine: {'line': b' 2340 | void sendGlobalRawAsync(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float latt, float lonn, float altt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[9.303492] (control) StderrLine: {'line': b'      |                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.303536] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, LatLonAlt, double, float, float, float, bool, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.303581] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2388:203:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kallow_centering\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.303625] (control) StderrLine: {'line': b' 2388 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, \x1b[01;35m\x1b[Kbool allow_centering\x1b[m\x1b[K, float center_dist) {\n'}
+[9.303671] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                      \x1b[01;35m\x1b[K~~~~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.303715] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2388:226:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kcenter_dist\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.303764] (control) StderrLine: {'line': b' 2388 | void sendGlobalRawFromXYZ(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, LatLonAlt zero, double zero_hdg, float x, float y, float rel_alt, bool allow_centering, \x1b[01;35m\x1b[Kfloat center_dist\x1b[m\x1b[K) {\n'}
+[9.303812] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                            \x1b[01;35m\x1b[K~~~~~~^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.303858] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[9.303902] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[9.303945] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[9.303990] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[9.304031] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[9.304076] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[9.304117] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[9.304157] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[9.304203] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[9.304248] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[9.304287] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[9.304327] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:4\x1b[m\x1b[K,\n'}
+[9.304366] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1\x1b[m\x1b[K:\n'}
+[9.304406] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid pushMission(const std::shared_ptr<DroneController>&, std::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.304450] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2489:37:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%d\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wformat=\x1b[m\x1b[K]\n'}
+[9.304498] (control) StderrLine: {'line': b' 2489 |     RCLCPP_INFO(node->get_logger(), \x1b[01;35m\x1b[K"Pushing mission of size %d"\x1b[m\x1b[K, \x1b[32m\x1b[Kwaypoints.size()\x1b[m\x1b[K);\n'}
+[9.304540] (control) StderrLine: {'line': b'      |                                     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K  \x1b[32m\x1b[K~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.304583] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[K|\x1b[m\x1b[K\n'}
+[9.304626] (control) StderrLine: {'line': b'      |                                                                                 \x1b[32m\x1b[Kstd::vector<mavros_msgs::msg::Waypoint_<std::allocator<void> >, std::allocator<mavros_msgs::msg::Waypoint_<std::allocator<void> > > >::size_type {aka long unsigned int}\x1b[m\x1b[K\n'}
+[9.304671] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2489:63:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[9.304715] (control) StderrLine: {'line': b' 2489 |     RCLCPP_INFO(node->get_logger(), "Pushing mission of size \x1b[01;36m\x1b[K%d\x1b[m\x1b[K", waypoints.size());\n'}
+[9.304757] (control) StderrLine: {'line': b'      |                                                              \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[9.304800] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[9.304842] (control) StderrLine: {'line': b'      |                                                               \x1b[01;36m\x1b[Kint\x1b[m\x1b[K\n'}
+[9.304886] (control) StderrLine: {'line': b'      |                                                              \x1b[32m\x1b[K%ld\x1b[m\x1b[K\n'}
+[9.304927] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid moveWithLaser(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float, bool, bool, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.304976] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2615:422:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[9.305025] (control) StderrLine: {'line': b' 2615 |         vel_pose.pose.position.x = x ? limit(max_speed, P_maju*err_x + I_maju*total_error_maju + D_maju*last_error_maju) : (front + back <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(front - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (back == 2.1f && front != 2.1f ? limit(koreksi_max_speed, P_koreksi*(front - 1.25 ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kfront == 2.1f\x1b[m\x1b[K & back != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - back) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[9.305076] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[9.305122] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2616:421:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ksuggest parentheses around comparison in operand of \xe2\x80\x98\x1b[01m\x1b[K&\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wparentheses\x1b[m\x1b[K]\n'}
+[9.305164] (control) StderrLine: {'line': b' 2616 |         vel_pose.pose.position.y = y ? limit(max_speed, P_maju*err_y + I_maju*total_error_maju + D_maju*last_error_maju) : (left + right <= 2.85f ? limit(koreksi_max_speed, P_koreksi*(left - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (right == 2.1f && left != 2.1f ? limit(koreksi_max_speed, P_koreksi*(left - 1.25  ) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : (\x1b[01;35m\x1b[Kleft == 2.1f\x1b[m\x1b[K & right != 2.1f ? limit(koreksi_max_speed, P_koreksi*(1.25 - right) + I_koreksi*total_error_koreksi + D_koreksi*last_error_koreksi) : 0.0)));\n'}
+[9.305219] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[9.305266] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kfloat getYawError(const std::shared_ptr<DroneController>&, rclcpp::Rate&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.305311] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2791:24:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<float>::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.305362] (control) StderrLine: {'line': b' 2791 |         if(\x1b[01;35m\x1b[Kright_index > curr_scan.ranges.size()\x1b[m\x1b[K) {\n'}
+[9.305405] (control) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.305446] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2773:78:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.305489] (control) StderrLine: {'line': b' 2773 | float getYawError(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K)\n'}
+[9.305531] (control) StderrLine: {'line': b'      |                                                                \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[9.305572] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid printTitik(std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, std::vector<double, std::allocator<double> >&, double, double)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.305617] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2811:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.305667] (control) StderrLine: {'line': b' 2811 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[9.305712] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.305754] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2813:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.305800] (control) StderrLine: {'line': b' 2813 |             if(\x1b[01;35m\x1b[Ki != lat_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[9.305843] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.305884] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2817:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.305928] (control) StderrLine: {'line': b' 2817 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_indoor.size()\x1b[m\x1b[K; i++) {\n'}
+[9.305968] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.306011] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2819:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.306058] (control) StderrLine: {'line': b' 2819 |             if(\x1b[01;35m\x1b[Ki != lon_indoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[9.306103] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.306145] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2827:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.306917] (control) StderrLine: {'line': b' 2827 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lat_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[9.306977] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.307021] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2829:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.307070] (control) StderrLine: {'line': b' 2829 |             if(\x1b[01;35m\x1b[Ki != lat_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[9.307112] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.307154] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2833:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.307205] (control) StderrLine: {'line': b' 2833 |         for(int i = 0; \x1b[01;35m\x1b[Ki < lon_outdoor.size()\x1b[m\x1b[K; i++) {\n'}
+[9.307250] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.307291] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2835:18:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<double, std::allocator<double> >::size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.307336] (control) StderrLine: {'line': b' 2835 |             if(\x1b[01;35m\x1b[Ki != lon_outdoor.size() -1\x1b[m\x1b[K) {std::cout<<", ";}\n'}
+[9.307377] (control) StderrLine: {'line': b'      |                \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.307423] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid executeLocalWaypointMove(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.307472] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:2842:90:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.307516] (control) StderrLine: {'line': b' 2842 | void executeLocalWaypointMove(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Krclcpp::Rate &rate\x1b[m\x1b[K,\n'}
+[9.307559] (control) StderrLine: {'line': b'      |                                                                            \x1b[01;35m\x1b[K~~~~~~~~~~~~~~^~~~\x1b[m\x1b[K\n'}
+[9.307600] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid centeringGateNear(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, float, float, bool&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.307645] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:3857:57:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kposee\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[9.307686] (control) StderrLine: {'line': b' 3857 |                        \x1b[01;35m\x1b[Kgeometry_msgs::msg::PoseStamped &posee\x1b[m\x1b[K, float gate_width,\n'}
+[9.307735] (control) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~\x1b[m\x1b[K\n'}
+[9.344301] (-) TimerEvent: {}
+[9.444673] (-) TimerEvent: {}
+[9.545053] (-) TimerEvent: {}
+[9.645418] (-) TimerEvent: {}
+[9.745804] (-) TimerEvent: {}
+[9.846274] (-) TimerEvent: {}
+[9.946650] (-) TimerEvent: {}
+[10.047030] (-) TimerEvent: {}
+[10.147392] (-) TimerEvent: {}
+[10.247739] (-) TimerEvent: {}
+[10.348098] (-) TimerEvent: {}
+[10.448476] (-) TimerEvent: {}
+[10.548816] (-) TimerEvent: {}
+[10.649182] (-) TimerEvent: {}
+[10.749572] (-) TimerEvent: {}
+[10.851832] (-) TimerEvent: {}
+[10.952211] (-) TimerEvent: {}
+[11.052536] (-) TimerEvent: {}
+[11.152835] (-) TimerEvent: {}
+[11.253201] (-) TimerEvent: {}
+[11.353495] (-) TimerEvent: {}
+[11.453837] (-) TimerEvent: {}
+[11.554086] (-) TimerEvent: {}
+[11.654337] (-) TimerEvent: {}
+[11.754619] (-) TimerEvent: {}
+[11.854897] (-) TimerEvent: {}
+[11.955181] (-) TimerEvent: {}
+[12.055433] (-) TimerEvent: {}
+[12.155713] (-) TimerEvent: {}
+[12.255970] (-) TimerEvent: {}
+[12.356275] (-) TimerEvent: {}
+[12.456560] (-) TimerEvent: {}
+[12.556862] (-) TimerEvent: {}
+[12.657194] (-) TimerEvent: {}
+[12.757502] (-) TimerEvent: {}
+[12.857779] (-) TimerEvent: {}
+[12.958142] (-) TimerEvent: {}
+[13.058464] (-) TimerEvent: {}
+[13.158778] (-) TimerEvent: {}
+[13.259100] (-) TimerEvent: {}
+[13.359372] (-) TimerEvent: {}
+[13.459696] (-) TimerEvent: {}
+[13.559972] (-) TimerEvent: {}
+[13.660360] (-) TimerEvent: {}
+[13.760619] (-) TimerEvent: {}
+[13.860931] (-) TimerEvent: {}
+[13.961264] (-) TimerEvent: {}
+[14.061618] (-) TimerEvent: {}
+[14.161916] (-) TimerEvent: {}
+[14.262255] (-) TimerEvent: {}
+[14.362523] (-) TimerEvent: {}
+[14.462812] (-) TimerEvent: {}
+[14.563086] (-) TimerEvent: {}
+[14.663474] (-) TimerEvent: {}
+[14.763834] (-) TimerEvent: {}
+[14.864274] (-) TimerEvent: {}
+[14.964645] (-) TimerEvent: {}
+[15.065017] (-) TimerEvent: {}
+[15.165283] (-) TimerEvent: {}
+[15.265569] (-) TimerEvent: {}
+[15.365831] (-) TimerEvent: {}
+[15.466156] (-) TimerEvent: {}
+[15.566492] (-) TimerEvent: {}
+[15.666805] (-) TimerEvent: {}
+[15.767140] (-) TimerEvent: {}
+[15.867523] (-) TimerEvent: {}
+[15.967881] (-) TimerEvent: {}
+[16.068224] (-) TimerEvent: {}
+[16.168724] (-) TimerEvent: {}
+[16.269099] (-) TimerEvent: {}
+[16.369443] (-) TimerEvent: {}
+[16.469753] (-) TimerEvent: {}
+[16.570085] (-) TimerEvent: {}
+[16.670465] (-) TimerEvent: {}
+[16.770864] (-) TimerEvent: {}
+[16.871344] (-) TimerEvent: {}
+[16.971769] (-) TimerEvent: {}
+[17.072176] (-) TimerEvent: {}
+[17.172549] (-) TimerEvent: {}
+[17.272887] (-) TimerEvent: {}
+[17.373240] (-) TimerEvent: {}
+[17.473592] (-) TimerEvent: {}
+[17.574000] (-) TimerEvent: {}
+[17.674391] (-) TimerEvent: {}
+[17.774793] (-) TimerEvent: {}
+[17.875151] (-) TimerEvent: {}
+[17.975601] (-) TimerEvent: {}
+[18.075944] (-) TimerEvent: {}
+[18.176220] (-) TimerEvent: {}
+[18.276529] (-) TimerEvent: {}
+[18.376917] (-) TimerEvent: {}
+[18.477373] (-) TimerEvent: {}
+[18.577797] (-) TimerEvent: {}
+[18.678224] (-) TimerEvent: {}
+[18.778587] (-) TimerEvent: {}
+[18.878952] (-) TimerEvent: {}
+[18.979356] (-) TimerEvent: {}
+[19.079675] (-) TimerEvent: {}
+[19.180008] (-) TimerEvent: {}
+[19.280377] (-) TimerEvent: {}
+[19.380687] (-) TimerEvent: {}
+[19.481010] (-) TimerEvent: {}
+[19.581326] (-) TimerEvent: {}
+[19.681664] (-) TimerEvent: {}
+[19.781988] (-) TimerEvent: {}
+[19.882261] (-) TimerEvent: {}
+[19.982555] (-) TimerEvent: {}
+[20.082916] (-) TimerEvent: {}
+[20.183303] (-) TimerEvent: {}
+[20.283660] (-) TimerEvent: {}
+[20.384028] (-) TimerEvent: {}
+[20.484398] (-) TimerEvent: {}
+[20.584730] (-) TimerEvent: {}
+[20.685135] (-) TimerEvent: {}
+[20.785438] (-) TimerEvent: {}
+[20.885764] (-) TimerEvent: {}
+[20.986158] (-) TimerEvent: {}
+[21.086512] (-) TimerEvent: {}
+[21.186946] (-) TimerEvent: {}
+[21.287265] (-) TimerEvent: {}
+[21.387605] (-) TimerEvent: {}
+[21.487964] (-) TimerEvent: {}
+[21.588307] (-) TimerEvent: {}
+[21.688640] (-) TimerEvent: {}
+[21.789044] (-) TimerEvent: {}
+[21.889399] (-) TimerEvent: {}
+[21.989783] (-) TimerEvent: {}
+[22.090166] (-) TimerEvent: {}
+[22.190572] (-) TimerEvent: {}
+[22.290892] (-) TimerEvent: {}
+[22.391284] (-) TimerEvent: {}
+[22.491703] (-) TimerEvent: {}
+[22.592043] (-) TimerEvent: {}
+[22.692367] (-) TimerEvent: {}
+[22.792717] (-) TimerEvent: {}
+[22.893069] (-) TimerEvent: {}
+[22.993518] (-) TimerEvent: {}
+[23.093876] (-) TimerEvent: {}
+[23.194259] (-) TimerEvent: {}
+[23.294619] (-) TimerEvent: {}
+[23.394964] (-) TimerEvent: {}
+[23.495259] (-) TimerEvent: {}
+[23.595577] (-) TimerEvent: {}
+[23.695978] (-) TimerEvent: {}
+[23.796311] (-) TimerEvent: {}
+[23.896677] (-) TimerEvent: {}
+[23.997048] (-) TimerEvent: {}
+[24.097385] (-) TimerEvent: {}
+[24.197715] (-) TimerEvent: {}
+[24.298050] (-) TimerEvent: {}
+[24.398366] (-) TimerEvent: {}
+[24.498740] (-) TimerEvent: {}
+[24.599114] (-) TimerEvent: {}
+[24.699471] (-) TimerEvent: {}
+[24.799847] (-) TimerEvent: {}
+[24.900155] (-) TimerEvent: {}
+[25.000475] (-) TimerEvent: {}
+[25.100815] (-) TimerEvent: {}
+[25.201155] (-) TimerEvent: {}
+[25.301521] (-) TimerEvent: {}
+[25.401899] (-) TimerEvent: {}
+[25.502256] (-) TimerEvent: {}
+[25.602597] (-) TimerEvent: {}
+[25.702999] (-) TimerEvent: {}
+[25.803406] (-) TimerEvent: {}
+[25.903803] (-) TimerEvent: {}
+[26.004259] (-) TimerEvent: {}
+[26.104654] (-) TimerEvent: {}
+[26.205042] (-) TimerEvent: {}
+[26.305404] (-) TimerEvent: {}
+[26.405848] (-) TimerEvent: {}
+[26.506255] (-) TimerEvent: {}
+[26.606671] (-) TimerEvent: {}
+[26.707062] (-) TimerEvent: {}
+[26.807484] (-) TimerEvent: {}
+[26.907922] (-) TimerEvent: {}
+[27.008497] (-) TimerEvent: {}
+[27.108829] (-) TimerEvent: {}
+[27.209221] (-) TimerEvent: {}
+[27.309591] (-) TimerEvent: {}
+[27.410029] (-) TimerEvent: {}
+[27.510379] (-) TimerEvent: {}
+[27.610793] (-) TimerEvent: {}
+[27.711143] (-) TimerEvent: {}
+[27.811512] (-) TimerEvent: {}
+[27.911916] (-) TimerEvent: {}
+[28.012281] (-) TimerEvent: {}
+[28.112725] (-) TimerEvent: {}
+[28.213090] (-) TimerEvent: {}
+[28.313474] (-) TimerEvent: {}
+[28.413819] (-) TimerEvent: {}
+[28.514149] (-) TimerEvent: {}
+[28.614473] (-) TimerEvent: {}
+[28.714814] (-) TimerEvent: {}
+[28.815104] (-) TimerEvent: {}
+[28.915428] (-) TimerEvent: {}
+[29.015899] (-) TimerEvent: {}
+[29.116295] (-) TimerEvent: {}
+[29.216678] (-) TimerEvent: {}
+[29.317097] (-) TimerEvent: {}
+[29.417492] (-) TimerEvent: {}
+[29.517889] (-) TimerEvent: {}
+[29.618290] (-) TimerEvent: {}
+[29.718894] (-) TimerEvent: {}
+[29.819286] (-) TimerEvent: {}
+[29.919722] (-) TimerEvent: {}
+[30.020211] (-) TimerEvent: {}
+[30.120767] (-) TimerEvent: {}
+[30.221260] (-) TimerEvent: {}
+[30.321815] (-) TimerEvent: {}
+[30.422316] (-) TimerEvent: {}
+[30.522838] (-) TimerEvent: {}
+[30.623369] (-) TimerEvent: {}
+[30.723818] (-) TimerEvent: {}
+[30.824300] (-) TimerEvent: {}
+[30.924790] (-) TimerEvent: {}
+[31.025332] (-) TimerEvent: {}
+[31.125790] (-) TimerEvent: {}
+[31.226299] (-) TimerEvent: {}
+[31.326773] (-) TimerEvent: {}
+[31.427364] (-) TimerEvent: {}
+[31.527799] (-) TimerEvent: {}
+[31.628346] (-) TimerEvent: {}
+[31.728774] (-) TimerEvent: {}
+[31.829225] (-) TimerEvent: {}
+[31.929669] (-) TimerEvent: {}
+[32.030077] (-) TimerEvent: {}
+[32.130559] (-) TimerEvent: {}
+[32.230968] (-) TimerEvent: {}
+[32.331390] (-) TimerEvent: {}
+[32.431787] (-) TimerEvent: {}
+[32.532170] (-) TimerEvent: {}
+[32.632560] (-) TimerEvent: {}
+[32.732989] (-) TimerEvent: {}
+[32.833315] (-) TimerEvent: {}
+[32.933673] (-) TimerEvent: {}
+[33.034064] (-) TimerEvent: {}
+[33.134443] (-) TimerEvent: {}
+[33.234873] (-) TimerEvent: {}
+[33.335265] (-) TimerEvent: {}
+[33.435719] (-) TimerEvent: {}
+[33.536113] (-) TimerEvent: {}
+[33.636509] (-) TimerEvent: {}
+[33.736870] (-) TimerEvent: {}
+[33.837276] (-) TimerEvent: {}
+[33.937686] (-) TimerEvent: {}
+[34.038139] (-) TimerEvent: {}
+[34.138514] (-) TimerEvent: {}
+[34.238902] (-) TimerEvent: {}
+[34.339321] (-) TimerEvent: {}
+[34.439730] (-) TimerEvent: {}
+[34.444926] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.445523] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[34.445784] (control) StderrLine: {'line': b'  167 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[34.445904] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[34.446013] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kfloat DroneController::getObstacleDistance(float, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.446122] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:91:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[Kmin_angle\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K-Wunused-but-set-variable\x1b[m\x1b[K]\n'}
+[34.446239] (control) StderrLine: {'line': b'   91 |     float \x1b[01;35m\x1b[Kmin_angle\x1b[m\x1b[K = angle - angle_tolerance/2;\n'}
+[34.446346] (control) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[34.446448] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kint DroneController::reset_wp_()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.446548] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:110:52:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kno return statement in function returning non-void [\x1b[01;35m\x1b[K-Wreturn-type\x1b[m\x1b[K]\n'}
+[34.446648] (control) StderrLine: {'line': b'  110 | int DroneController::reset_wp_()   {wp_reached = 0;\x1b[01;35m\x1b[K}\x1b[m\x1b[K\n'}
+[34.446765] (control) StderrLine: {'line': b'      |                                                    \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.446862] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.446966] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:173:250:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.447083] (control) StderrLine: {'line': b'  173 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.447200] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                          \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.447312] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.447408] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.447504] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.447599] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.447693] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.447786] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.447881] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.447976] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.448071] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.448167] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.448275] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.448377] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.448475] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.448577] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.448679] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.448782] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:244:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.448883] (control) StderrLine: {'line': b'  174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.448984] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                    \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.449094] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.449208] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.449319] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.449419] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.449521] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.449623] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.449724] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.449827] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.449925] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.450018] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.450118] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.450221] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.450328] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.450429] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.450524] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.450629] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:248:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.450746] (control) StderrLine: {'line': b'  175 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.450858] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                        \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.450966] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.451074] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.451179] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.451298] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.451395] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.451494] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.451593] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.451692] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.451786] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.451955] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.452061] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.452158] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.452277] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.452383] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.452484] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.452596] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:251:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.452719] (control) StderrLine: {'line': b'  176 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.452822] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                           \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.452916] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.453008] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.453101] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.453201] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.453308] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.453403] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.453498] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.453591] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.453685] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.453779] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.453873] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.453966] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.454059] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.454151] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.454253] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.454363] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:246:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.454463] (control) StderrLine: {'line': b'  177 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.454558] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                      \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.454652] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.454747] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.454843] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.454939] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.455034] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.455127] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.455228] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.455334] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.455429] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.455522] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.455622] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.455716] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.455806] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.455896] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.455991] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.456094] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:253:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.456205] (control) StderrLine: {'line': b'  178 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.456306] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                             \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.456400] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.456492] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.456585] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.456678] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.456772] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.456864] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.456955] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.457049] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.457141] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.457243] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.457338] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.457429] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.457520] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.457611] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.457701] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.457795] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:251:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.457905] (control) StderrLine: {'line': b'  179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.458008] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                           \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.458103] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.458201] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.458302] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.458394] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.458490] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.458584] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.458673] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.458762] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.458850] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.458936] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.459023] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.459112] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.459204] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.459300] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.459387] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.459479] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:253:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.459592] (control) StderrLine: {'line': b'  180 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.459764] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                             \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.459898] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.459974] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.460039] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.460098] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.460147] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.460233] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.460291] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.460334] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.460396] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.460437] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.460472] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.460515] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.460561] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.460604] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.460651] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.460691] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:256:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.460730] (control) StderrLine: {'line': b'  181 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.460760] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.460791] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.460821] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.460850] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.460878] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.460910] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.460939] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.460968] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.460997] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.461025] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.461054] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.461083] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.461112] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.461141] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.461168] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.461203] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[34.461240] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:257:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >]\x1b[m\x1b[K\xe2\x80\x99 is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [\x1b[01;35m\x1b[K-Wdeprecated-declarations\x1b[m\x1b[K]\n'}
+[34.461276] (control) StderrLine: {'line': b'  182 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request\x1b[01;35m\x1b[K)\x1b[m\x1b[K;}\n'}
+[34.461307] (control) StderrLine: {'line': b'      |                                                                                                                                                                                                                                                                 \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[34.461336] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[34.461365] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[34.461393] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[34.461423] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[34.461451] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[34.461479] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[34.461508] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[34.461535] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[34.461563] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[34.461590] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20\x1b[m\x1b[K,\n'}
+[34.461617] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17\x1b[m\x1b[K:\n'}
+[34.461645] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[34.461673] (control) StderrLine: {'line': b'  415 |     \x1b[01;36m\x1b[Koperator\x1b[m\x1b[K SharedFuture() {return this->future.share();}\n'}
+[34.461700] (control) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[34.461727] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:\x1b[m\x1b[K At global scope:\n'}
+[34.461756] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:225:38:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[34.461788] (control) StderrLine: {'line': b'  225 | void DroneController::waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client) {\n'}
+[34.461821] (control) StderrLine: {'line': b'      |                                      \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[34.461851] (control) StdoutLine: {'line': b'[ 66%] \x1b[1m\x1b[32mLinking CXX executable control\x1b[0m\n'}
+[34.539868] (-) TimerEvent: {}
+[34.640235] (-) TimerEvent: {}
+[34.740563] (-) TimerEvent: {}
+[34.840879] (-) TimerEvent: {}
+[34.941370] (-) TimerEvent: {}
+[35.041805] (-) TimerEvent: {}
+[35.142232] (-) TimerEvent: {}
+[35.242667] (-) TimerEvent: {}
+[35.343091] (-) TimerEvent: {}
+[35.443532] (-) TimerEvent: {}
+[35.543946] (-) TimerEvent: {}
+[35.644393] (-) TimerEvent: {}
+[35.744788] (-) TimerEvent: {}
+[35.845179] (-) TimerEvent: {}
+[35.945701] (-) TimerEvent: {}
+[36.046091] (-) TimerEvent: {}
+[36.146429] (-) TimerEvent: {}
+[36.246761] (-) TimerEvent: {}
+[36.347076] (-) TimerEvent: {}
+[36.447398] (-) TimerEvent: {}
+[36.547774] (-) TimerEvent: {}
+[36.648114] (-) TimerEvent: {}
+[36.748496] (-) TimerEvent: {}
+[36.848880] (-) TimerEvent: {}
+[36.906772] (control) StdoutLine: {'line': b'[100%] Built target control\n'}
+[36.916850] (control) CommandEnded: {'returncode': 0}
+[36.918291] (control) JobProgress: {'identifier': 'control', 'progress': 'install'}
+[36.923299] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--install', '/home/el-system/backup/centering_experiment/build/control'], 'cwd': '/home/el-system/backup/centering_experiment/build/control', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('COPILOT_LOADER_PID', '17107'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '3'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('CHROME_DESKTOP', 'code.desktop'), ('GIT_CONFIG_COUNT', '1'), ('OLDPWD', '/home/el-system/backup/centering_experiment'), ('TERM_PROGRAM_VERSION', '1.105.1'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('COPILOT_RUN_APP', '1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'id_ID.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1708'), ('COPILOT_CLI', '1'), ('SYSTEMD_EXEC_PID', '2122'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4969'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:22827'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('GEMINI_CLI_IDE_WORKSPACE_PATH', '/home/el-system/backup/centering_experiment'), ('USERNAME', 'el-system'), ('TERM', 'xterm-color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models:/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('GEMINI_CLI_IDE_SERVER_PORT', '39317'), ('WINDOWPATH', '2'), ('GIT_CONFIG_VALUE_0', 'explicit'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/home/el-system/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1908,unix/el-tech:/tmp/.ICE-unix/1908'), ('INVOCATION_ID', 'e97c478e649941f9af7983cea7b4c273'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('PYTHONSTARTUP', '/home/el-system/.config/Code/User/workspaceStorage/e8dc6f5034097679af472282a46f3627/ms-python.python/pythonrc.py'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61027eff45.sock'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('COPILOT_AGENT_SESSION_ID', 'b499b12e-f3b4-4d0c-beb9-2e1a9dfdbcaf'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:13c5e1f6-4135-42e1-9b66-d0dbff8a7cb6'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('GIT_CONFIG_KEY_0', 'safe.bareRepository'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCALHOST'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('GEMINI_CLI_IDE_AUTH_TOKEN', '225797e2-7221-4b42-bfe4-5b7b23ad32d6'), ('PWD', '/home/el-system/backup/centering_experiment/build/control'), ('COPILOT_CLI_BINARY_VERSION', '1.0.45'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[36.927635] (control) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[36.928598] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/control\n'}
+[36.949006] (-) TimerEvent: {}
+[36.949383] (control) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/control" to ""\n'}
+[36.949589] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/launch\n'}
+[36.949708] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config\n'}
+[36.949818] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config/config.yaml\n'}
+[36.949929] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control\n'}
+[36.950084] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control\n'}
+[36.950181] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh\n'}
+[36.950290] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv\n'}
+[36.950390] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.sh\n'}
+[36.950680] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.dsv\n'}
+[36.950741] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.bash\n'}
+[36.950786] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.sh\n'}
+[36.950821] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.zsh\n'}
+[36.950906] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.dsv\n'}
+[36.951044] (control) StdoutLine: {'line': b'-- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/package.dsv\n'}
+[36.951098] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/packages/control\n'}
+[36.951155] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig.cmake\n'}
+[36.951212] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake\n'}
+[36.951349] (control) StdoutLine: {'line': b'-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/package.xml\n'}
+[36.951988] (control) CommandEnded: {'returncode': 0}
+[36.966704] (control) JobEnded: {'identifier': 'control', 'rc': 0}
+[36.968745] (-) EventReactorShutdown: {}

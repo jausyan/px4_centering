@@ -1,0 +1,20 @@
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+      |                                                              [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:94:42:[m[K [01;31m[Kerror: [m[Kcannot bind non-const lvalue reference of type ‘[01m[Kbool&[m[K’ to an rvalue of type ‘[01m[Kbool[m[K’
+   94 |     centering_payload(node, rate, posee, [01;31m[Kfalse[m[K, 0.2, 1.0, 30.0, 30.0, 0.2)
+      |                                          [01;31m[K^~~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:239:135:[m[K [01;36m[Knote: [m[K  initializing argument 4 of ‘[01m[Kvoid centering_payload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, bool&, float, float, float, float, float)[m[K’
+  239 | void centering_payload(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, [01;36m[Kbool &status[m[K, float step = 0.2, float tolerance = 10.0, float timeout = 3.0, float max_time = 30.0, float log_interval = 0.5);
+      |                                                                                                                                 [01;36m[K~~~~~~^~~~~~[m[K
+gmake[2]: *** [CMakeFiles/test_centering.dir/build.make:79: CMakeFiles/test_centering.dir/src/mission/test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:188: CMakeFiles/test_centering.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,30 @@
+[ 16%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/control.dir/src/mission/control.cpp.o[0m
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+      |                                                              [01;35m[K^~~~[m[K
+[ 25%] [1m[32mLinking CXX executable control[0m
+[ 58%] Built target control
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+      |                                                              [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:94:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kstatus[m[K’ was not declared in this scope; did you mean ‘[01m[Kstatic[m[K’?
+   94 |     centering_payload(node, rate, posee, [01;31m[Kstatus[m[K, 0.2, 1.0, 30.0, 30.0, 0.2)
+      |                                          [01;31m[K^~~~~~[m[K
+      |                                          [32m[Kstatic[m[K
+gmake[2]: *** [CMakeFiles/test_centering.dir/build.make:79: CMakeFiles/test_centering.dir/src/mission/test.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:188: CMakeFiles/test_centering.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

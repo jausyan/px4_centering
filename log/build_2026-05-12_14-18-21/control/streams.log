@@ -1,0 +1,58 @@
+[0.009s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[0.026s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.027s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[0.027s]   CMake.
+[0.027s] 
+[0.027s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[0.027s]   to tell CMake that the project requires at least <min> but has been updated
+[0.027s]   to work with policies introduced by <max> or earlier.
+[0.027s] 
+[0.028s] [0m
+[0.035s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.204s] -- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+[0.229s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.232s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.238s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.256s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.270s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.297s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[0.309s] -- Found mavros_msgs: 2.12.0 (/opt/ros/humble/share/mavros_msgs/cmake)
+[0.422s] -- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+[0.438s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.439s] -- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.559s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.613s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.715s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.715s] -- Configured cppcheck include dirs: /home/el-system/backup/centering_experiment/src/control/include
+[0.715s] -- Configured cppcheck exclude dirs and/or files: 
+[0.715s] -- Added test 'lint_cmake' to check CMake code style
+[0.717s] -- Added test 'uncrustify' to check C / C++ code style
+[0.717s] -- Configured uncrustify additional arguments: 
+[0.717s] -- Added test 'xmllint' to check XML markup files
+[0.718s] -- Configuring done (0.7s)
+[0.733s] -- Generating done (0.0s)
+[0.736s] -- Build files have been written to: /home/el-system/backup/centering_experiment/build/control
+[0.783s] [100%] Built target control
+[0.788s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[0.792s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control
+[0.796s] -- Install configuration: ""
+[0.796s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/lib/control/control
+[0.796s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/launch
+[0.797s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config
+[0.797s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config/config.yaml
+[0.797s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control
+[0.797s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control
+[0.798s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh
+[0.798s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv
+[0.798s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.sh
+[0.798s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.dsv
+[0.798s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.bash
+[0.798s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.sh
+[0.798s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.zsh
+[0.798s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.dsv
+[0.798s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/package.dsv
+[0.799s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/packages/control
+[0.799s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig.cmake
+[0.799s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake
+[0.799s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/package.xml
+[0.800s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control

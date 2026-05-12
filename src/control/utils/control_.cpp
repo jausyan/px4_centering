@@ -33,6 +33,12 @@ bool emberDetected(const std::shared_ptr<DroneController>&node){
     return (ember_pose.pose.position.x != 0.000 && ember_pose.pose.position.y != 0.000 && ember_pose.pose.position.z != 0.000);
 }
 
+float normalize_angle(float angle) {
+    while (angle > M_PI) angle -= 2.0 * M_PI;
+    while (angle < -M_PI) angle += 2.0 * M_PI;
+    return angle;
+}
+
 bool bunderDetected(const std::shared_ptr<DroneController>&node){
     /**
      * Check if the ember is detected by verifying if its position is not at the origin (0,0,0).
@@ -151,23 +157,16 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
      * - rel_alt: float value representing the relative altitude to be maintained at the correct rangefinder reading.
      */
     
-    // USER CONFIRMATION
-    // RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
-    // RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
-    // int confirmation;
-    // std::cin >> confirmation;
-    
-    // if (confirmation != 1) {
-    //     RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
-    //     return;
-    // }
-    
-    // Get current position
-    geometry_msgs::msg::PoseStamped target_pose = node->getCurrentLocalPose();
-    target_pose.pose.position.z = takeoff_alt;
-    
     RCLCPP_INFO(node->get_logger(), "=== TAKEOFF ===");
-    RCLCPP_INFO(node->get_logger(), "taking off...");
+    RCLCPP_INFO(node->get_logger(), "Target altitude: %.2f meters", takeoff_alt);
+    
+    // Get current position - NO OFFSET CORRECTION, use raw local position Z
+    geometry_msgs::msg::PoseStamped target_pose = node->getCurrentLocalPose();
+    // Set target altitude directly from local position z + desired takeoff altitude
+    target_pose.pose.position.z = target_pose.pose.position.z + takeoff_alt;
+    
+    RCLCPP_INFO(node->get_logger(), "Current Z: %.3f m, Target Z: %.3f m", 
+                node->getCurrentLocalPose().pose.position.z, target_pose.pose.position.z);
     
     // PX4 CRITICAL: Stream setpoints BEFORE switching to OFFBOARD mode
     // Send at least 100 setpoints at 20Hz (2 seconds) before mode switch
@@ -252,20 +251,23 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
     auto start_time = node->now();
     const rclcpp::Duration timeout_duration = rclcpp::Duration::from_seconds(30.0);
     bool reached = false;
+    double current_alt = 0.0;
 
     while (rclcpp::ok()) {
         // Keep streaming setpoint at high rate (CRITICAL for PX4 OFFBOARD)
         target_pose.header.stamp = node->now();
         node->publishLocalPosition(target_pose);
         
-        double current_alt = node->getCurrentLocalPose().pose.position.z;
+        // Get current altitude - NO OFFSET, use raw local position Z
+        current_alt = node->getCurrentLocalPose().pose.position.z;
         
-        if (fmod((node->now() - start_time).seconds(), 1.0) < 0.05) { // Log every ~1 second
-            RCLCPP_INFO(node->get_logger(), "Current altitude: %.2f m / %.2f m", current_alt, takeoff_alt);
+        if (fmod((node->now() - start_time).seconds(), 0.1) < 0.05) { // Log every ~1 second
+            RCLCPP_INFO(node->get_logger(), "Altitude: %.2f m / %.2f m (target)", 
+                        current_alt, target_pose.pose.position.z);
         }
 
-        // Check if reached target altitude
-        if (fabs(takeoff_alt - current_alt) < 0.15) {
+        // Check if reached target altitude (direct comparison without offset)
+        if (fabs(target_pose.pose.position.z - current_alt) < 0.15) {
             reached = true; 
             break;
         }
@@ -280,7 +282,7 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
     }
 
     if (reached) {
-        RCLCPP_INFO(node->get_logger(), "Reached takeoff altitude!");
+        RCLCPP_INFO(node->get_logger(), "Reached takeoff altitude! (%.2f m)", current_alt);
     } else {
         RCLCPP_WARN(node->get_logger(), "Did not reach takeoff altitude within timeout");
     }
@@ -288,6 +290,411 @@ void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
     rate.sleep();
     posee.pose.position.z = node->getCurrentLocalPose().pose.position.z;
 }
+
+// ======================= TAKEOFF PROCEDURE ===================
+// ALT OFFSET TAKEOFF
+// =============================================================
+// void takeoff(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float takeoff_alt) {
+//     /**
+//      * Initiate the takeoff procedure for the drone. Set mode to OFFBOARD, arm the drone, and send the takeoff command.
+//      * For PX4: Stream setpoint at high rate BEFORE switching to OFFBOARD mode
+//      * parameters:
+//      * - node: shared pointer to the DroneController node instance.
+//      * - rate: reference to the rclcpp::Rate object for controlling the loop rate.
+//      * - takeoff_alt: float value representing the desired takeoff altitude, this is based on the rangefinder reading.
+//      * 
+//      * returns:
+//      * - posee: reference to where the last drone position when this function is called, it will be modified to the last drone position when this function returns.
+//      * - rel_alt: float value representing the relative altitude to be maintained at the correct rangefinder reading.
+//      */
+    
+//     // ========== ALTITUDE OFFSET CALIBRATION ==========
+//     // Check ground altitude and calculate offset to compensate for sensor drift
+//     RCLCPP_INFO(node->get_logger(), "=== ALTITUDE CALIBRATION ===");
+    
+//     // Take multiple samples to get accurate ground level
+//     const int num_samples = 10;
+//     float altitude_sum = 0.0f;
+//     rclcpp::Rate sample_rate(10.0); // 10 Hz sampling
+    
+//     for (int i = 0; i < num_samples && rclcpp::ok(); i++) {
+//         float current_z = node->getCurrentLocalPose().pose.position.z;
+//         altitude_sum += current_z;
+//         rclcpp::spin_some(node);
+//         sample_rate.sleep();
+//     }
+    
+//     float ground_altitude_offset = altitude_sum / num_samples;
+    
+//     // Store the offset in DroneController for use by other functions
+//     node->setGroundAltitudeOffset(ground_altitude_offset);
+    
+//     RCLCPP_INFO(node->get_logger(), "Ground altitude: %.3f m", ground_altitude_offset);
+    
+//     if (fabs(ground_altitude_offset) > 0.05f) {
+//         RCLCPP_WARN(node->get_logger(), "AWAS NAIK! COBA SET O");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "ALT set 0 (offset < 0.05m)");
+//     }
+    
+//     // USER CONFIRMATION
+//     // RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
+//     // RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
+//     // int confirmation;
+//     // std::cin >> confirmation;
+    
+//     // if (confirmation != 1) {
+//     //     RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
+//     //     return;
+//     // }
+    
+//     // Get current position and apply offset compensation
+//     geometry_msgs::msg::PoseStamped target_pose = node->getCurrentLocalPose();
+//     // Set target altitude: takeoff_alt + offset to compensate for ground drift
+//     target_pose.pose.position.z = takeoff_alt + ground_altitude_offset;
+    
+//     RCLCPP_INFO(node->get_logger(), "=== TAKEOFF ===");
+//     RCLCPP_INFO(node->get_logger(), "taking off...");
+    
+//     // PX4 CRITICAL: Stream setpoints BEFORE switching to OFFBOARD mode
+//     // Send at least 100 setpoints at 20Hz (2 seconds) before mode switch
+//     rclcpp::Rate fast_rate(20.0); // 20 Hz for PX4
+//     for(int i = 0; i < 40 && rclcpp::ok(); i++) {
+//         target_pose.header.stamp = node->now();
+//         node->publishLocalPosition(target_pose);
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep();
+//     }
+    
+//     RCLCPP_INFO(node->get_logger(), "Setting OFFBOARD mode...");
+//     auto set_mode_request = std::make_shared<mavros_msgs::srv::SetMode::Request>();
+//     set_mode_request->custom_mode = "OFFBOARD";   
+    
+//     if (node->isSetModeServiceReady()) {   
+//         auto set_mode_result = node->setMode_(set_mode_request);   
+//         if (rclcpp::spin_until_future_complete(node, set_mode_result) == rclcpp::FutureReturnCode::SUCCESS) {
+//             auto result = set_mode_result.get();
+//             if (result->mode_sent) {
+//                 RCLCPP_INFO(node->get_logger(), "OFFBOARD mode set");
+//             } else {
+//                 RCLCPP_ERROR(node->get_logger(), "Failed to set OFFBOARD mode");
+//                 return;
+//             }
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "Failed to call SetMode service");
+//             return;
+//         }
+//     }
+    
+//     // Continue streaming while waiting
+//     for(int i = 0; i < 10 && rclcpp::ok(); i++) {
+//         target_pose.header.stamp = node->now();
+//         node->publishLocalPosition(target_pose);
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep();
+//     }
+    
+//     RCLCPP_INFO(node->get_logger(), "Arming vehicle...");
+//     auto arm_request = std::make_shared<mavros_msgs::srv::CommandBool::Request>();
+//     arm_request->value = true;
+
+//     if (node->isArmingServiceReady()) {
+//         auto arm_result = node->arm_(arm_request);
+//         if (rclcpp::spin_until_future_complete(node, arm_result) == rclcpp::FutureReturnCode::SUCCESS) {
+//             auto result = arm_result.get();
+//             if (result->success) {
+//                 RCLCPP_INFO(node->get_logger(), "Vehicle armed");
+//             } else {
+//                 RCLCPP_ERROR(node->get_logger(), "Failed to arm: %s", result->result ? "true" : "false");
+//                 return;
+//             }
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "Failed to arm vehicle");
+//             return;
+//         }
+//     }
+
+//     RCLCPP_INFO(node->get_logger(), "=== TAKEOFF CONFIRMATION ===");
+//     RCLCPP_INFO(node->get_logger(), "takeoff 1 if yes ?");  
+//     int confirmation;
+//     std::cin >> confirmation;
+    
+//     if (confirmation != 1) {
+//         RCLCPP_WARN(node->get_logger(), "Takeoff cancelled by user");
+//         return;
+//     }
+    
+//     // Continue streaming during arm
+//     for(int i = 0; i < 10 && rclcpp::ok(); i++) {
+//         target_pose.header.stamp = node->now();
+//         node->publishLocalPosition(target_pose);
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep();
+//     }
+
+//     RCLCPP_INFO(node->get_logger(), "Ascending to %.2f meters (relative to ground)...", takeoff_alt);
+    
+//     // For PX4 OFFBOARD: Just stream position setpoints, no separate takeoff command needed
+//     // The drone will automatically follow the z position setpoint
+//     auto start_time = node->now();
+//     const rclcpp::Duration timeout_duration = rclcpp::Duration::from_seconds(30.0);
+//     bool reached = false;
+
+//     while (rclcpp::ok()) {
+//         // Keep streaming setpoint at high rate (CRITICAL for PX4 OFFBOARD)
+//         target_pose.header.stamp = node->now();
+//         node->publishLocalPosition(target_pose);
+        
+//         // Get current altitude (with offset)
+//         double current_alt_raw = node->getCurrentLocalPose().pose.position.z;
+//         // Calculate actual altitude relative to ground (compensate offset)
+//         double current_alt_relative = current_alt_raw - ground_altitude_offset;
+        
+//         if (fmod((node->now() - start_time).seconds(), 1.0) < 0.05) { // Log every ~1 second
+//             RCLCPP_INFO(node->get_logger(), "Altitude: %.2f m / %.2f m (raw: %.2f m, offset: %.2f m)", 
+//                         current_alt_relative, takeoff_alt, current_alt_raw, ground_altitude_offset);
+//         }
+
+//         // Check if reached target altitude (compare relative altitude)
+//         if (fabs(takeoff_alt - current_alt_relative) < 0.15) {
+//             reached = true; 
+//             break;
+//         }
+
+//         if ((node->now() - start_time) > timeout_duration) {
+//             RCLCPP_WARN(node->get_logger(), "Timeout waiting to reach takeoff altitude");
+//             break;
+//         }
+
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep(); // Keep streaming at 20Hz
+//     }
+
+//     if (reached) {
+//         RCLCPP_INFO(node->get_logger(), "Reached takeoff altitude! (%.2f m relative to ground)", takeoff_alt);
+//     } else {
+//         RCLCPP_WARN(node->get_logger(), "Did not reach takeoff altitude within timeout");
+//     }
+    
+//     rate.sleep();
+//     posee.pose.position.z = node->getCurrentLocalPose().pose.position.z;
+// }
+
+
+void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, 
+                               geometry_msgs::msg::PoseStamped &posee, float forward_x, float left_y, 
+                               float up_z, float yaw_angle, float max_velocity, float tolerance) {
+    /**
+     * Execute a local waypoint movement using VELOCITY CONTROL for smooth, controlled movement
+     * Movement is relative to the current drone's heading (body frame)
+     * 
+     * Unlike executeLocalWaypointMove() which uses position control and can cause sudden movements,
+     * this function sends velocity setpoints continuously at max_velocity for smooth motion.
+     * 
+     * Time taken = distance / max_velocity
+     * Example: 2 meters at 0.2 m/s = 10 seconds
+     */
+    
+    // Get current position and heading
+    geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+    float current_yaw = getHeading(current_pose.pose.orientation);
+    
+    RCLCPP_INFO(node->get_logger(), "=== Velocity Control Movement ===");
+    RCLCPP_INFO(node->get_logger(), "Current heading: %.2f degrees", current_yaw * 180.0 / M_PI);
+    RCLCPP_INFO(node->get_logger(), "Body frame: forward=%.2f m, left=%.2f m, up=%.2f m", forward_x, left_y, up_z);
+    RCLCPP_INFO(node->get_logger(), "Max velocity: %.2f m/s", max_velocity);
+    
+    // Transform body-frame movement to global frame using current heading
+    float global_x = forward_x * cos(current_yaw) - left_y * sin(current_yaw);
+    float global_y = forward_x * sin(current_yaw) + left_y * cos(current_yaw);
+    
+    // Calculate target position in global frame (using relative altitude)
+    float target_x = current_pose.pose.position.x + global_x;
+    float target_y = current_pose.pose.position.y + global_y;
+    float current_relative_z = node->getRelativeAltitude();
+    float target_z = current_relative_z + up_z;
+    
+    // print log every 0.2 seconds
+    RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 200, "Target global: x=%.2f, y=%.2f, z=%.2f", target_x, target_y, target_z);
+    
+    // Calculate total distance to travel
+    float total_distance = sqrt(global_x * global_x + global_y * global_y + up_z * up_z);
+    float estimated_time = total_distance / max_velocity;
+    
+    RCLCPP_INFO(node->get_logger(), "Total distance: %.2f m, Estimated time: %.1f seconds", 
+                total_distance, estimated_time);
+    
+    // PX4 OFFBOARD: Use fast rate for continuous streaming
+    rclcpp::Rate fast_rate(20.0); // 20Hz
+    
+    // Main control loop
+    while (rclcpp::ok()) {
+        current_pose = node->getCurrentLocalPose();
+        
+        // Calculate current distance to target (using relative altitude for Z)
+        float dx = target_x - current_pose.pose.position.x;
+        float dy = target_y - current_pose.pose.position.y;
+        float current_relative_z_loop = node->getRelativeAltitude();
+        float dz = target_z - current_relative_z_loop;
+        float current_distance = sqrt(dx * dx + dy * dy + dz * dz);
+        
+        // Check if we've reached the target
+        if (current_distance < tolerance) {
+            RCLCPP_INFO(node->get_logger(), "Target reached! Distance: %.3f m", current_distance);
+            break;
+        }
+        
+        // Calculate velocity direction (unit vector towards target)
+        geometry_msgs::msg::TwistStamped vel_cmd;
+        vel_cmd.header.stamp = node->now();
+        vel_cmd.header.frame_id = "map";
+        
+        // Normalize direction and multiply by max_velocity
+        vel_cmd.twist.linear.x = (dx / current_distance) * max_velocity;
+        vel_cmd.twist.linear.y = (dy / current_distance) * max_velocity;
+        
+        // Add deadband for Z to prevent altitude drift
+        if (std::abs(dz) > 0.15f) {  // Only control altitude if error > 15cm
+            vel_cmd.twist.linear.z = (dz / current_distance) * max_velocity;
+        } else {
+            vel_cmd.twist.linear.z = 0.0;  // Hold altitude when close enough
+        }
+        
+        // Publish velocity command
+        node->publishLocalVelocity(vel_cmd);
+        
+        // Log progress (throttled to 1 Hz)
+        RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+                           "Distance remaining: %.3f m | Velocity: vx=%.2f, vy=%.2f, vz=%.2f", 
+                           current_distance, 
+                           vel_cmd.twist.linear.x, 
+                           vel_cmd.twist.linear.y, 
+                           vel_cmd.twist.linear.z);
+        
+        rclcpp::spin_some(node);
+        fast_rate.sleep();
+    }
+    
+    // Stop the drone by sending zero velocity
+    geometry_msgs::msg::TwistStamped stop_vel;
+    stop_vel.header.stamp = node->now();
+    stop_vel.header.frame_id = "map";
+    stop_vel.twist.linear.x = 0.0;
+    stop_vel.twist.linear.y = 0.0;
+    stop_vel.twist.linear.z = 0.0;
+    node->publishLocalVelocity(stop_vel);
+    
+    RCLCPP_INFO(node->get_logger(), "Movement complete! Stopping...");
+    
+    // Update posee to final position
+    posee = node->getCurrentLocalPose();
+    
+    RCLCPP_INFO(node->get_logger(), "Final position: x=%.2f, y=%.2f, z=%.2f", 
+                posee.pose.position.x, posee.pose.position.y, posee.pose.position.z);
+}
+
+// void executeLocalWaypointMoveVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, 
+//                                geometry_msgs::msg::PoseStamped &posee, float forward_x, float left_y, 
+//                                float up_z, float yaw_angle, float max_velocity, float tolerance) {
+//     /**
+//      * Execute a local waypoint movement using VELOCITY CONTROL for smooth, controlled movement
+//      * Movement is relative to the current drone's heading (body frame)
+//      * 
+//      * Unlike executeLocalWaypointMove() which uses position control and can cause sudden movements,
+//      * this function sends velocity setpoints continuously at max_velocity for smooth motion.
+//      * 
+//      * Time taken = distance / max_velocity
+//      * Example: 2 meters at 0.2 m/s = 10 seconds
+//      */
+    
+//     // Get current position and heading
+//     geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//     float current_yaw = getHeading(current_pose.pose.orientation);
+    
+//     RCLCPP_INFO(node->get_logger(), "=== Velocity Control Movement ===");
+//     RCLCPP_INFO(node->get_logger(), "Current heading: %.2f degrees", current_yaw * 180.0 / M_PI);
+//     RCLCPP_INFO(node->get_logger(), "Body frame: forward=%.2f m, left=%.2f m, up=%.2f m", forward_x, left_y, up_z);
+//     RCLCPP_INFO(node->get_logger(), "Max velocity: %.2f m/s", max_velocity);
+    
+//     // Transform body-frame movement to global frame using current heading
+//     float global_x = forward_x * cos(current_yaw) - left_y * sin(current_yaw);
+//     float global_y = forward_x * sin(current_yaw) + left_y * cos(current_yaw);
+    
+//     // Calculate target position in global frame
+//     float target_x = current_pose.pose.position.x + global_x;
+//     float target_y = current_pose.pose.position.y + global_y;
+//     float target_z = current_pose.pose.position.z + up_z;
+    
+//     RCLCPP_INFO(node->get_logger(), "Target global: x=%.2f, y=%.2f, z=%.2f", target_x, target_y, target_z);
+    
+//     // Calculate total distance to travel
+//     float total_distance = sqrt(global_x * global_x + global_y * global_y + up_z * up_z);
+//     float estimated_time = total_distance / max_velocity;
+    
+//     RCLCPP_INFO(node->get_logger(), "Total distance: %.2f m, Estimated time: %.1f seconds", 
+//                 total_distance, estimated_time);
+    
+//     // PX4 OFFBOARD: Use fast rate for continuous streaming
+//     rclcpp::Rate fast_rate(20.0); // 20Hz
+    
+//     // Main control loop
+//     while (rclcpp::ok()) {
+//         current_pose = node->getCurrentLocalPose();
+        
+//         // Calculate current distance to target
+//         float dx = target_x - current_pose.pose.position.x;
+//         float dy = target_y - current_pose.pose.position.y;
+//         float dz = target_z - current_pose.pose.position.z;
+//         float current_distance = sqrt(dx * dx + dy * dy + dz * dz);
+        
+//         // Check if we've reached the target
+//         if (current_distance < tolerance) {
+//             RCLCPP_INFO(node->get_logger(), "Target reached! Distance: %.3f m", current_distance);
+//             break;
+//         }
+        
+//         // Calculate velocity direction (unit vector towards target)
+//         geometry_msgs::msg::TwistStamped vel_cmd;
+//         vel_cmd.header.stamp = node->now();
+//         vel_cmd.header.frame_id = "map";
+        
+//         // Normalize direction and multiply by max_velocity
+//         vel_cmd.twist.linear.x = (dx / current_distance) * max_velocity;
+//         vel_cmd.twist.linear.y = (dy / current_distance) * max_velocity;
+//         vel_cmd.twist.linear.z = (dz / current_distance) * max_velocity;
+        
+//         // Publish velocity command
+//         node->publishLocalVelocity(vel_cmd);
+        
+//         // Log progress (throttled to 1 Hz)
+//         RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                            "Distance remaining: %.3f m | Velocity: vx=%.2f, vy=%.2f, vz=%.2f", 
+//                            current_distance, 
+//                            vel_cmd.twist.linear.x, 
+//                            vel_cmd.twist.linear.y, 
+//                            vel_cmd.twist.linear.z);
+        
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep();
+//     }
+    
+//     // Stop the drone by sending zero velocity
+//     geometry_msgs::msg::TwistStamped stop_vel;
+//     stop_vel.header.stamp = node->now();
+//     stop_vel.header.frame_id = "map";
+//     stop_vel.twist.linear.x = 0.0;
+//     stop_vel.twist.linear.y = 0.0;
+//     stop_vel.twist.linear.z = 0.0;
+//     node->publishLocalVelocity(stop_vel);
+    
+//     RCLCPP_INFO(node->get_logger(), "Movement complete! Stopping...");
+    
+//     // Update posee to final position
+//     posee = node->getCurrentLocalPose();
+    
+//     RCLCPP_INFO(node->get_logger(), "Final position: x=%.2f, y=%.2f, z=%.2f", 
+//                 posee.pose.position.x, posee.pose.position.y, posee.pose.position.z);
+// }
 
 void takeoff_no_confirm(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, float takeoff_alt) {
     /**
@@ -552,22 +959,22 @@ void safeLanding(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate
         fast_rate.sleep();
     }
     
-    // Phase 3: Disarm (safe on ground)
-    RCLCPP_INFO(node->get_logger(), "Disarming...");
-    auto arm_request = std::make_shared<mavros_msgs::srv::CommandBool::Request>();
-    arm_request->value = false; // Disarm
+    // // Phase 3: Disarm (safe on ground)
+    // RCLCPP_INFO(node->get_logger(), "Disarming...");
+    // auto arm_request = std::make_shared<mavros_msgs::srv::CommandBool::Request>();
+    // arm_request->value = false; // Disarm
     
-    if (node->isArmingServiceReady()) {
-        auto result = node->arm_(arm_request);
-        if (hasReplied(node, result)) {
-            auto response = result.get();
-            if (response->success) {
-                RCLCPP_INFO(node->get_logger(), "Disarmed successfully");
-            } else {
-                RCLCPP_WARN(node->get_logger(), "Disarm command sent but not confirmed");
-            }
-        }
-    }
+    // if (node->isArmingServiceReady()) {
+    //     auto result = node->arm_(arm_request);
+    //     if (hasReplied(node, result)) {
+    //         auto response = result.get();
+    //         if (response->success) {
+    //             RCLCPP_INFO(node->get_logger(), "Disarmed successfully");
+    //         } else {
+    //             RCLCPP_WARN(node->get_logger(), "Disarm command sent but not confirmed");
+    //         }
+    //     }
+    // }
     
     // Continue streaming at ground for safety
     for (int i = 0; i < 20; i++) { // 1 second
@@ -610,6 +1017,97 @@ void Descend(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, ge
     }
 
     RCLCPP_INFO(node->get_logger(), "Latest offset: %f, %f", node->getLastPayloadPose().pose.position.x, node->getLastPayloadPose().pose.position.y);
+    posee = node->getCurrentLocalPose();
+}
+
+void centering_payload(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, bool &centering_status, float step, float tolerance, float timeout, float max_time, float log_interval, int min_centered_frames) {
+    constexpr float frame_width = 640.0f;
+    constexpr float frame_height = 480.0f;
+    constexpr float center_x = frame_width / 2.0f;
+    constexpr float center_y = frame_height / 2.0f;
+    if (min_centered_frames < 1) {
+        min_centered_frames = 1;
+    }
+    centering_status = false;
+    int centered_frames = 0;
+    geometry_msgs::msg::TwistStamped cmd_vel;
+    rclcpp::Time start_time = node->now();
+    rclcpp::Time last_detection_time = node->now();
+    rclcpp::Time last_log_time = node->now() - rclcpp::Duration::from_seconds(log_interval);
+
+    while (rclcpp::ok()) {
+        rclcpp::spin_some(node);
+        const rclcpp::Time now = node->now();
+        const geometry_msgs::msg::PoseStamped payload_pose = node->getCurrentPosePayload();
+
+        const bool pose_recent = payload_pose.header.stamp.nanosec != 0 || payload_pose.header.stamp.sec != 0;
+        const bool fresh = pose_recent && (now - payload_pose.header.stamp).seconds() <= timeout;
+        const bool detected = fresh && (payload_pose.pose.position.x != 0.0 || payload_pose.pose.position.y != 0.0 || payload_pose.pose.position.z != 0.0);
+        if (!detected) {
+            centered_frames = 0;
+            cmd_vel = zero(cmd_vel);
+            node->publishLocalVelocity(cmd_vel);
+
+            if ((now - last_log_time).seconds() >= log_interval) {
+                RCLCPP_INFO(node->get_logger(), "NO OBJECT DETECTED");
+                last_log_time = now;
+            }
+
+            if ((now - last_detection_time).seconds() >= timeout) {
+                break;
+            }
+
+            if ((now - start_time).seconds() >= max_time) {
+                break;
+            }
+
+            rate.sleep();
+            continue;
+        }
+
+        last_detection_time = now;
+        const float x = payload_pose.pose.position.x;
+        const float y = payload_pose.pose.position.y;
+        const float dx = center_x - x;
+        const float dy = center_y - y;
+        const float center_dist_from_pose = payload_pose.pose.position.z;
+        const float center_dist = center_dist_from_pose > 0.0f ? center_dist_from_pose : static_cast<float>(dist(x, y, center_x, center_y));
+
+        if (center_dist <= tolerance) {
+            centered_frames++;
+            cmd_vel = zero(cmd_vel);
+            node->publishLocalVelocity(cmd_vel);
+            if (centered_frames >= min_centered_frames) {
+                RCLCPP_INFO(node->get_logger(), "CENTERED");
+                centering_status = true;
+                break;
+            }
+            rate.sleep();
+            continue;
+        }
+        centered_frames = 0;
+
+        const float vx = limit(step, (dy / center_y) * step);
+        const float vy = limit(step, (dx / center_x) * step);
+        cmd_vel.twist.linear.x = vx;
+        cmd_vel.twist.linear.y = vy;
+        cmd_vel.twist.linear.z = 0.0;
+        node->publishLocalVelocity(cmd_vel);
+
+        if ((now - last_log_time).seconds() >= log_interval) {
+            RCLCPP_INFO(node->get_logger(), "CENTERING to x: %.1f, y: %.1f, dist: %.2f, step velocity: %.3f (vx: %.3f, vy: %.3f)", x, y, center_dist, step, vx, vy);
+            last_log_time = now;
+        }
+
+        if ((now - start_time).seconds() >= max_time) {
+            break;
+        }
+
+        rate.sleep();
+    }
+
+    cmd_vel = zero(cmd_vel);
+    node->publishLocalVelocity(cmd_vel);
     posee = node->getCurrentLocalPose();
 }
 
@@ -2511,9 +3009,127 @@ void executeLocalWaypointRotation(const std::shared_ptr<DroneController>&node, r
         rate.sleep();
     }
     
-    // Update posee to final pose
+    // Update posee to final pose 
     posee = node->getCurrentLocalPose();
 }
+
+// =============================================================
+
+// void executeLocalWaypointRotation(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate,
+//                                    geometry_msgs::msg::PoseStamped &posee, float rotation_angle) {
+//     /**
+//      * Execute a rotation in place with ACTIVE ALTITUDE COMPENSATION
+//      * Rotation is relative to current heading
+//      * 
+//      * IMPROVED: Maintains XY position and actively compensates altitude drift during rotation
+//      * 
+//      * NOTE: This function uses RADIANS. For easier degree-based rotation, use rotateByDegrees() instead!
+//      * 
+//      * PARAMETERS:
+//      * - rotation_angle: angle in RADIANS
+//      *   - Positive = RIGHT/Clockwise (e.g., +1.57 rad = 90° right)
+//      *   - Negative = LEFT/Counter-clockwise (e.g., -1.57 rad = 90° left)
+//      * 
+//      * EXAMPLES:
+//      * - executeLocalWaypointRotation(node, rate, posee, M_PI/2);    // 90° right
+//      * - executeLocalWaypointRotation(node, rate, posee, -M_PI/2);   // 90° left
+//      * - executeLocalWaypointRotation(node, rate, posee, M_PI);      // 180° (U-turn)
+//      */
+    
+//     // Get current pose
+//     geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//     geometry_msgs::msg::PoseStamped target_pose = current_pose;
+    
+//     // Get current yaw angle
+//     float current_yaw = getHeading(current_pose.pose.orientation);
+    
+//     // Calculate target yaw angle
+//     float target_yaw = current_yaw + rotation_angle;
+    
+//     // Normalize to [-pi, pi]
+//     while (target_yaw > M_PI) target_yaw -= 2.0 * M_PI;
+//     while (target_yaw < -M_PI) target_yaw += 2.0 * M_PI;
+    
+//     RCLCPP_INFO(node->get_logger(), "Rotating from %.2f degrees to %.2f degrees (WITH ALTITUDE LOCK)",
+//                 current_yaw * 180.0 / M_PI, target_yaw * 180.0 / M_PI);
+    
+//     // ALTITUDE LOCK: Save reference position and altitude from local pose
+//     float reference_x = current_pose.pose.position.x;
+//     float reference_y = current_pose.pose.position.y;
+//     float reference_altitude = current_pose.pose.position.z;
+//     float filtered_z = reference_altitude;
+//     const float z_filter_alpha = 0.4f;  // Low-pass filter coefficient
+    
+//     RCLCPP_INFO(node->get_logger(), "Locking position: (%.2f, %.2f, %.3f)", 
+//                 reference_x, reference_y, reference_altitude);
+    
+//     // Set initial target (keep position, change orientation)
+//     target_pose.pose.position.x = reference_x;
+//     target_pose.pose.position.y = reference_y;
+//     target_pose.pose.position.z = reference_altitude;
+//     setHeading(target_pose.pose.orientation, target_yaw);
+//     target_pose.header.stamp = node->now();
+//     target_pose.header.frame_id = "map";
+    
+//     // Rotation tolerance (5 degrees in radians)
+//     float rotation_tolerance = 5.0 * M_PI / 180.0;
+    
+//     // Publish target orientation continuously until reached
+//     rclcpp::Rate fast_rate(20.0); // 20Hz for smooth control
+    
+//     while (rclcpp::ok()) {
+//         current_pose = node->getCurrentLocalPose();
+//         current_yaw = getHeading(current_pose.pose.orientation);
+        
+//         // Calculate angle difference
+//         float angle_diff = target_yaw - current_yaw;
+        
+//         // Normalize angle difference to [-pi, pi]
+//         while (angle_diff > M_PI) angle_diff -= 2.0 * M_PI;
+//         while (angle_diff < -M_PI) angle_diff += 2.0 * M_PI;
+        
+//         // Check if rotation is complete
+//         if (fabs(angle_diff) < rotation_tolerance) {
+//             RCLCPP_INFO(node->get_logger(), "Rotation complete! Current heading: %.2f degrees",
+//                        current_yaw * 180.0 / M_PI);
+//             break;
+//         }
+        
+//         // ALTITUDE COMPENSATION: Apply low-pass filter to current Z
+//         float current_z = current_pose.pose.position.z;
+//         filtered_z = z_filter_alpha * current_z + (1.0f - z_filter_alpha) * filtered_z;
+        
+//         // Calculate altitude error
+//         float altitude_error = reference_altitude - filtered_z;
+        
+//         // Compensate altitude drift in position setpoint
+//         float compensated_z = reference_altitude;
+//         if (std::abs(altitude_error) > 0.03f) {  // 3cm threshold
+//             // Add compensation to counteract drift
+//             compensated_z = reference_altitude + 0.5f * altitude_error;  // Proportional compensation
+//         }
+        
+//         // Update target position (lock XY, compensate Z, update orientation)
+//         target_pose.pose.position.x = reference_x;
+//         target_pose.pose.position.y = reference_y;
+//         target_pose.pose.position.z = compensated_z;
+//         setHeading(target_pose.pose.orientation, target_yaw);
+//         target_pose.header.stamp = node->now();
+        
+//         node->publishLocalPosition(target_pose);
+        
+//         // Log progress
+//         RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                            "Angle to target: %.2f°, Alt error: %.3fm", 
+//                            angle_diff * 180.0 / M_PI, altitude_error);
+        
+//         rclcpp::spin_some(node);
+//         fast_rate.sleep();
+//     }
+    
+//     // Update posee to final pose 
+//     posee = node->getCurrentLocalPose();
+// }
 
 void rotateByDegrees(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, 
                      geometry_msgs::msg::PoseStamped &posee, float degrees) {
@@ -2535,6 +3151,7 @@ void rotateByDegrees(const std::shared_ptr<DroneController>&node, rclcpp::Rate &
     
     // Call the original function with radians
     executeLocalWaypointRotation(node, rate, posee, radians);
+    //executeLocalWaypointMoveVelocity(node, rate, posee, 0.0, distance, 0.0, 0.0, 0.3, tolerance);
 }
 
 void strafeRight(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, 
@@ -2550,7 +3167,8 @@ void strafeRight(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate
     // left_y = -distance (negative = right)
     // up_z = 0 (no altitude change)
     // yaw_angle = 0 (keep current heading)
-    executeLocalWaypointMove(node, rate, posee, 0.0, -distance, 0.0, 0.0, tolerance);
+    // executeLocalWaypointMove(node, rate, posee, 0.0, -distance, 0.0, 0.0, tolerance); 
+    executeLocalWaypointMoveVelocity(node, rate, posee, 0.0, -distance, 0.0, 0.0, 1.2, tolerance);
 }
 
 void strafeLeft(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, 
@@ -2566,7 +3184,8 @@ void strafeLeft(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate,
     // left_y = +distance (positive = left)
     // up_z = 0 (no altitude change)
     // yaw_angle = 0 (keep current heading)
-    executeLocalWaypointMove(node, rate, posee, 0.0, distance, 0.0, 0.0, tolerance);
+    // executeLocalWaypointMove(node, rate, posee, 0.0, distance, 0.0, 0.0, tolerance);
+    executeLocalWaypointMoveVelocity(node, rate, posee, 0.0, distance, 0.0, 0.0, 1.2, tolerance);
 }
 
 bool detectGatePosts(const std::shared_ptr<DroneController>&node, float &left_post_angle, 
@@ -3471,7 +4090,7 @@ void centeringGateLidar3D(const std::shared_ptr<DroneController>&node,
      * 3D LIDAR Gate Centering using simple clustering
      * 
      * Algorithm:
-     * 1. Get LaserScan from /scan topic (converted from PointCloud2)
+     * 1. Get LaserScan from /scan topic (converted from CustomMsg)
      * 2. Filter points in ROI (region of interest)
      * 3. Cluster points spatially (simple grid-based)
      * 4. Validate clusters as gate poles:
@@ -3788,7 +4407,7 @@ void centeringGateLidar3D(const std::shared_ptr<DroneController>&node,
             
             if (consecutive_centered_count >= required_consecutive) {
                 RCLCPP_INFO(node->get_logger(), 
-                           "✓ Gate centering successful!");
+                           "Gate centering successful!");
                 
                 // Final stop
                 geometry_msgs::msg::TwistStamped stop_cmd;
@@ -3886,449 +4505,3964 @@ void centeringGateLidar3D(const std::shared_ptr<DroneController>&node,
 // SIMPLE GATE CENTERING - Grid Binning Approach (Similar to 2D Lidar)
 // ============================================================================
 
-void centeringGateLivoxSimple(
-    const std::shared_ptr<DroneController>&node,
-    rclcpp::Rate &rate,
-    geometry_msgs::msg::PoseStamped &posee,
-    float gate_width,
-    float tolerance,
-    bool &status,
-    float max_velocity,
-    float proportional_gain,
-    float max_time,
-    bool test_mode)
-{
-    if (test_mode) {
-        RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
-    } else {
-        RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
-    }
-    RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
-                gate_width, tolerance);
-    if (!test_mode) {
-        RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
-    }
-    
-    // ROI parameters
-    const float x_min = 1.5f;  // Forward distance min
-    const float x_max = 2.5f;  // Forward distance max
-    const float y_min = -2.0f; // Lateral min (left)
-    const float y_max = 2.0f;  // Lateral max (right)
-    const float z_min = 0.0f;  // Height min
-    const float z_max = 2.0f;  // Height max
-    
-    // Grid binning parameters
-    const int num_bins = 40;  // 40 bins for 4m lateral range
-    const float bin_size = (y_max - y_min) / num_bins;  // 0.1m per bin
-    const int min_points_per_pole = 15;  // Minimum points to consider as pole
-    
-    // Gate validation parameters
-    const float gate_width_min = 1.0f;
-    const float gate_width_max = 2.0f;
-    
-    RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
-                x_min, x_max, y_min, y_max, z_min, z_max);
-    RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
-                num_bins, bin_size, min_points_per_pole);
-    
-    // Subscribe to LiDAR data
-    sensor_msgs::msg::PointCloud2::SharedPtr latest_cloud = nullptr;
-    
-    auto lidar_sub = node->create_subscription<sensor_msgs::msg::PointCloud2>(
-        "/livox/lidar", 10,
-        [&latest_cloud](const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
-            latest_cloud = msg;
-        });
-    
-    // Centering control variables
-    auto start_time = node->now();
-    int consecutive_centered_count = 0;
-    const int required_centered_frames = 10; // 1 second at 10Hz
-    status = false;
-    
-    // Get initial altitude for stability
-    geometry_msgs::msg::PoseStamped initial_pose = node->getCurrentLocalPose();
-    float initial_z = initial_pose.pose.position.z;
-    
-    // PX4 CRITICAL: Prepare hold position for streaming when waiting
-    geometry_msgs::msg::PoseStamped hold_pose = initial_pose;
-    
-    while (rclcpp::ok()) {
-        // Check timeout
-        auto elapsed = (node->now() - start_time).seconds();
-        if (elapsed > max_time) {
-            RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
-            break;
-        }
-        
-        if (!latest_cloud || latest_cloud->data.empty()) {
-            RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
-                "Waiting for LiDAR data on /livox/lidar...");
-            
-            // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
-            if (!test_mode) {
-                hold_pose = node->getCurrentLocalPose();
-                hold_pose.header.stamp = node->now();
-                node->publishLocalPosition(hold_pose);
-            }
-            
-            rclcpp::spin_some(node);
-            rate.sleep();
-            continue;
-        }
-        
-        // ===== STEP 1: Extract and filter points by ROI =====
-        
-        // Find field offsets
-        int x_offset = -1, y_offset = -1, z_offset = -1;
-        for (size_t i = 0; i < latest_cloud->fields.size(); ++i) {
-            if (latest_cloud->fields[i].name == "x") x_offset = latest_cloud->fields[i].offset;
-            else if (latest_cloud->fields[i].name == "y") y_offset = latest_cloud->fields[i].offset;
-            else if (latest_cloud->fields[i].name == "z") z_offset = latest_cloud->fields[i].offset;
-        }
-        
-        if (x_offset < 0 || y_offset < 0 || z_offset < 0) {
-            RCLCPP_ERROR(node->get_logger(), "Could not find x,y,z fields in point cloud");
-            break;
-        }
-        
-        // ===== STEP 2: Grid binning - count points per lateral bin =====
-        
-        int bins[num_bins] = {0};  // Initialize all bins to 0
-        int total_roi_points = 0;
-        
-        const uint8_t* data_ptr = latest_cloud->data.data();
-        size_t point_step = latest_cloud->point_step;
-        size_t num_points = latest_cloud->width * latest_cloud->height;
-        
-        for (size_t i = 0; i < num_points; ++i) {
-            const uint8_t* point_data = data_ptr + i * point_step;
-            
-            float x, y, z;
-            std::memcpy(&x, point_data + x_offset, sizeof(float));
-            std::memcpy(&y, point_data + y_offset, sizeof(float));
-            std::memcpy(&z, point_data + z_offset, sizeof(float));
-            
-            // Skip invalid points
-            if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
-            
-            // Filter by ROI
-            if (x >= x_min && x <= x_max &&
-                y >= y_min && y <= y_max &&
-                z >= z_min && z <= z_max) {
-                
-                // Calculate bin index
-                int bin_idx = static_cast<int>((y - y_min) / bin_size);
-                
-                // Clamp to valid range
-                if (bin_idx >= 0 && bin_idx < num_bins) {
-                    bins[bin_idx]++;
-                    total_roi_points++;
-                }
-            }
-        }
-        
-        if (total_roi_points < min_points_per_pole * 2) {
-            RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
-                "Insufficient points in ROI: %d (need %d)", 
-                total_roi_points, min_points_per_pole * 2);
-            
-            // Stop lateral movement but maintain altitude
-            if (!test_mode) {
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.05f) {
-                    vz_global = 0.4f * altitude_error;
-                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
-                }
-                
-                geometry_msgs::msg::TwistStamped stop_cmd;
-                stop_cmd.header.stamp = node->now();
-                stop_cmd.header.frame_id = "map";
-                stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
-                node->publishLocalVelocity(stop_cmd);
-            }
-            
-            consecutive_centered_count = 0;
-            rclcpp::spin_some(node);
-            rate.sleep();
-            continue;
-        }
-        
-        // ===== STEP 3: Find 2 peak bins (left & right poles) =====
-        
-        // Find first peak (highest bin count)
-        int first_peak_idx = -1;
-        int first_peak_count = 0;
-        
-        for (int i = 0; i < num_bins; i++) {
-            if (bins[i] > first_peak_count) {
-                first_peak_count = bins[i];
-                first_peak_idx = i;
-            }
-        }
-        
-        if (first_peak_count < min_points_per_pole) {
-            RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
-                "First peak too weak: %d points (need %d)", 
-                first_peak_count, min_points_per_pole);
-            
-            // Stop lateral movement but maintain altitude
-            if (!test_mode) {
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.05f) {
-                    vz_global = 0.4f * altitude_error;
-                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
-                }
-                
-                geometry_msgs::msg::TwistStamped stop_cmd;
-                stop_cmd.header.stamp = node->now();
-                stop_cmd.header.frame_id = "map";
-                stop_cmd.twist.linear.z = vz_global;
-                node->publishLocalVelocity(stop_cmd);
-            }
-            
-            consecutive_centered_count = 0;
-            rclcpp::spin_some(node);
-            rate.sleep();
-            continue;
-        }
-        
-        // Find second peak (must be at least 10 bins away from first peak)
-        int second_peak_idx = -1;
-        int second_peak_count = 0;
-        const int min_peak_separation = 10;  // ~1.0m minimum separation
-        
-        for (int i = 0; i < num_bins; i++) {
-            // Must be far enough from first peak
-            if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
-            
-            if (bins[i] > second_peak_count) {
-                second_peak_count = bins[i];
-                second_peak_idx = i;
-            }
-        }
-        
-        if (second_peak_count < min_points_per_pole) {
-            RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
-                "Second peak too weak: %d points (need %d)", 
-                second_peak_count, min_points_per_pole);
-            
-            // Stop lateral movement but maintain altitude
-            if (!test_mode) {
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.05f) {
-                    vz_global = 0.4f * altitude_error;
-                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
-                }
-                
-                geometry_msgs::msg::TwistStamped stop_cmd;
-                stop_cmd.header.stamp = node->now();
-                stop_cmd.header.frame_id = "map";
-                stop_cmd.twist.linear.z = vz_global;
-                node->publishLocalVelocity(stop_cmd);
-            }
-            
-            consecutive_centered_count = 0;
-            rclcpp::spin_some(node);
-            rate.sleep();
-            continue;
-        }
-        
-        // ===== STEP 4: Determine left & right poles =====
-        
-        int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
-        int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
-        
-        float left_y = y_min + (left_idx + 0.5f) * bin_size;  // Center of bin
-        float right_y = y_min + (right_idx + 0.5f) * bin_size;
-        
-        float detected_width = right_y - left_y;
-        
-        // ===== STEP 5: Validate gate width =====
-        
-        if (detected_width < gate_width_min || detected_width > gate_width_max) {
-            RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
-                "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
-                detected_width, gate_width_min, gate_width_max);
-            
-            // Stop lateral movement but maintain altitude
-            if (!test_mode) {
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.05f) {
-                    vz_global = 0.4f * altitude_error;
-                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
-                }
-                
-                geometry_msgs::msg::TwistStamped stop_cmd;
-                stop_cmd.header.stamp = node->now();
-                stop_cmd.header.frame_id = "map";
-                stop_cmd.twist.linear.z = vz_global;
-                node->publishLocalVelocity(stop_cmd);
-            }
-            
-            consecutive_centered_count = 0;
-            rclcpp::spin_some(node);
-            rate.sleep();
-            continue;
-        }
-        
-        // ===== STEP 6: Calculate lateral offset =====
-        
-        float center_y = (left_y + right_y) / 2.0f;
-        float lateral_error = center_y;  // Positive = gate to the right
-        
-        // ===== STEP 7: Check if centered =====
-        
-        bool is_centered = (std::abs(lateral_error) < tolerance);
-        
-        if (is_centered) {
-            consecutive_centered_count++;
-            
-            if (test_mode) {
-                RCLCPP_INFO(node->get_logger(),
-                    "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
-                    consecutive_centered_count, required_centered_frames,
-                    left_y, right_y, detected_width, lateral_error);
-            } else {
-                RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
-                    "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm | Pts[L:%d R:%d]",
-                    consecutive_centered_count, required_centered_frames,
-                    left_y, right_y, detected_width, lateral_error,
-                    bins[left_idx], bins[right_idx]);
-            }
-            
-            // Stop lateral movement when centered, but maintain altitude!
-            if (!test_mode) {
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                
-                // Altitude control (gentle correction to maintain initial altitude)
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
-                    vz_global = 0.4f * altitude_error;  // Slightly more aggressive
-                    vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
-                }
-                
-                geometry_msgs::msg::TwistStamped stop_cmd;
-                stop_cmd.header.stamp = node->now();
-                stop_cmd.header.frame_id = "map";
-                stop_cmd.twist.linear.x = 0.0;  // No forward/backward
-                stop_cmd.twist.linear.y = 0.0;  // No lateral movement
-                stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
-                node->publishLocalVelocity(stop_cmd);
-            }
-            
-            if (consecutive_centered_count >= required_centered_frames) {
-                if (test_mode) {
-                    RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
-                } else {
-                    RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
-                }
-                status = true;
-                break;
-            }
-        } else {
-            consecutive_centered_count = 0;
-            
-            // ===== STEP 8: Calculate and publish velocity command =====
-            
-            // In BODY frame: X=forward, Y=left, Z=up
-            // lateral_error > 0 means gate is to the RIGHT, need to move RIGHT (negative Y in body frame... wait no!)
-            // Actually in Livox/ROS convention:
-            // - Y positive = left side
-            // - Y negative = right side
-            // So if gate center has positive Y, it's on the left, we need to move left (positive Y velocity)
-            // If gate center has negative Y, it's on the right, we need to move right (negative Y velocity)
-            // Simple: velocity should match the error sign (no negative!)
-            
-            float target_velocity_body_y = proportional_gain * lateral_error;  // No negative sign!
-            
-            // Apply velocity limits
-            target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
-            
-            if (test_mode) {
-                std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
-                
-                RCLCPP_INFO(node->get_logger(),
-                    "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
-                    left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
-            }
-            
-            if (!test_mode) {
-                // Get current pose for frame transformation
-                geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
-                float current_yaw = getHeading(current_pose.pose.orientation);
-                
-                // Transform velocity from BODY frame to GLOBAL frame (map)
-                // This is critical for correct movement regardless of drone orientation!
-                // Global frame transformation:
-                // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
-                // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
-                float vx_body = 0.0;  // No forward/backward during centering
-                float vy_body = target_velocity_body_y;
-                
-                float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
-                float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
-                
-                // Altitude control (gentle correction)
-                float altitude_error = initial_z - current_pose.pose.position.z;
-                float vz_global = 0.0;
-                if (std::abs(altitude_error) > 0.1f) {
-                    vz_global = 0.3f * altitude_error;  // Gentle proportional control
-                    vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
-                }
-                
-                // Publish velocity command in GLOBAL frame (map/odom)
-                geometry_msgs::msg::TwistStamped twist_cmd;
-                twist_cmd.header.stamp = node->now();
-                twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
-                twist_cmd.twist.linear.x = vx_global;
-                twist_cmd.twist.linear.y = vy_global;
-                twist_cmd.twist.linear.z = vz_global;
-                
-                node->publishLocalVelocity(twist_cmd);
-                
-                RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
-                    "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm | Vel_body_y:%.3f | Vel_map[x:%.3f y:%.3f] | Yaw:%.1f° | Pts[L:%d R:%d]",
-                    left_y, right_y, detected_width, lateral_error, target_velocity_body_y, 
-                    vx_global, vy_global, current_yaw * 180.0 / M_PI,
-                    bins[left_idx], bins[right_idx]);
-            }
-        }
-        
-        rclcpp::spin_some(node);
-        rate.sleep();
-    }
-    
-    // Final stop
-    if (!test_mode) {
-        geometry_msgs::msg::TwistStamped stop_cmd;
-        stop_cmd.header.stamp = node->now();
-        stop_cmd.header.frame_id = "map";
-        node->publishLocalVelocity(stop_cmd);
-    }
-    
-    if (status) {
-        if (test_mode) {
-            RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
-        } else {
-            RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
-        }
-    } else {
-        if (test_mode) {
-            RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
-        } else {
-            RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
-        }
-    }
-}
+// void centeringGateLivoxSimple(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+//     }
 
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters
+//     const float x_min = detection_range_min;  // Forward distance min
+//     const float x_max = detection_range_max;  // Forward distance max
+//     const float y_min = -roi_lateral; // Lateral min (left)
+//     const float y_max = roi_lateral;  // Lateral max (right)
+//     const float z_min = 0.0f;  // Height min
+//     const float z_max = 2.0f;  // Height max
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;  // 40 bins for 4m lateral range
+//     const float bin_size = (y_max - y_min) / num_bins;  // 0.1m per bin
+//     const int min_points_per_pole = min_cluster_points;  // Minimum points to consider as pole
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
 
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 10; // 1 second at 10Hz
+//     status = false;
+    
+//     // Get initial altitude for stability
+//     geometry_msgs::msg::PoseStamped initial_pose = node->getCurrentLocalPose();
+//     float initial_z = initial_pose.pose.position.z;
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = initial_pose;
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // CustomMsg structure:
+//         // - header: std_msgs/Header
+//         // - timebase: uint64
+//         // - point_num: uint32 (total number of points)
+//         // - lidar_id: uint8
+//         // - rsvd: uint8[3]
+//         // - points: CustomPoint[] array
+//         //
+//         // CustomPoint structure:
+//         // - offset_time: uint32
+//         // - x, y, z: float32
+//         // - reflectivity: uint8
+//         // - tag: uint8
+//         // - line: uint8
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};  // Initialize all bins to 0
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             // Skip invalid points
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             // Filter by ROI
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 // Calculate bin index
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 // Clamp to valid range
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3: Find 2 peak bins (left & right poles) =====
+        
+//         // Find first peak (highest bin count)
+//         int first_peak_idx = -1;
+//         int first_peak_count = 0;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] > first_peak_count) {
+//                 first_peak_count = bins[i];
+//                 first_peak_idx = i;
+//             }
+//         }
+        
+//         if (first_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "First peak too weak: %d points (need %d)", 
+//                 first_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Find second peak (must be at least 10 bins away from first peak)
+//         int second_peak_idx = -1;
+//         int second_peak_count = 0;
+//         const int min_peak_separation = 10;  // ~1.0m minimum separation
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             // Must be far enough from first peak
+//             if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
+            
+//             if (bins[i] > second_peak_count) {
+//                 second_peak_count = bins[i];
+//                 second_peak_idx = i;
+//             }
+//         }
+        
+//         if (second_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Second peak too weak: %d points (need %d)", 
+//                 second_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Determine left & right poles =====
+        
+//         int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
+//         int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
+        
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;  // Center of bin
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float detected_width = right_y - left_y;
+        
+//         // ===== STEP 5: Validate gate width =====
+        
+//         if (detected_width < gate_width_min || detected_width > gate_width_max) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
+//                 detected_width, gate_width_min, gate_width_max);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 6: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;  // Positive = gate to the right
+        
+//         // ===== STEP 7: Check if centered =====
+        
+//         bool is_centered = (std::abs(lateral_error) < tolerance);
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // Stop lateral movement when centered, but maintain altitude!
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                
+//                 // Altitude control (gentle correction to maintain initial altitude)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
+//                     vz_global = 0.4f * altitude_error;  // Slightly more aggressive
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+//                 stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 8: Calculate and publish velocity command =====
+            
+//             // In BODY frame: X=forward, Y=left, Z=up
+//             // lateral_error > 0 means gate is to the RIGHT, need to move RIGHT (negative Y in body frame... wait no!)
+//             // Actually in Livox/ROS convention:
+//             // - Y positive = left side
+//             // - Y negative = right side
+//             // So if gate center has positive Y, it's on the left, we need to move left (positive Y velocity)
+//             // If gate center has negative Y, it's on the right, we need to move right (negative Y velocity)
+//             // Simple: velocity should match the error sign (no negative!)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;  // No negative sign!
+            
+//             // Apply velocity limits
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
+//                     left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
+//             }
+            
+//             if (!test_mode) {
+//                 // Get current pose for frame transformation
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Transform velocity from BODY frame to GLOBAL frame (map)
+//                 // This is critical for correct movement regardless of drone orientation!
+//                 // Global frame transformation:
+//                 // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
+//                 // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
+//                 float vx_body = 0.0;  // No forward/backward during centering
+//                 float vy_body = target_velocity_body_y;
+                
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // Altitude control (gentle correction)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.1f) {
+//                     vz_global = 0.3f * altitude_error;  // Gentle proportional control
+//                     vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+//                 }
+                
+//                 // Publish velocity command in GLOBAL frame (map/odom)
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm | Vel_body_y:%.3f | Vel_map[x:%.3f y:%.3f] | Yaw:%.1f° | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, target_velocity_body_y, 
+//                     vx_global, vy_global, current_yaw * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// ============================================================================
+// = OLD VERSION FOR MAKAI YAW CORRECTION GATE
+// ============================================================================
+
+// void centeringGateLivoxSimple(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+//     }
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters
+//     const float x_min = detection_range_min;  // Forward distance min
+//     const float x_max = detection_range_max;  // Forward distance max
+//     const float y_min = -roi_lateral; // Lateral min (left)
+//     const float y_max = roi_lateral;  // Lateral max (right)
+//     const float z_min = 0.0f;  // Height min
+//     const float z_max = 2.0f;  // Height max
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;  // 40 bins for 4m lateral range
+//     const float bin_size = (y_max - y_min) / num_bins;  // 0.1m per bin
+//     const int min_points_per_pole = min_cluster_points;  // Minimum points to consider as pole
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 10; // 1 second at 10Hz
+//     status = false;
+    
+//     // Get initial altitude for stability
+//     geometry_msgs::msg::PoseStamped initial_pose = node->getCurrentLocalPose();
+//     float initial_z = initial_pose.pose.position.z;
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = initial_pose;
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // CustomMsg structure:
+//         // - header: std_msgs/Header
+//         // - timebase: uint64
+//         // - point_num: uint32 (total number of points)
+//         // - lidar_id: uint8
+//         // - rsvd: uint8[3]
+//         // - points: CustomPoint[] array
+//         //
+//         // CustomPoint structure:
+//         // - offset_time: uint32
+//         // - x, y, z: float32
+//         // - reflectivity: uint8
+//         // - tag: uint8
+//         // - line: uint8
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0}; 
+//         float bins_x_sum[num_bins] = {0.0f}; 
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             // Skip invalid points
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             // Filter by ROI
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 // Calculate bin index
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 // Clamp to valid range
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3: Find 2 peak bins (left & right poles) =====
+        
+//         // Find first peak (highest bin count)
+//         int first_peak_idx = -1;
+//         int first_peak_count = 0;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] > first_peak_count) {
+//                 first_peak_count = bins[i];
+//                 first_peak_idx = i;
+//             }
+//         }
+        
+//         if (first_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "First peak too weak: %d points (need %d)", 
+//                 first_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Find second peak (must be at least 10 bins away from first peak)
+//         int second_peak_idx = -1;
+//         int second_peak_count = 0;
+//         const int min_peak_separation = 10;  // ~1.0m minimum separation
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             // Must be far enough from first peak
+//             if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
+            
+//             if (bins[i] > second_peak_count) {
+//                 second_peak_count = bins[i];
+//                 second_peak_idx = i;
+//             }
+//         }
+        
+//         if (second_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Second peak too weak: %d points (need %d)", 
+//                 second_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Determine left & right poles =====
+        
+//         int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
+//         int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
+        
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;  // Center of bin
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float detected_width = right_y - left_y;
+
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Validate gate width =====
+        
+//         if (detected_width < gate_width_min || detected_width > gate_width_max) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
+//                 detected_width, gate_width_min, gate_width_max);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 6: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;  // Positive = gate to the right
+        
+//         // ===== STEP 7: Check if centered =====
+//         const float yaw_tolerance = 0.087f;  // 5 degrees in radians
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+        
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // Stop lateral movement when centered, but maintain altitude!
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                
+//                 // Altitude control (gentle correction to maintain initial altitude)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
+//                     vz_global = 0.4f * altitude_error;  // Slightly more aggressive
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+//                 stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 8: Calculate and publish velocity command =====
+            
+//             // In BODY frame: X=forward, Y=left, Z=up
+//             // lateral_error > 0 means gate is to the RIGHT, need to move RIGHT (negative Y in body frame... wait no!)
+//             // Actually in Livox/ROS convention:
+//             // - Y positive = left side
+//             // - Y negative = right side
+//             // So if gate center has positive Y, it's on the left, we need to move left (positive Y velocity)
+//             // If gate center has negative Y, it's on the right, we need to move right (negative Y velocity)
+//             // Simple: velocity should match the error sign (no negative!)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;  // No negative sign!
+            
+//             // Apply velocity limits
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
+//                     left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
+//             }
+            
+//             if (!test_mode) {
+//                 // Get current pose for frame transformation
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Transform velocity from BODY frame to GLOBAL frame (map)
+//                 // This is critical for correct movement regardless of drone orientation!
+//                 // Global frame transformation:
+//                 // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
+//                 // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
+//                 float vx_body = 0.0;  // No forward/backward during centering
+//                 float vy_body = target_velocity_body_y;
+                
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // Altitude control (gentle correction)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.1f) {
+//                     vz_global = 0.3f * altitude_error;  // Gentle proportional control
+//                     vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+//                 }
+                
+//                 const float kp_yaw = 0.3f;  // Proportional gain for yaw
+//                 const float max_angular_vel = 0.3f;  // rad/s
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 // Publish velocity command in GLOBAL frame (map/odom)
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.z = -angular_z;  
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm | Vel_body_y:%.3f | Vel_map[x:%.3f y:%.3f] | Yaw:%.1f° | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, target_velocity_body_y, 
+//                     vx_global, vy_global, current_yaw * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// void centeringGateLivoxSimple(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+//     }
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters
+//     const float x_min = detection_range_min;  // Forward distance min
+//     const float x_max = detection_range_max;  // Forward distance max
+//     const float y_min = -roi_lateral; // Lateral min (left)
+//     const float y_max = roi_lateral;  // Lateral max (right)
+//     const float z_min = 0.0f;  // Height min
+//     const float z_max = 2.0f;  // Height max
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;  // 40 bins for 4m lateral range
+//     const float bin_size = (y_max - y_min) / num_bins;  // 0.1m per bin
+//     const int min_points_per_pole = min_cluster_points;  // Minimum points to consider as pole
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 10; // 1 second at 10Hz
+//     status = false;
+    
+//     // Get initial altitude for stability
+//     geometry_msgs::msg::PoseStamped initial_pose = node->getCurrentLocalPose();
+//     float initial_z = initial_pose.pose.position.z;
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = initial_pose;
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // CustomMsg structure:
+//         // - header: std_msgs/Header
+//         // - timebase: uint64
+//         // - point_num: uint32 (total number of points)
+//         // - lidar_id: uint8
+//         // - rsvd: uint8[3]
+//         // - points: CustomPoint[] array
+//         //
+//         // CustomPoint structure:
+//         // - offset_time: uint32
+//         // - x, y, z: float32
+//         // - reflectivity: uint8
+//         // - tag: uint8
+//         // - line: uint8
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};  // Initialize all bins to 0
+//         float bins_x_sum[num_bins] = {0.0f};  // Sum of X coordinates per bin for angle calculation
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             // Skip invalid points
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             // Filter by ROI
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 // Calculate bin index
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 // Clamp to valid range
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;  // Accumulate X for angle calculation
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3: Find 2 peak bins (left & right poles) =====
+        
+//         // Find first peak (highest bin count)
+//         int first_peak_idx = -1;
+//         int first_peak_count = 0;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] > first_peak_count) {
+//                 first_peak_count = bins[i];
+//                 first_peak_idx = i;
+//             }
+//         }
+        
+//         if (first_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "First peak too weak: %d points (need %d)", 
+//                 first_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Find second peak (must be at least 10 bins away from first peak)
+//         int second_peak_idx = -1;
+//         int second_peak_count = 0;
+//         const int min_peak_separation = 10;  // ~1.0m minimum separation
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             // Must be far enough from first peak
+//             if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
+            
+//             if (bins[i] > second_peak_count) {
+//                 second_peak_count = bins[i];
+//                 second_peak_idx = i;
+//             }
+//         }
+        
+//         if (second_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Second peak too weak: %d points (need %d)", 
+//                 second_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Determine left & right poles =====
+        
+//         int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
+//         int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
+        
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;  // Center of bin
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float detected_width = right_y - left_y;
+
+//         // Calculate gate angle from X positions of poles
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Validate gate width =====
+        
+//         if (detected_width < gate_width_min || detected_width > gate_width_max) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
+//                 detected_width, gate_width_min, gate_width_max);
+            
+//             // Stop lateral movement but maintain altitude
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 6: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;  // Positive = gate to the right
+        
+//         // ===== STEP 7: Check if centered (lateral AND yaw aligned) =====
+//         const float yaw_tolerance = 0.087f;  // 5 degrees in radians
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+        
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm YawErr:%.1f° | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // Stop lateral movement when centered, but maintain altitude!
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+                
+//                 // Altitude control (gentle correction to maintain initial altitude)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {  // Tighter tolerance when centered
+//                     vz_global = 0.4f * altitude_error;  // Slightly more aggressive
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+//                 stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // CRITICAL: Lock yaw when centered
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 8: Calculate and publish velocity command =====
+            
+//             // In BODY frame: X=forward, Y=left, Z=up
+//             // lateral_error > 0 means gate is to the RIGHT, need to move RIGHT (negative Y in body frame... wait no!)
+//             // Actually in Livox/ROS convention:
+//             // - Y positive = left side
+//             // - Y negative = right side
+//             // So if gate center has positive Y, it's on the left, we need to move left (positive Y velocity)
+//             // If gate center has negative Y, it's on the right, we need to move right (negative Y velocity)
+//             // Simple: velocity should match the error sign (no negative!)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;  // No negative sign!
+            
+//             // Apply velocity limits
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
+//                     left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
+//             }
+            
+//             if (!test_mode) {
+//                 // Get current pose for frame transformation
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Transform velocity from BODY frame to GLOBAL frame (map)
+//                 // This is critical for correct movement regardless of drone orientation!
+//                 // Global frame transformation:
+//                 // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
+//                 // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
+//                 float vx_body = 0.0;  // No forward/backward during centering
+//                 float vy_body = target_velocity_body_y;
+                
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // Altitude control (gentle correction)
+//                 float altitude_error = initial_z - current_pose.pose.position.z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.1f) {
+//                     vz_global = 0.3f * altitude_error;  // Gentle proportional control
+//                     vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+//                 }
+                
+//                 // Yaw control (proportional correction to align with gate)
+//                 const float kp_yaw = 0.3f;  // Proportional gain for yaw
+//                 const float max_angular_vel = 0.3f;  // rad/s
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 // Publish velocity command in GLOBAL frame (map/odom)
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.x = 0.0;
+//                 twist_cmd.twist.angular.y = 0.0;
+//                 twist_cmd.twist.angular.z = -angular_z;  // Yaw correction
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | LateralErr:%.3fm YawErr:%.1f° | Vel[x:%.3f y:%.3f z:%.3f ω:%.3f] | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     vx_global, vy_global, vz_global, angular_z,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         stop_cmd.twist.linear.x = 0.0;
+//         stop_cmd.twist.linear.y = 0.0;
+//         stop_cmd.twist.linear.z = 0.0;
+//         stop_cmd.twist.angular.x = 0.0;
+//         stop_cmd.twist.angular.y = 0.0;
+//         stop_cmd.twist.angular.z = 0.0;
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+//         }
+//     }
+// }
+// 
+
+// =============================================================
+// FIXX INI POLLLL
+// =============================================================
+
+// void centeringGateLivoxSimple(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection (O(n) complexity)");
+//     }
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters
+//     const float x_min = detection_range_min;  // Forward distance min
+//     const float x_max = detection_range_max;  // Forward distance max
+//     const float y_min = -roi_lateral; // Lateral min (left)
+//     const float y_max = roi_lateral;  // Lateral max (right)
+//     const float z_min = 0.0f;  // Height min
+//     const float z_max = 2.0f;  // Height max
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;  // 40 bins for 4m lateral range
+//     const float bin_size = (y_max - y_min) / num_bins;  // 0.1m per bin
+//     const int min_points_per_pole = min_cluster_points;  // Minimum points to consider as pole
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 1; // 1 second at 10Hz
+//     status = false;
+    
+//     // ALTITUDE STABILITY IMPROVEMENT: Use rangefinder directly (more stable than local pose Z)
+//     sensor_msgs::msg::Range initial_rangefinder = node->getCurrentRangefinder();
+//     float initial_rangefinder_distance = initial_rangefinder.range;
+    
+//     // Low-pass filter for rangefinder (reduce noise from surface texture)
+//     float filtered_rangefinder = initial_rangefinder_distance;
+//     const float rangefinder_filter_alpha = 0.4f;  // Slightly more responsive for rangefinder
+    
+//     // Reference altitude tracking (to compensate drift over time)
+//     float reference_altitude = initial_rangefinder_distance;
+//     auto last_reference_update = node->now();
+//     const double reference_update_interval = 5.0;  // Update reference every 5 seconds when stable
+//     int stable_altitude_count = 0;
+//     const int required_stable_frames = 20;  // 2 seconds of stability before updating reference
+    
+//     RCLCPP_INFO(node->get_logger(), "Initial rangefinder altitude: %.3fm", initial_rangefinder_distance);
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = node->getCurrentLocalPose();
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // CustomMsg structure:
+//         // - header: std_msgs/Header
+//         // - timebase: uint64
+//         // - point_num: uint32 (total number of points)
+//         // - lidar_id: uint8
+//         // - rsvd: uint8[3]
+//         // - points: CustomPoint[] array
+//         //
+//         // CustomPoint structure:
+//         // - offset_time: uint32
+//         // - x, y, z: float32
+//         // - reflectivity: uint8
+//         // - tag: uint8
+//         // - line: uint8
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};  // Initialize all bins to 0
+//         float bins_x_sum[num_bins] = {0.0f};  // Sum of X coordinates per bin for angle calculation
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             // Skip invalid points
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             // Filter by ROI
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 // Calculate bin index
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 // Clamp to valid range
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;  // Accumulate X for angle calculation
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude with STABILITY FIX
+//             if (!test_mode) {
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL (more stable than local pose Z)
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter to reduce noise
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 // Calculate altitude error based on filtered rangefinder
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 // Larger deadband for rangefinder (accounts for surface texture noise)
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband (rangefinder typical noise)
+//                     vz_global = 0.3f * altitude_error;  // Moderate gain for stability
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));  // Conservative max velocity
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3: Find 2 peak bins (left & right poles) =====
+        
+//         // Find first peak (highest bin count)
+//         int first_peak_idx = -1;
+//         int first_peak_count = 0;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] > first_peak_count) {
+//                 first_peak_count = bins[i];
+//                 first_peak_idx = i;
+//             }
+//         }
+        
+//         if (first_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "First peak too weak: %d points (need %d)", 
+//                 first_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude with STABILITY FIX
+//             if (!test_mode) {
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Find second peak (must be at least 10 bins away from first peak)
+//         int second_peak_idx = -1;
+//         int second_peak_count = 0;
+//         const int min_peak_separation = 10;  // ~1.0m minimum separation
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             // Must be far enough from first peak
+//             if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
+            
+//             if (bins[i] > second_peak_count) {
+//                 second_peak_count = bins[i];
+//                 second_peak_idx = i;
+//             }
+//         }
+        
+//         if (second_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Second peak too weak: %d points (need %d)", 
+//                 second_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude with STABILITY FIX
+//             if (!test_mode) {
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Determine left & right poles =====
+        
+//         int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
+//         int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
+        
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;  // Center of bin
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float detected_width = right_y - left_y;
+
+//         // Calculate gate angle from X positions of poles
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Validate gate width =====
+        
+//         if (detected_width < gate_width_min || detected_width > gate_width_max) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
+//                 detected_width, gate_width_min, gate_width_max);
+            
+//             // Stop lateral movement but maintain altitude with STABILITY FIX
+//             if (!test_mode) {
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // No yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 6: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;  // Positive = gate to the right
+        
+//         // ===== STEP 7: Check if centered (lateral AND yaw aligned) =====
+//         const float yaw_tolerance = 0.087f;  // 5 degrees in radians
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+        
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm YawErr:%.1f° | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // Stop lateral movement when centered, but maintain altitude!
+//             if (!test_mode) {
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL (more stable when centered)
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 // Calculate altitude error
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 // Tighter control when centered (smaller deadband)
+//                 if (std::abs(altitude_error) > 0.08f) {  // 8cm deadband when centered
+//                     vz_global = 0.35f * altitude_error;  // Slightly higher gain for precision
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+//                 stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // CRITICAL: Lock yaw when centered
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+
+            
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 8: Calculate and publish velocity command =====
+            
+//             // In BODY frame: X=forward, Y=left, Z=up
+//             // lateral_error > 0 means gate is to the RIGHT, need to move RIGHT (negative Y in body frame... wait no!)
+//             // Actually in Livox/ROS convention:
+//             // - Y positive = left side
+//             // - Y negative = right side
+//             // So if gate center has positive Y, it's on the left, we need to move left (positive Y velocity)
+//             // If gate center has negative Y, it's on the right, we need to move right (negative Y velocity)
+//             // Simple: velocity should match the error sign (no negative!)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;  // No negative sign!
+            
+//             // Apply velocity limits
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string direction = (lateral_error > 0) ? "RIGHT" : "LEFT";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "NOT CENTERED | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm %s | Vel:%.3fm/s",
+//                     left_y, right_y, detected_width, lateral_error, direction.c_str(), target_velocity_body_y);
+//             }
+            
+//             if (!test_mode) {
+//                 // Get current pose for frame transformation
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Transform velocity from BODY frame to GLOBAL frame (map)
+//                 // This is critical for correct movement regardless of drone orientation!
+//                 // Global frame transformation:
+//                 // vx_global = vx_body * cos(yaw) - vy_body * sin(yaw)
+//                 // vy_global = vx_body * sin(yaw) + vy_body * cos(yaw)
+//                 float vx_body = 0.0;  // No forward/backward during centering
+//                 float vy_body = target_velocity_body_y;
+                
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL (active centering mode)
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 // Calculate altitude error
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 // Moderate control during active centering (medium deadband)
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;  // Moderate gain
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 // Yaw control (proportional correction to align with gate)
+//                 const float kp_yaw = 0.3f;  // Proportional gain for yaw
+//                 const float max_angular_vel = 0.3f;  // rad/s
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 // Publish velocity command in GLOBAL frame (map/odom)
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";  // Global frame for correct orientation
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.x = 0.0;
+//                 twist_cmd.twist.angular.y = 0.0;
+//                 twist_cmd.twist.angular.z = -angular_z;  // Yaw correction
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "Centering: Gate[L:%.2f R:%.2f W:%.2fm] | LateralErr:%.3fm YawErr:%.1f° | Vel[x:%.3f y:%.3f z:%.3f ω:%.3f] | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     vx_global, vy_global, vz_global, angular_z,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         stop_cmd.twist.linear.x = 0.0;
+//         stop_cmd.twist.linear.y = 0.0;
+//         stop_cmd.twist.linear.z = 0.0;
+//         stop_cmd.twist.angular.x = 0.0;
+//         stop_cmd.twist.angular.y = 0.0;
+//         stop_cmd.twist.angular.z = 0.0;
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: LiDAR Centering Validation FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// void centeringGateLivoxSimpleRear(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE (REAR GATE) ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox REAR Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection + REAR view (backward movement)");
+//     }
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters - REAR VIEW (negative X = behind drone in body frame)
+//     const float x_min = -detection_range_max;  // Behind drone: -2.5m to -1.5m
+//     const float x_max = -detection_range_min;
+//     const float y_min = -roi_lateral;
+//     const float y_max = roi_lateral;
+//     const float z_min = 0.0f;
+//     const float z_max = 2.0f;
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;
+//     const float bin_size = (y_max - y_min) / num_bins;
+//     const int min_points_per_pole = min_cluster_points;
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox CustomMsg
+//     sensor_msgs::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<sensor_msgs::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const sensor_msgs::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 10;
+//     status = false;
+    
+//     float initial_z = node->getCurrentLocalPose().pose.position.z;
+//     geometry_msgs::msg::PoseStamped hold_pose = node->getCurrentLocalPose();
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->data.empty()) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // Find field offsets for x, y, z in CustomMsg
+//         int x_offset = -1, y_offset = -1, z_offset = -1;
+//         for (size_t i = 0; i < latest_cloud->fields.size(); ++i) {
+//             if (latest_cloud->fields[i].name == "x") x_offset = latest_cloud->fields[i].offset;
+//             else if (latest_cloud->fields[i].name == "y") y_offset = latest_cloud->fields[i].offset;
+//             else if (latest_cloud->fields[i].name == "z") z_offset = latest_cloud->fields[i].offset;
+//         }
+        
+//         if (x_offset < 0 || y_offset < 0 || z_offset < 0) {
+//             RCLCPP_ERROR(node->get_logger(), "Could not find x,y,z fields in CustomMsg");
+//             break;
+//         }
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};
+//         float bins_x_sum[num_bins] = {0.0f};
+//         int total_roi_points = 0;
+        
+//         const uint8_t* data_ptr = latest_cloud->data.data();
+//         size_t point_step = latest_cloud->point_step;
+//         size_t num_points = latest_cloud->width * latest_cloud->height;
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const uint8_t* point_data = data_ptr + i * point_step;
+            
+//             float x, y, z;
+//             std::memcpy(&x, point_data + x_offset, sizeof(float));
+//             std::memcpy(&y, point_data + y_offset, sizeof(float));
+//             std::memcpy(&z, point_data + z_offset, sizeof(float));
+            
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             if (!test_mode) {
+//                 float current_z = node->getCurrentLocalPose().pose.position.z;
+//                 float altitude_error = initial_z - current_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3 (MODIFIED): Find ALL peaks and select RIGHTMOST valid gate =====
+        
+//         std::vector<int> peak_indices;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] >= min_points_per_pole) {
+//                 peak_indices.push_back(i);
+//             }
+//         }
+        
+//         if (peak_indices.size() < 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient peaks detected: %zu (need at least 2)", 
+//                 peak_indices.size());
+            
+//             if (!test_mode) {
+//                 float current_z = node->getCurrentLocalPose().pose.position.z;
+//                 float altitude_error = initial_z - current_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Find 2 strongest peaks (standard gate detection for rear view) =====
+//         // For rear centering, we use the same logic as forward but will move backward
+//         std::sort(peak_indices.begin(), peak_indices.end(),
+//             [&bins](int a, int b) { return bins[a] > bins[b]; });
+        
+//         bool gate_found = false;
+//         int left_idx = -1;
+//         int right_idx = -1;
+//         float detected_width = 0.0f;
+        
+//         // Try combinations of strongest peaks
+//         for (size_t i = 0; i < peak_indices.size() - 1; i++) {
+//             for (size_t j = i + 1; j < peak_indices.size(); j++) {
+//                 int idx1 = peak_indices[i];
+//                 int idx2 = peak_indices[j];
+                
+//                 // Ensure idx1 < idx2 (idx1 is more right, idx2 is more left)
+//                 if (idx1 > idx2) std::swap(idx1, idx2);
+                
+//                 float y1 = y_min + (idx1 + 0.5f) * bin_size;
+//                 float y2 = y_min + (idx2 + 0.5f) * bin_size;
+//                 float width = y2 - y1;
+                
+//                 // Check if valid gate width
+//                 if (width >= gate_width_min && width <= gate_width_max) {
+//                     right_idx = idx1;  // Right pole
+//                     left_idx = idx2;   // Left pole
+//                     detected_width = width;
+//                     gate_found = true;
+//                     break;
+//                 }
+//             }
+//             if (gate_found) break;
+//         }
+        
+//         if (!gate_found) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "REAR: No valid gate pair found among %zu peaks (width must be %.2f-%.2fm)",
+//                 peak_indices.size(), gate_width_min, gate_width_max);
+            
+//             if (!test_mode) {
+//                 float current_z = node->getCurrentLocalPose().pose.position.z;
+//                 float altitude_error = initial_z - current_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Calculate positions and angle
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;
+        
+//         // ===== STEP 6: Check if centered (lateral AND yaw aligned) =====
+//         const float yaw_tolerance = 0.087f;
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+        
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "REAR CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "REAR CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm YawErr:%.1f° | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // CRITICAL: STOP all movement when centered to prevent oscillation!
+//             if (!test_mode) {
+//                 float current_z = node->getCurrentLocalPose().pose.position.z;
+//                 float altitude_error = initial_z - current_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // STOP forward/backward movement
+//                 stop_cmd.twist.linear.y = 0.0;  // STOP lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // STOP yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 7: Calculate and publish velocity command =====
+//             // REAR CENTERING STRATEGY (LATERAL ONLY):
+//             // 1. Gate is BEHIND drone (detected in negative X ROI: -2.5m to -1.5m)
+//             // 2. Drone stays in place (NO forward/backward movement)
+//             // 3. Only adjust lateral position (vy_body) to center on gate
+//             // 4. When centered, STOP all movement (handled above in is_centered block)
+//             //
+//             // Lateral error convention:
+//             // - lateral_error > 0: gate center is LEFT of drone (Y+), need to move LEFT (vy+)
+//             // - lateral_error < 0: gate center is RIGHT of drone (Y-), need to move RIGHT (vy-)
+//             //
+//             // Forward/Backward control:
+//             // - vx_body = 0: NO forward/backward movement (centering only)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string gate_position = (lateral_error > 0) ? "LEFT" : "RIGHT";
+//                 std::string move_lateral = (target_velocity_body_y > 0) ? "LEFT(+Y)" : "RIGHT(-Y)";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "REAR CENTERING | Gate[L:%.2fm R:%.2fm W:%.2fm] | Err:%.3fm (%s of drone) | Move: %s(%.3fm/s) ONLY",
+//                     left_y, right_y, detected_width, lateral_error, gate_position.c_str(),
+//                     move_lateral.c_str(), std::abs(target_velocity_body_y));
+//             }
+            
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Body frame velocities:
+//                 // - vx_body: ZERO = NO forward/backward movement (lateral centering only)
+//                 // - vy_body: proportional to lateral error (+ = left, - = right)
+//                 float vx_body = 0.0f;  // NO forward/backward movement
+//                 float vy_body = target_velocity_body_y;
+                
+//                 // Transform from body frame to global frame (map/odom)
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // Altitude hold with gentle correction
+//                 float current_z = node->getCurrentLocalPose().pose.position.z;
+//                 float altitude_error = initial_z - current_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.1f) {
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+//                 }
+                
+//                 // Yaw control to align with gate
+//                 const float kp_yaw = 0.3f;
+//                 const float max_angular_vel = 0.3f;
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.x = 0.0;
+//                 twist_cmd.twist.angular.y = 0.0;
+//                 twist_cmd.twist.angular.z = -angular_z;  // Negative for proper rotation direction
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "REAR Centering | Gate[L:%.2f R:%.2f W:%.2fm] | LateralErr:%.3fm YawErr:%.1f° | Body[vx:%.3f(BACK) vy:%.3f] → Global[vx:%.3f vy:%.3f vz:%.3f ω:%.3f] | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     vx_body, vy_body, vx_global, vy_global, vz_global, angular_z,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         stop_cmd.twist.linear.x = 0.0;
+//         stop_cmd.twist.linear.y = 0.0;
+//         stop_cmd.twist.linear.z = 0.0;
+//         stop_cmd.twist.angular.x = 0.0;
+//         stop_cmd.twist.angular.y = 0.0;
+//         stop_cmd.twist.angular.z = 0.0;
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: REAR LiDAR Centering COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox REAR Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: REAR LiDAR Centering FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox REAR Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// void centeringGateLivoxSimpleRear(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX CENTERING TEST MODE (REAR GATE) ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting SIMPLE Livox REAR Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     if (!test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "Strategy: Grid binning + peak detection + REAR view (backward movement)");
+//     }
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters - REAR VIEW (negative X = behind drone in body frame)
+//     const float x_min = -detection_range_max;  // Behind drone: -2.5m to -1.5m
+//     const float x_max = -detection_range_min;
+//     const float y_min = -roi_lateral;
+//     const float y_max = roi_lateral;
+//     const float z_min = 0.0f;
+//     const float z_max = 2.0f;
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;
+//     const float bin_size = (y_max - y_min) / num_bins;
+//     const int min_points_per_pole = min_cluster_points;
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 1;
+//     status = false;
+    
+//     // Get initial altitude for stability (using relative altitude)
+//     float initial_z = node->getRelativeAltitude();
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = node->getCurrentLocalPose();
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Gate centering timeout after %.1fs", elapsed);
+//             break;
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // CustomMsg structure:
+//         // - header: std_msgs/Header
+//         // - timebase: uint64
+//         // - point_num: uint32 (total number of points)
+//         // - lidar_id: uint8
+//         // - rsvd: uint8[3]
+//         // - points: CustomPoint[] array
+//         //
+//         // CustomPoint structure:
+//         // - offset_time: uint32
+//         // - x, y, z: float32
+//         // - reflectivity: uint8
+//         // - tag: uint8
+//         // - line: uint8
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};
+//         float bins_x_sum[num_bins] = {0.0f};
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude (using relative altitude)
+//             if (!test_mode) {
+//                 float current_relative_z = node->getRelativeAltitude();
+//                 float altitude_error = initial_z - current_relative_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3 (MODIFIED): Find ALL peaks and select RIGHTMOST valid gate =====
+        
+//         std::vector<int> peak_indices;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] >= min_points_per_pole) {
+//                 peak_indices.push_back(i);
+//             }
+//         }
+        
+//         if (peak_indices.size() < 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient peaks detected: %zu (need at least 2)", 
+//                 peak_indices.size());
+            
+//             if (!test_mode) {
+//                 float current_relative_z = node->getRelativeAltitude();
+//                 float altitude_error = initial_z - current_relative_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Find 2 strongest peaks (standard gate detection for rear view) =====
+//         // For rear centering, we use the same logic as forward but will move backward
+//         std::sort(peak_indices.begin(), peak_indices.end(),
+//             [&bins](int a, int b) { return bins[a] > bins[b]; });
+        
+//         bool gate_found = false;
+//         int left_idx = -1;
+//         int right_idx = -1;
+//         float detected_width = 0.0f;
+        
+//         // Try combinations of strongest peaks
+//         for (size_t i = 0; i < peak_indices.size() - 1; i++) {
+//             for (size_t j = i + 1; j < peak_indices.size(); j++) {
+//                 int idx1 = peak_indices[i];
+//                 int idx2 = peak_indices[j];
+                
+//                 // Ensure idx1 < idx2 (idx1 is more right, idx2 is more left)
+//                 if (idx1 > idx2) std::swap(idx1, idx2);
+                
+//                 float y1 = y_min + (idx1 + 0.5f) * bin_size;
+//                 float y2 = y_min + (idx2 + 0.5f) * bin_size;
+//                 float width = y2 - y1;
+                
+//                 // Check if valid gate width
+//                 if (width >= gate_width_min && width <= gate_width_max) {
+//                     right_idx = idx1;  // Right pole
+//                     left_idx = idx2;   // Left pole
+//                     detected_width = width;
+//                     gate_found = true;
+//                     break;
+//                 }
+//             }
+//             if (gate_found) break;
+//         }
+        
+//         if (!gate_found) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "REAR: No valid gate pair found among %zu peaks (width must be %.2f-%.2fm)",
+//                 peak_indices.size(), gate_width_min, gate_width_max);
+            
+//             if (!test_mode) {
+//                 float current_relative_z = node->getRelativeAltitude();
+//                 float altitude_error = initial_z - current_relative_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Calculate positions and angle
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+        
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Calculate lateral offset =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;
+        
+//         // ===== STEP 6: Check if centered (lateral AND yaw aligned) =====
+//         const float yaw_tolerance = 0.087f;
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+        
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "REAR CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "REAR CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm YawErr:%.1f° | Pts[L:%d R:%d]",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+            
+//             // CRITICAL: STOP all movement when centered to prevent oscillation!
+//             if (!test_mode) {
+//                 float current_relative_z = node->getRelativeAltitude();
+//                 float altitude_error = initial_z - current_relative_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.05f) {
+//                     vz_global = 0.4f * altitude_error;
+//                     vz_global = std::max(-0.3f, std::min(0.3f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // STOP forward/backward movement
+//                 stop_cmd.twist.linear.y = 0.0;  // STOP lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // STOP yaw rotation
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 7: Calculate and publish velocity command =====
+//             // REAR CENTERING STRATEGY (LATERAL ONLY):
+//             // 1. Gate is BEHIND drone (detected in negative X ROI: -2.5m to -1.5m)
+//             // 2. Drone stays in place (NO forward/backward movement)
+//             // 3. Only adjust lateral position (vy_body) to center on gate
+//             // 4. When centered, STOP all movement (handled above in is_centered block)
+//             //
+//             // Lateral error convention:
+//             // - lateral_error > 0: gate center is LEFT of drone (Y+), need to move LEFT (vy+)
+//             // - lateral_error < 0: gate center is RIGHT of drone (Y-), need to move RIGHT (vy-)
+//             //
+//             // Forward/Backward control:
+//             // - vx_body = 0: NO forward/backward movement (centering only)
+            
+//             float target_velocity_body_y = proportional_gain * lateral_error;
+//             target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+            
+//             if (test_mode) {
+//                 std::string gate_position = (lateral_error > 0) ? "LEFT" : "RIGHT";
+//                 std::string move_lateral = (target_velocity_body_y > 0) ? "LEFT(+Y)" : "RIGHT(-Y)";
+                
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "REAR CENTERING | Gate[L:%.2fm R:%.2fm W:%.2fm] | Err:%.3fm (%s of drone) | Move: %s(%.3fm/s) ONLY",
+//                     left_y, right_y, detected_width, lateral_error, gate_position.c_str(),
+//                     move_lateral.c_str(), std::abs(target_velocity_body_y));
+//             }
+            
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Body frame velocities:
+//                 // - vx_body: ZERO = NO forward/backward movement (lateral centering only)
+//                 // - vy_body: proportional to lateral error (+ = left, - = right)
+//                 float vx_body = 0.0f;  // NO forward/backward movement
+//                 float vy_body = target_velocity_body_y;
+                
+//                 // Transform from body frame to global frame (map/odom)
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // Altitude hold with gentle correction
+//                 float current_relative_z = node->getRelativeAltitude();
+//                 float altitude_error = initial_z - current_relative_z;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.1f) {
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.2f, std::min(0.2f, vz_global));
+//                 }
+                
+//                 // Yaw control to align with gate
+//                 const float kp_yaw = 0.3f;
+//                 const float max_angular_vel = 0.3f;
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.x = 0.0;
+//                 twist_cmd.twist.angular.y = 0.0;
+//                 twist_cmd.twist.angular.z = angular_z;  // Negative for proper rotation direction
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "REAR Centering | Gate[L:%.2f R:%.2f W:%.2fm] | LateralErr:%.3fm YawErr:%.1f° | Body[vx:%.3f(BACK) vy:%.3f] → Global[vx:%.3f vy:%.3f vz:%.3f ω:%.3f] | Pts[L:%d R:%d]",
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI,
+//                     vx_body, vy_body, vx_global, vy_global, vz_global, angular_z,
+//                     bins[left_idx], bins[right_idx]);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         stop_cmd.twist.linear.x = 0.0;
+//         stop_cmd.twist.linear.y = 0.0;
+//         stop_cmd.twist.linear.z = 0.0;
+//         stop_cmd.twist.angular.x = 0.0;
+//         stop_cmd.twist.angular.y = 0.0;
+//         stop_cmd.twist.angular.z = 0.0;
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: REAR LiDAR Centering COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== SIMPLE Livox REAR Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: REAR LiDAR Centering FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== SIMPLE Livox REAR Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// void centeringGateLivoxFast(
+//     const std::shared_ptr<DroneController>&node,
+//     rclcpp::Rate &rate,
+//     geometry_msgs::msg::PoseStamped &posee,
+//     float gate_width,
+//     float tolerance,
+//     bool &status,
+//     float max_velocity,
+//     float proportional_gain,
+//     float max_time,
+//     bool test_mode)
+// {
+//     if (test_mode) {
+//         RCLCPP_INFO(node->get_logger(), "=== LIVOX FAST CENTERING TEST MODE ===");
+//     } else {
+//         RCLCPP_INFO(node->get_logger(), "=== Starting FAST Livox Gate Centering ===");
+//     }
+//     RCLCPP_INFO(node->get_logger(), "Expected gate width: %.2fm, Tolerance: %.3fm", 
+//                 gate_width, tolerance);
+//     RCLCPP_INFO(node->get_logger(), "Strategy: Direct center calculation + immediate velocity command");
+
+//     float detection_range_min = 1.5f;
+//     float detection_range_max = 2.5f;
+//     float roi_lateral = 2.0f;
+//     int min_cluster_points = 10;
+    
+//     node->get_parameter("gate_centering.detection_range_min", detection_range_min);
+//     node->get_parameter("gate_centering.detection_range_max", detection_range_max);
+//     node->get_parameter("gate_centering.roi_lateral", roi_lateral);
+//     node->get_parameter("gate_centering.min_cluster_points", min_cluster_points);
+    
+//     // ROI parameters
+//     const float x_min = detection_range_min;
+//     const float x_max = detection_range_max;
+//     const float y_min = -roi_lateral;
+//     const float y_max = roi_lateral;
+//     const float z_min = 0.0f;
+//     const float z_max = 2.0f;
+    
+//     // Grid binning parameters
+//     const int num_bins = 60;
+//     const float bin_size = (y_max - y_min) / num_bins;
+//     const int min_points_per_pole = min_cluster_points;
+    
+//     // Gate validation parameters
+//     const float gate_width_min = 0.8f;
+//     const float gate_width_max = 2.5f;
+    
+//     // Fast centering parameters
+//     const float fast_velocity_gain = 2.0f;  // Higher gain for faster movement
+//     const float approach_distance_threshold = 0.3f;  // Switch to slow mode when closer
+    
+//     RCLCPP_INFO(node->get_logger(), "ROI: X[%.1f-%.1fm] Y[%.1f-%.1fm] Z[%.1f-%.1fm]",
+//                 x_min, x_max, y_min, y_max, z_min, z_max);
+//     RCLCPP_INFO(node->get_logger(), "Grid: %d bins @ %.2fm, Min points/pole: %d",
+//                 num_bins, bin_size, min_points_per_pole);
+//     RCLCPP_INFO(node->get_logger(), "Fast mode: velocity gain=%.1f, approach threshold=%.2fm",
+//                 fast_velocity_gain, approach_distance_threshold);
+    
+//     // Subscribe to Livox Custom LiDAR data
+//     livox_ros_driver2::msg::CustomMsg::SharedPtr latest_cloud = nullptr;
+    
+//     auto lidar_sub = node->create_subscription<livox_ros_driver2::msg::CustomMsg>(
+//         "/livox/lidar", 10,
+//         [&latest_cloud](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) {
+//             latest_cloud = msg;
+//         });
+    
+//     RCLCPP_INFO(node->get_logger(), "Subscribing to Livox CustomMsg on /livox/lidar");
+
+//     // Centering control variables
+//     auto start_time = node->now();
+//     int consecutive_centered_count = 0;
+//     const int required_centered_frames = 1; // 0.3 second at 10Hz - FAST EXIT when centered!
+//     status = false;
+    
+//     // ALTITUDE STABILITY IMPROVEMENT: Use rangefinder directly (more stable than local pose Z)
+//     sensor_msgs::msg::Range initial_rangefinder = node->getCurrentRangefinder();
+//     float initial_rangefinder_distance = initial_rangefinder.range;
+    
+//     // Low-pass filter for rangefinder (reduce noise from surface texture)
+//     float filtered_rangefinder = initial_rangefinder_distance;
+//     const float rangefinder_filter_alpha = 0.4f;  // Slightly more responsive for rangefinder
+    
+//     // Reference altitude tracking (to compensate drift over time)
+//     float reference_altitude = initial_rangefinder_distance;
+//     auto last_reference_update = node->now();
+//     const double reference_update_interval = 5.0;  // Update reference every 5 seconds when stable
+//     int stable_altitude_count = 0;
+//     const int required_stable_frames = 20;  // 2 seconds of stability before updating reference
+    
+//     RCLCPP_INFO(node->get_logger(), "Initial rangefinder altitude: %.3fm", initial_rangefinder_distance);
+    
+//     // PX4 CRITICAL: Prepare hold position for streaming when waiting
+//     geometry_msgs::msg::PoseStamped hold_pose = node->getCurrentLocalPose();
+    
+//     while (rclcpp::ok()) {
+//         // Check timeout
+//         auto elapsed = (node->now() - start_time).seconds();
+//         if (elapsed > max_time) {
+//             RCLCPP_ERROR(node->get_logger(), "Fast gate centering timeout after %.1fs", elapsed);
+//             break; // sekarang coba buat centering livox simple saat sudah center stop proses centering dan lanjutkan. masalahnya kadang log sudah cetak center namun drone masih centering
+//         }
+        
+//         if (!latest_cloud || latest_cloud->point_num == 0) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 2000,
+//                 "Waiting for Livox CustomMsg data on /livox/lidar...");
+            
+//             // PX4 CRITICAL: MUST stream setpoint even when waiting for data!
+//             if (!test_mode) {
+//                 hold_pose = node->getCurrentLocalPose();
+//                 hold_pose.header.stamp = node->now();
+//                 node->publishLocalPosition(hold_pose);
+//             }
+            
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 1: Extract and filter points by ROI using CustomMsg =====
+        
+//         // ===== STEP 2: Grid binning - count points per lateral bin =====
+        
+//         int bins[num_bins] = {0};
+//         float bins_x_sum[num_bins] = {0.0f};
+//         int total_roi_points = 0;
+        
+//         // Access points directly from CustomMsg
+//         const auto& points = latest_cloud->points;
+//         uint32_t num_points = latest_cloud->point_num;
+        
+//         // Validate point count
+//         if (num_points != static_cast<uint32_t>(points.size())) {
+//             RCLCPP_WARN(node->get_logger(), 
+//                 "CustomMsg point_num (%u) doesn't match points array size (%zu)", 
+//                 latest_cloud->point_num, points.size());
+//             num_points = std::min(num_points, static_cast<uint32_t>(points.size()));
+//         }
+        
+//         for (size_t i = 0; i < num_points; ++i) {
+//             const auto& point = points[i];
+            
+//             float x = point.x;
+//             float y = point.y;
+//             float z = point.z;
+            
+//             // Skip invalid points
+//             if (std::isnan(x) || std::isnan(y) || std::isnan(z)) continue;
+            
+//             // Filter by ROI
+//             if (x >= x_min && x <= x_max &&
+//                 y >= y_min && y <= y_max &&
+//                 z >= z_min && z <= z_max) {
+                
+//                 // Calculate bin index
+//                 int bin_idx = static_cast<int>((y - y_min) / bin_size);
+                
+//                 // Clamp to valid range
+//                 if (bin_idx >= 0 && bin_idx < num_bins) {
+//                     bins[bin_idx]++;
+//                     bins_x_sum[bin_idx] += x;  // Accumulate X for angle calculation
+//                     total_roi_points++;
+//                 }
+//             }
+//         }
+        
+//         if (total_roi_points < min_points_per_pole * 2) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Insufficient points in ROI: %d (need %d)", 
+//                 total_roi_points, min_points_per_pole * 2);
+            
+//             // Stop lateral movement but maintain altitude with RANGEFINDER
+//             if (!test_mode) {
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 3: Find 2 peak bins (left & right poles) =====
+        
+//         // Find first peak (highest bin count)
+//         int first_peak_idx = -1;
+//         int first_peak_count = 0;
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             if (bins[i] > first_peak_count) {
+//                 first_peak_count = bins[i];
+//                 first_peak_idx = i;
+//             }
+//         }
+        
+//         if (first_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "First peak too weak: %d points (need %d)", 
+//                 first_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude with RANGEFINDER
+//             if (!test_mode) {
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // Find second peak (must be at least 10 bins away from first peak)
+//         int second_peak_idx = -1;
+//         int second_peak_count = 0;
+//         const int min_peak_separation = 10;  // ~1.0m minimum separation
+        
+//         for (int i = 0; i < num_bins; i++) {
+//             // Must be far enough from first peak
+//             if (std::abs(i - first_peak_idx) < min_peak_separation) continue;
+            
+//             if (bins[i] > second_peak_count) {
+//                 second_peak_count = bins[i];
+//                 second_peak_idx = i;
+//             }
+//         }
+        
+//         if (second_peak_count < min_points_per_pole) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Second peak too weak: %d points (need %d)", 
+//                 second_peak_count, min_points_per_pole);
+            
+//             // Stop lateral movement but maintain altitude with RANGEFINDER
+//             if (!test_mode) {
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 4: Determine left & right poles =====
+        
+//         int left_idx = (first_peak_idx < second_peak_idx) ? first_peak_idx : second_peak_idx;
+//         int right_idx = (first_peak_idx < second_peak_idx) ? second_peak_idx : first_peak_idx;
+        
+//         // ===== STEP 4: Calculate gate center and angle =====
+        
+//         float left_y = y_min + (left_idx + 0.5f) * bin_size;
+//         float right_y = y_min + (right_idx + 0.5f) * bin_size;
+//         float detected_width = right_y - left_y;
+        
+//         float left_x = bins_x_sum[left_idx] / bins[left_idx];
+//         float right_x = bins_x_sum[right_idx] / bins[right_idx];
+//         float x_diff = right_x - left_x;
+//         float gate_angle = atan2(x_diff, detected_width);
+        
+//         // ===== STEP 5: Validate gate width =====
+        
+//         if (detected_width < gate_width_min || detected_width > gate_width_max) {
+//             RCLCPP_WARN_THROTTLE(node->get_logger(), *node->get_clock(), 1000,
+//                 "Invalid gate width: %.2fm (expected %.2f-%.2fm)",
+//                 detected_width, gate_width_min, gate_width_max);
+            
+//             // Stop lateral movement but maintain altitude with RANGEFINDER
+//             if (!test_mode) {
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+//                 if (std::abs(altitude_error) > 0.10f) {
+//                     vz_global = 0.3f * altitude_error;
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;
+//                 stop_cmd.twist.linear.y = 0.0;
+//                 stop_cmd.twist.linear.z = vz_global;
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             consecutive_centered_count = 0;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//             continue;
+//         }
+        
+//         // ===== STEP 6: Calculate center position and error =====
+        
+//         float center_y = (left_y + right_y) / 2.0f;
+//         float lateral_error = center_y;
+        
+//         // ===== STEP 7: Check if centered =====
+        
+//         const float yaw_tolerance = 0.087f;  // 5 degrees
+//         float yaw_error = normalize_angle(gate_angle);
+//         bool is_yaw_aligned = (std::abs(yaw_error) < yaw_tolerance);
+//         bool is_laterally_centered = (std::abs(lateral_error) < tolerance);
+//         bool is_centered = is_laterally_centered && is_yaw_aligned;
+        
+//         if (is_centered) {
+//             consecutive_centered_count++;
+            
+//             if (test_mode) {
+//                 RCLCPP_INFO(node->get_logger(),
+//                     "FAST CENTERED! Frame %d/%d | Gate[L:%.2fm R:%.2fm W:%.2fm] | Offset:%.3fm",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error);
+//             } else {
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "FAST CENTERED! Frame %d/%d | Gate: [L:%.2fm R:%.2fm W:%.2fm] | Err: %.3fm YawErr:%.1f°",
+//                     consecutive_centered_count, required_centered_frames,
+//                     left_y, right_y, detected_width, lateral_error, yaw_error * 180.0 / M_PI);
+//             }
+            
+//             // Stop lateral movement when centered, but maintain altitude with RANGEFINDER!
+//             if (!test_mode) {
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 // Calculate altitude error
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 // Tighter control when centered (smaller deadband)
+//                 if (std::abs(altitude_error) > 0.08f) {  // 8cm deadband when centered
+//                     vz_global = 0.35f * altitude_error;  // Slightly higher gain for precision
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 geometry_msgs::msg::TwistStamped stop_cmd;
+//                 stop_cmd.header.stamp = node->now();
+//                 stop_cmd.header.frame_id = "map";
+//                 stop_cmd.twist.linear.x = 0.0;  // No forward/backward
+//                 stop_cmd.twist.linear.y = 0.0;  // No lateral movement
+//                 stop_cmd.twist.linear.z = vz_global;  // Maintain altitude!
+//                 stop_cmd.twist.angular.x = 0.0;
+//                 stop_cmd.twist.angular.y = 0.0;
+//                 stop_cmd.twist.angular.z = 0.0;  // CRITICAL: Lock yaw when centered
+//                 node->publishLocalVelocity(stop_cmd);
+//             }
+            
+//             if (consecutive_centered_count >= required_centered_frames) {
+//                 if (test_mode) {
+//                     RCLCPP_INFO(node->get_logger(), "TEST MODE: FAST Centering validation SUCCESSFUL!");
+//                 } else {
+//                     RCLCPP_INFO(node->get_logger(), "FAST Gate centering SUCCESSFUL!");
+//                 }
+//                 status = true;
+//                 break;
+//             }
+//         } else {
+//             consecutive_centered_count = 0;
+            
+//             // ===== STEP 8: FAST MODE - Direct velocity to center =====
+            
+//             if (!test_mode) {
+//                 geometry_msgs::msg::PoseStamped current_pose = node->getCurrentLocalPose();
+//                 float current_yaw = getHeading(current_pose.pose.orientation);
+                
+//                 // Determine velocity gain based on distance to center
+//                 float distance_to_center = std::abs(lateral_error);
+//                 float velocity_gain;
+                
+//                 if (distance_to_center > approach_distance_threshold) {
+//                     // FAR FROM CENTER: Use high gain for fast approach
+//                     velocity_gain = fast_velocity_gain;
+//                 } else {
+//                     // CLOSE TO CENTER: Switch to proportional control for smooth landing
+//                     velocity_gain = proportional_gain;
+//                 }
+                
+//                 // Calculate target velocity with dynamic gain
+//                 float target_velocity_body_y = velocity_gain * lateral_error;
+//                 target_velocity_body_y = std::max(-max_velocity, std::min(max_velocity, target_velocity_body_y));
+                
+//                 // Transform to global frame
+//                 float vx_body = 0.0;
+//                 float vy_body = target_velocity_body_y;
+                
+//                 float vx_global = vx_body * cos(current_yaw) - vy_body * sin(current_yaw);
+//                 float vy_global = vx_body * sin(current_yaw) + vy_body * cos(current_yaw);
+                
+//                 // RANGEFINDER-BASED ALTITUDE CONTROL (active centering mode)
+//                 sensor_msgs::msg::Range current_rangefinder = node->getCurrentRangefinder();
+//                 float current_rangefinder_distance = current_rangefinder.range;
+                
+//                 // Apply low-pass filter
+//                 filtered_rangefinder = rangefinder_filter_alpha * current_rangefinder_distance + 
+//                                       (1.0f - rangefinder_filter_alpha) * filtered_rangefinder;
+                
+//                 // Calculate altitude error
+//                 float altitude_error = reference_altitude - filtered_rangefinder;
+//                 float vz_global = 0.0;
+                
+//                 // Moderate control during active centering (medium deadband)
+//                 if (std::abs(altitude_error) > 0.10f) {  // 10cm deadband
+//                     vz_global = 0.3f * altitude_error;  // Moderate gain
+//                     vz_global = std::max(-0.15f, std::min(0.15f, vz_global));
+//                 }
+                
+//                 // Yaw control
+//                 const float kp_yaw = 0.3f;
+//                 const float max_angular_vel = 0.3f;
+//                 float angular_z = kp_yaw * yaw_error;
+//                 angular_z = std::max(-max_angular_vel, std::min(max_angular_vel, angular_z));
+
+//                 // Publish velocity command
+//                 geometry_msgs::msg::TwistStamped twist_cmd;
+//                 twist_cmd.header.stamp = node->now();
+//                 twist_cmd.header.frame_id = "map";
+//                 twist_cmd.twist.linear.x = vx_global;
+//                 twist_cmd.twist.linear.y = vy_global;
+//                 twist_cmd.twist.linear.z = vz_global;
+//                 twist_cmd.twist.angular.x = 0.0;
+//                 twist_cmd.twist.angular.y = 0.0;
+//                 twist_cmd.twist.angular.z = -angular_z;
+                
+//                 node->publishLocalVelocity(twist_cmd);
+                
+//                 std::string mode = (distance_to_center > approach_distance_threshold) ? "FAST" : "SLOW";
+//                 RCLCPP_INFO_THROTTLE(node->get_logger(), *node->get_clock(), 500,
+//                     "FAST[%s] | Gate[L:%.2f R:%.2f W:%.2fm] | Err:%.3fm(%.1fx) YawErr:%.1f° | Vel[x:%.3f y:%.3f z:%.3f ω:%.3f]",
+//                     mode.c_str(), left_y, right_y, detected_width, 
+//                     lateral_error, velocity_gain, yaw_error * 180.0 / M_PI,
+//                     vx_global, vy_global, vz_global, angular_z);
+//             }
+//         }
+        
+//         rclcpp::spin_some(node);
+//         rate.sleep();
+//     }
+    
+//     // Final stop
+//     if (!test_mode) {
+//         geometry_msgs::msg::TwistStamped stop_cmd;
+//         stop_cmd.header.stamp = node->now();
+//         stop_cmd.header.frame_id = "map";
+//         stop_cmd.twist.linear.x = 0.0;
+//         stop_cmd.twist.linear.y = 0.0;
+//         stop_cmd.twist.linear.z = 0.0;
+//         stop_cmd.twist.angular.x = 0.0;
+//         stop_cmd.twist.angular.y = 0.0;
+//         stop_cmd.twist.angular.z = 0.0;
+//         node->publishLocalVelocity(stop_cmd);
+//     }
+    
+//     if (status) {
+//         if (test_mode) {
+//             RCLCPP_INFO(node->get_logger(), "\n=== TEST MODE: FAST LiDAR Centering COMPLETED ===");
+//         } else {
+//             RCLCPP_INFO(node->get_logger(), "=== FAST Livox Gate Centering COMPLETED ===");
+//         }
+//     } else {
+//         if (test_mode) {
+//             RCLCPP_ERROR(node->get_logger(), "\n=== TEST MODE: FAST LiDAR Centering FAILED ===");
+//         } else {
+//             RCLCPP_ERROR(node->get_logger(), "=== FAST Livox Gate Centering FAILED ===");
+//         }
+//     }
+// }
+
+// void followPath(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const std::vector<PathWaypoint>& waypoints, float speed, float tolerance, bool allow_centering_payload, bool allow_centering_ember, bool disable_z_lock, bool stabilize_at_waypoint, float stabilize_duration) {
+//     /**
+//      * Follow a path defined by a series of waypoints
+//      * Moves the drone through each waypoint sequentially using moveToPoint()
+//      */
+    
+//     if (waypoints.empty()) {
+//         RCLCPP_WARN(node->get_logger(), "Path following: waypoints vector is empty!");
+//         return;
+//     }
+    
+//     RCLCPP_INFO(node->get_logger(), "=== Starting Path Following ===");
+//     RCLCPP_INFO(node->get_logger(), "Total waypoints: %zu", waypoints.size());
+//     RCLCPP_INFO(node->get_logger(), "Speed: %.2f m/s | Tolerance: %.2f m", speed, tolerance);
+    
+//     for (size_t i = 0; i < waypoints.size(); i++) {
+//         const PathWaypoint& wp = waypoints[i];
+        
+//         RCLCPP_INFO(node->get_logger(), "\n>>> Moving to Waypoint %zu/%zu <<<", i+1, waypoints.size());
+//         RCLCPP_INFO(node->get_logger(), "    Target: x=%.2f, y=%.2f, z=%.2f, yaw=%.2f rad (%.1f deg)", 
+//                     wp.x, wp.y, wp.z, wp.yaw, wp.yaw * RAD2DEG);
+        
+//         // Create target pose
+//         geometry_msgs::msg::Pose target;
+//         target.position.x = wp.x;
+//         target.position.y = wp.y;
+//         target.position.z = wp.z;
+//         setHeading(target.orientation, wp.yaw);
+        
+//         // Move to waypoint
+//         moveToPoint(node, rate, posee, target, speed, tolerance, allow_centering_payload, allow_centering_ember, disable_z_lock);
+        
+//         RCLCPP_INFO(node->get_logger(), "    Waypoint %zu reached!", i+1);
+        
+//         // Stabilize at waypoint if enabled
+//         if (stabilize_at_waypoint && i < waypoints.size() - 1) {  // Don't stabilize at last waypoint
+//             RCLCPP_INFO(node->get_logger(), "    Stabilizing for %.1f seconds...", stabilize_duration);
+//             stabilize(node, rate, posee, stabilize_duration);
+//         }
+//     }
+    
+//     RCLCPP_INFO(node->get_logger(), "=== Path Following Complete ===");
+//     RCLCPP_INFO(node->get_logger(), "Final position: x=%.2f, y=%.2f, z=%.2f", 
+//                 posee.pose.position.x, posee.pose.position.y, posee.pose.position.z);
+// }
+
+// std::vector<PathWaypoint> smoothPathBSpline(const std::vector<PathWaypoint>& waypoints, float smoothness, int degree, int num_points) {
+//     /**
+//      * Smooth path using B-Spline interpolation
+//      * Simplified implementation (not exact scipy.splprep, but similar effect)
+//      * Using Catmull-Rom spline for simplicity (similar smoothness to B-spline)
+//      */
+    
+//     if (waypoints.size() < 2) {
+//         return waypoints;
+//     }
+    
+//     if (waypoints.size() < 4) {
+//         degree = std::min(degree, (int)waypoints.size() - 1);
+//     }
+    
+//     std::vector<PathWaypoint> smooth_path;
+    
+//     // Generate num_points interpolated waypoints
+//     for (int i = 0; i < num_points; i++) {
+//         float t_global = (float)i / (num_points - 1);
+//         float t_scaled = t_global * (waypoints.size() - 1);
+//         int segment = std::min((int)t_scaled, (int)waypoints.size() - 2);
+//         float t_local = t_scaled - segment;
+        
+//         // Get control points (with boundary handling)
+//         PathWaypoint p0 = (segment > 0) ? waypoints[segment - 1] : waypoints[segment];
+//         PathWaypoint p1 = waypoints[segment];
+//         PathWaypoint p2 = waypoints[segment + 1];
+//         PathWaypoint p3 = (segment + 2 < waypoints.size()) ? waypoints[segment + 2] : waypoints[segment + 1];
+        
+//         // Catmull-Rom interpolation (smooth curve through all points)
+//         float t2 = t_local * t_local;
+//         float t3 = t2 * t_local;
+        
+//         PathWaypoint interpolated;
+//         interpolated.x = 0.5f * ((2.0f * p1.x) +
+//                                 (-p0.x + p2.x) * t_local +
+//                                 (2.0f * p0.x - 5.0f * p1.x + 4.0f * p2.x - p3.x) * t2 +
+//                                 (-p0.x + 3.0f * p1.x - 3.0f * p2.x + p3.x) * t3);
+        
+//         interpolated.y = 0.5f * ((2.0f * p1.y) +
+//                                 (-p0.y + p2.y) * t_local +
+//                                 (2.0f * p0.y - 5.0f * p1.y + 4.0f * p2.y - p3.y) * t2 +
+//                                 (-p0.y + 3.0f * p1.y - 3.0f * p2.y + p3.y) * t3);
+        
+//         interpolated.z = 0.5f * ((2.0f * p1.z) +
+//                                 (-p0.z + p2.z) * t_local +
+//                                 (2.0f * p0.z - 5.0f * p1.z + 4.0f * p2.z - p3.z) * t2 +
+//                                 (-p0.z + 3.0f * p1.z - 3.0f * p2.z + p3.z) * t3);
+        
+//         interpolated.yaw = 0.0f; // Will be calculated later with auto-heading
+        
+//         smooth_path.push_back(interpolated);
+//     }
+    
+//     return smooth_path;
+// }
+
+// std::vector<PathWaypoint> ramerDouglasPeucker(const std::vector<PathWaypoint>& path, float epsilon) {
+//     /**
+//      * Ramer-Douglas-Peucker path simplification
+//      * Direct port from Python implementation
+//      */
+    
+//     if (path.size() < 3) {
+//         return path;
+//     }
+    
+//     // Find point with maximum perpendicular distance
+//     PathWaypoint start = path.front();
+//     PathWaypoint end = path.back();
+    
+//     float dx = end.x - start.x;
+//     float dy = end.y - start.y;
+//     float dz = end.z - start.z;
+//     float line_len = sqrt(dx*dx + dy*dy + dz*dz);
+    
+//     float dmax = 0.0f;
+//     size_t index = 0;
+    
+//     if (line_len > 1e-10f) {
+//         float dir_x = dx / line_len;
+//         float dir_y = dy / line_len;
+//         float dir_z = dz / line_len;
+        
+//         for (size_t i = 1; i < path.size() - 1; i++) {
+//             float px = path[i].x - start.x;
+//             float py = path[i].y - start.y;
+//             float pz = path[i].z - start.z;
+            
+//             // Project onto line
+//             float t = std::clamp(px*dir_x + py*dir_y + pz*dir_z, 0.0f, line_len);
+            
+//             // Closest point on line
+//             float closest_x = start.x + t * dir_x;
+//             float closest_y = start.y + t * dir_y;
+//             float closest_z = start.z + t * dir_z;
+            
+//             // Perpendicular distance
+//             float dist_x = path[i].x - closest_x;
+//             float dist_y = path[i].y - closest_y;
+//             float dist_z = path[i].z - closest_z;
+//             float d = sqrt(dist_x*dist_x + dist_y*dist_y + dist_z*dist_z);
+            
+//             if (d > dmax) {
+//                 dmax = d;
+//                 index = i;
+//             }
+//         }
+//     } else { 
+//         for (size_t i = 1; i < path.size() - 1; i++) {
+//             float dx = path[i].x - start.x;
+//             float dy = path[i].y - start.y;
+//             float dz = path[i].z - start.z;
+//             float d = sqrt(dx*dx + dy*dy + dz*dz);
+//             if (d > dmax) {
+//                 dmax = d;
+//                 index = i;
+//             }
+//         }
+//     }
+    
+//     // Recursive simplification
+//     std::vector<PathWaypoint> result;
+//     if (dmax > epsilon) {
+//         std::vector<PathWaypoint> left(path.begin(), path.begin() + index + 1);
+//         std::vector<PathWaypoint> right(path.begin() + index, path.end());
+        
+//         auto left_result = ramerDouglasPeucker(left, epsilon);
+//         auto right_result = ramerDouglasPeucker(right, epsilon);
+        
+//         result.insert(result.end(), left_result.begin(), left_result.end() - 1);
+//         result.insert(result.end(), right_result.begin(), right_result.end());
+//     } else {
+//         result.push_back(start);
+//         result.push_back(end);
+//     }
+    
+//     return result;
+// }
+
+// void followPathVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const std::vector<PathWaypoint>& path, float max_speed, float step_tolerance, float slow_down_distance, bool enable_lateral_comp, float lateral_comp_factor) {
+    
+//     RCLCPP_INFO(node->get_logger(), "Following %zu waypoints | Speed: %.1f m/s | Tol: %.2fm", 
+//                 path.size(), max_speed, step_tolerance);
+//     RCLCPP_INFO(node->get_logger(), "Horizontal navigation only - altitude locked (vel_z = 0)");
+    
+//     geometry_msgs::msg::Twist vel_cmd;
+//     const float MAX_TIME_PER_WP = 60.0f; // 60 seconds timeout per waypoint
+    
+//     for (size_t i = 0; i < path.size(); i++) {
+//         const PathWaypoint& target = path[i];
+        
+//         auto start_time = std::chrono::steady_clock::now();
+//         int loop_count = 0;
+        
+//         while (rclcpp::ok()) {
+//             auto curr_pose = node->getCurrentLocalPose();
+            
+//             // Calculate HORIZONTAL direction vector only (ignore target.z)
+//             float dx = target.x - curr_pose.pose.position.x;
+//             float dy = target.y - curr_pose.pose.position.y;
+//             float horizontal_error = sqrt(dx*dx + dy*dy);
+            
+//             // Check timeout
+//             auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(
+//                 std::chrono::steady_clock::now() - start_time).count();
+//             if (elapsed > MAX_TIME_PER_WP) {
+//                 RCLCPP_WARN(node->get_logger(), "WP %zu timeout (%.1fs) - skipping", i+1, (float)elapsed);
+//                 break;
+//             }
+            
+//             // Check if waypoint reached (HORIZONTAL distance only)
+//             if (horizontal_error < step_tolerance) {
+//                 if (loop_count % 10 == 0 || loop_count < 5) {
+//                     RCLCPP_INFO(node->get_logger(), "WP %zu/%zu reached (horizontal err: %.2fm)", 
+//                                 i+1, path.size(), horizontal_error);
+//                 }
+//                 break;
+//             }
+            
+//             // Set HORIZONTAL velocity (X, Y) only
+//             vel_cmd.linear.x = -dx;
+//             vel_cmd.linear.y = -dy;
+//             vel_cmd.linear.z = 0.0f; 
+            
+//             // Lateral compensation
+//             if (enable_lateral_comp && fabs(vel_cmd.linear.y) >= 1.0f) {
+//                 vel_cmd.linear.x = -dx / (lateral_comp_factor * fabs(vel_cmd.linear.y));
+//             }
+            
+//             // Clamp HORIZONTAL velocity to max speed
+//             if (horizontal_error > max_speed) {
+//                 float scale = max_speed / horizontal_error;
+//                 vel_cmd.linear.x *= scale;
+//                 vel_cmd.linear.y *= scale;
+//                 // vel_z stays 0
+//             }
+            
+//             // Auto slow-down near endpoint (HORIZONTAL only)
+//             float dist_to_end_x = path.back().x - target.x;
+//             float dist_to_end_y = path.back().y - target.y;
+//             float horizontal_dist_to_end = sqrt(dist_to_end_x*dist_to_end_x + 
+//                                                 dist_to_end_y*dist_to_end_y);
+            
+//             if (horizontal_dist_to_end < slow_down_distance && i > path.size() / 2) {
+//                 float speed_factor = std::max(0.1f, horizontal_dist_to_end / slow_down_distance);
+//                 vel_cmd.linear.x *= speed_factor;
+//                 vel_cmd.linear.y *= speed_factor;
+//                 // vel_z stays 0
+//             }
+            
+//             // Publish velocity command
+//             node->publishLocalVelocityUnstamped(vel_cmd);
+            
+//             // Log progress every 20 loops (reduce spam)
+//             if (loop_count % 20 == 0) {
+//                 RCLCPP_INFO(node->get_logger(), "WP %zu: h_err=%.2fm vel_xy=[%.2f,%.2f] alt=%.2fm", 
+//                            i+1, horizontal_error, vel_cmd.linear.x, vel_cmd.linear.y,
+//                            curr_pose.pose.position.z);
+//             }
+            
+//             loop_count++;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//         }
+//     }
+
+//     vel_cmd.linear.x = 0.0f;
+//     vel_cmd.linear.y = 0.0f;
+//     vel_cmd.linear.z = 0.0f;
+//     node->publishLocalVelocityUnstamped(vel_cmd); 
+    
+//     posee = node->getCurrentLocalPose();
+//     RCLCPP_INFO(node->get_logger(), "Path complete! Final: [%.2f, %.2f, %.2f]", 
+//                 posee.pose.position.x, posee.pose.position.y, posee.pose.position.z);
+// }
+
+// void followPathVelocity(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const std::vector<PathWaypoint>& path, float max_speed, float step_tolerance, float slow_down_distance, bool enable_lateral_comp, float lateral_comp_factor) {
+    
+//     RCLCPP_INFO(node->get_logger(), "Following %zu waypoints | Speed: %.1f m/s | Tol: %.2fm", 
+//                 path.size(), max_speed, step_tolerance);
+//     RCLCPP_INFO(node->get_logger(), "Horizontal navigation only - altitude locked (vel_z = 0)");
+//     RCLCPP_INFO(node->get_logger(), "Using GLOBAL frame velocity (map) - heading remains constant");
+    
+//     geometry_msgs::msg::TwistStamped vel_cmd;
+//     const float MAX_TIME_PER_WP = 60.0f; // 60 seconds timeout per waypoint
+    
+//     for (size_t i = 0; i < path.size(); i++) {
+//         const PathWaypoint& target = path[i];
+        
+//         auto start_time = std::chrono::steady_clock::now();
+//         int loop_count = 0;
+        
+//         while (rclcpp::ok()) {
+//             auto curr_pose = node->getCurrentLocalPose();
+            
+//             // Calculate HORIZONTAL direction vector only (ignore target.z)
+//             float dx = target.x - curr_pose.pose.position.x;
+//             float dy = target.y - curr_pose.pose.position.y;
+//             float horizontal_error = sqrt(dx*dx + dy*dy);
+            
+//             // Check timeout
+//             auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(
+//                 std::chrono::steady_clock::now() - start_time).count();
+//             if (elapsed > MAX_TIME_PER_WP) {
+//                 RCLCPP_WARN(node->get_logger(), "WP %zu timeout (%.1fs) - skipping", i+1, (float)elapsed);
+//                 break;
+//             }
+
+//             if (horizontal_error < step_tolerance) {
+//                 if (loop_count % 10 == 0 || loop_count < 5) {
+//                     RCLCPP_INFO(node->get_logger(), "WP %zu/%zu reached (horizontal err: %.2fm)", 
+//                                 i+1, path.size(), horizontal_error);
+//                 }
+//                 break;
+//             }
+            
+//             vel_cmd.header.stamp = node->now();
+//             vel_cmd.header.frame_id = "map";  
+//             vel_cmd.twist.linear.x = dx;
+//             vel_cmd.twist.linear.y = dy;
+//             vel_cmd.twist.linear.z = 0.0f; 
+
+//             if (enable_lateral_comp && fabs(vel_cmd.twist.linear.y) >= 1.0f) {
+//                 vel_cmd.twist.linear.x = dx / (lateral_comp_factor * fabs(vel_cmd.twist.linear.y));
+//             }
+            
+//             if (horizontal_error > max_speed) {
+//                 float scale = max_speed / horizontal_error;
+//                 vel_cmd.twist.linear.x *= scale;
+//                 vel_cmd.twist.linear.y *= scale;
+//             }
+
+//             float dist_to_end_x = path.back().x - target.x;
+//             float dist_to_end_y = path.back().y - target.y;
+//             float horizontal_dist_to_end = sqrt(dist_to_end_x*dist_to_end_x + 
+//                                                 dist_to_end_y*dist_to_end_y);
+            
+//             if (horizontal_dist_to_end < slow_down_distance && i > path.size() / 2) {
+//                 float speed_factor = std::max(0.1f, horizontal_dist_to_end / slow_down_distance);
+//                 vel_cmd.twist.linear.x *= speed_factor;
+//                 vel_cmd.twist.linear.y *= speed_factor;
+//                 // vel_z stays 0
+//             }
+            
+//             // Publish velocity command in GLOBAL frame
+//             node->publishLocalVelocity(vel_cmd);
+            
+//             // Log progress every 20 loops (reduce spam)
+//             if (loop_count % 20 == 0) {
+//                 RCLCPP_INFO(node->get_logger(), "WP %zu: h_err=%.2fm vel_map=[%.2f,%.2f] alt=%.2fm", 
+//                            i+1, horizontal_error, vel_cmd.twist.linear.x, vel_cmd.twist.linear.y,
+//                            curr_pose.pose.position.z);
+//             }
+            
+//             loop_count++;
+//             rclcpp::spin_some(node);
+//             rate.sleep();
+//         }
+//     }
+
+//     // Stop velocity
+//     vel_cmd.header.stamp = node->now();
+//     vel_cmd.header.frame_id = "map";
+//     vel_cmd.twist.linear.x = 0.0f;
+//     vel_cmd.twist.linear.y = 0.0f;
+//     vel_cmd.twist.linear.z = 0.0f;
+//     node->publishLocalVelocity(vel_cmd); 
+    
+//     posee = node->getCurrentLocalPose();
+//     RCLCPP_INFO(node->get_logger(), "Path complete! Final: [%.2f, %.2f, %.2f]", 
+//                 posee.pose.position.x, posee.pose.position.y, posee.pose.position.z);
+// }
+
+// void followPathFromConfig(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, const PathConfig& config) {
+    
+//     RCLCPP_INFO(node->get_logger(), "Path: %zu waypoints | Speed: %.1f m/s | Tol: %.2fm", 
+//                 config.waypoints.size(), config.speed, config.tolerance);
+    
+//     std::vector<PathWaypoint> path_to_follow = config.waypoints;
+//     // 
+//     if (config.enable_bspline_smoothing && config.waypoints.size() >= 2) {
+//         path_to_follow = smoothPathBSpline(config.waypoints, config.bspline_smoothness,
+//                                             config.bspline_degree, config.num_interpolation_points);
+//         RCLCPP_INFO(node->get_logger(), "B-Spline: %zu → %zu points", 
+//                     config.waypoints.size(), path_to_follow.size());
+//     }
+    
+//     // RDP simplification
+//     if (config.enable_rdp_simplification && path_to_follow.size() > 10) {
+//         auto simplified = ramerDouglasPeucker(path_to_follow, config.rdp_epsilon);
+//         RCLCPP_INFO(node->get_logger(), "RDP: %zu --> %zu points", 
+//                     path_to_follow.size(), simplified.size());
+//         path_to_follow = simplified;
+//     }
+    
+//     // Auto-heading
+//     if (config.auto_heading && path_to_follow.size() > 1) {
+//         for (size_t i = 0; i < path_to_follow.size() - 1; i++) {
+//             float dx = path_to_follow[i+1].x - path_to_follow[i].x;
+//             float dy = path_to_follow[i+1].y - path_to_follow[i].y;
+//             path_to_follow[i].yaw = atan2(dy, dx);
+//         }
+//         path_to_follow.back().yaw = path_to_follow[path_to_follow.size()-2].yaw;
+//     }
+    
+//     // Follow path
+//     followPathVelocity(node, rate, posee, path_to_follow, config.speed, config.tolerance,
+//                       config.slow_down_distance, config.enable_lateral_compensation,
+//                       config.lateral_compensation_factor);
+// }

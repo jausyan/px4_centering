@@ -1,0 +1,75 @@
+[0.000000] (-) TimerEvent: {}
+[0.000353] (control) JobQueued: {'identifier': 'control', 'dependencies': OrderedDict()}
+[0.000681] (control) JobStarted: {'identifier': 'control'}
+[0.007322] (control) JobProgress: {'identifier': 'control', 'progress': 'cmake'}
+[0.008113] (control) JobProgress: {'identifier': 'control', 'progress': 'build'}
+[0.009099] (control) Command: {'cmd': ['/usr/local/bin/cmake', '--build', '/home/el-system/backup/centering_experiment/build/control', '--', '-j12', '-l12'], 'cwd': '/home/el-system/backup/centering_experiment/build/control', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('USER', 'el-system'), ('LC_TIME', 'id_ID.UTF-8'), ('COPILOT_LOADER_PID', '17107'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '3'), ('LD_LIBRARY_PATH', '/home/el-system/ros2_ws/install/mid360_simulation/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/el-system'), ('CHROME_DESKTOP', 'code.desktop'), ('GIT_CONFIG_COUNT', '1'), ('OLDPWD', '/home/el-system/backup/centering_experiment'), ('TERM_PROGRAM_VERSION', '1.105.1'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('NVM_BIN', '/home/el-system/.nvm/versions/node/v22.19.0/bin'), ('NVM_INC', '/home/el-system/.nvm/versions/node/v22.19.0/include/node'), ('COPILOT_RUN_APP', '1'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'id_ID.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1708'), ('COPILOT_CLI', '1'), ('SYSTEMD_EXEC_PID', '2122'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4969'), ('NVM_DIR', '/home/el-system/.nvm'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/el-system/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'el-system'), ('JOURNAL_STREAM', '8:22827'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('GEMINI_CLI_IDE_WORKSPACE_PATH', '/home/el-system/backup/centering_experiment'), ('USERNAME', 'el-system'), ('TERM', 'xterm-color'), ('GAZEBO_MODEL_PATH', ':/home/el-system/ardupilot_gazebo/models:/home/el-system/ardupilot_gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('GEMINI_CLI_IDE_SERVER_PORT', '39317'), ('WINDOWPATH', '2'), ('GIT_CONFIG_VALUE_0', 'explicit'), ('PATH', '/opt/ros/humble/bin:/home/el-system/.nvm/versions/node/v22.19.0/bin:/home/el-system/ardupilot/Tools/autotest:/usr/lib/ccache:/home/el-system/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/home/el-system/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/home/el-system/.config/Code/User/globalStorage/github.copilot-chat/debugCommand:/home/el-system/flutter/bin:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/:/opt/xtensa-esp-elf/bin/'), ('SESSION_MANAGER', 'local/el-tech:@/tmp/.ICE-unix/1908,unix/el-tech:/tmp/.ICE-unix/1908'), ('INVOCATION_ID', 'e97c478e649941f9af7983cea7b4c273'), ('PAPERSIZE', 'a4'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'id_ID.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('PYTHONSTARTUP', '/home/el-system/.config/Code/User/workspaceStorage/e8dc6f5034097679af472282a46f3627/ms-python.python/pythonrc.py'), ('IBUS_DISABLE_SNOOPER', '1'), ('LC_TELEPHONE', 'id_ID.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61027eff45.sock'), ('RW_IMPLEMENTATION', 'rmw_fastrtps_cpp'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '0'), ('AMENT_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble'), ('COPILOT_AGENT_SESSION_ID', 'b499b12e-f3b4-4d0c-beb9-2e1a9dfdbcaf'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('LC_NAME', 'id_ID.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:13c5e1f6-4135-42e1-9b66-d0dbff8a7cb6'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('GIT_CONFIG_KEY_0', 'safe.bareRepository'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'id_ID.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'id_ID.UTF-8'), ('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCALHOST'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('GEMINI_CLI_IDE_AUTH_TOKEN', '225797e2-7221-4b42-bfe4-5b7b23ad32d6'), ('PWD', '/home/el-system/backup/centering_experiment/build/control'), ('COPILOT_CLI_BINARY_VERSION', '1.0.45'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('NVM_CD_FLAGS', ''), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'id_ID.UTF-8'), ('LC_PAPER', 'id_ID.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/el-system/ros2_ws/install/mid360_simulation:/opt/ros/humble')]), 'shell': False}
+[0.069556] (control) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o\x1b[0m\n'}
+[0.078331] (control) StdoutLine: {'line': b'[ 58%] Built target control\n'}
+[0.099980] (-) TimerEvent: {}
+[0.200274] (-) TimerEvent: {}
+[0.300695] (-) TimerEvent: {}
+[0.401268] (-) TimerEvent: {}
+[0.501656] (-) TimerEvent: {}
+[0.602048] (-) TimerEvent: {}
+[0.702448] (-) TimerEvent: {}
+[0.802842] (-) TimerEvent: {}
+[0.903332] (-) TimerEvent: {}
+[1.003803] (-) TimerEvent: {}
+[1.104279] (-) TimerEvent: {}
+[1.204708] (-) TimerEvent: {}
+[1.305139] (-) TimerEvent: {}
+[1.405548] (-) TimerEvent: {}
+[1.505939] (-) TimerEvent: {}
+[1.606320] (-) TimerEvent: {}
+[1.706677] (-) TimerEvent: {}
+[1.807058] (-) TimerEvent: {}
+[1.907416] (-) TimerEvent: {}
+[2.007823] (-) TimerEvent: {}
+[2.108243] (-) TimerEvent: {}
+[2.208662] (-) TimerEvent: {}
+[2.309043] (-) TimerEvent: {}
+[2.409440] (-) TimerEvent: {}
+[2.509799] (-) TimerEvent: {}
+[2.610187] (-) TimerEvent: {}
+[2.710541] (-) TimerEvent: {}
+[2.810913] (-) TimerEvent: {}
+[2.911277] (-) TimerEvent: {}
+[3.011725] (-) TimerEvent: {}
+[3.112126] (-) TimerEvent: {}
+[3.212533] (-) TimerEvent: {}
+[3.312915] (-) TimerEvent: {}
+[3.413372] (-) TimerEvent: {}
+[3.513784] (-) TimerEvent: {}
+[3.614217] (-) TimerEvent: {}
+[3.714605] (-) TimerEvent: {}
+[3.814983] (-) TimerEvent: {}
+[3.915399] (-) TimerEvent: {}
+[4.015779] (-) TimerEvent: {}
+[4.116139] (-) TimerEvent: {}
+[4.216547] (-) TimerEvent: {}
+[4.317008] (-) TimerEvent: {}
+[4.417478] (-) TimerEvent: {}
+[4.424155] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30\x1b[m\x1b[K,\n'}
+[4.424542] (control) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1\x1b[m\x1b[K:\n'}
+[4.424713] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.424881] (control) StderrLine: {'line': b'  167 |     void waitForService(\x1b[01;35m\x1b[Kauto\x1b[m\x1b[K &client);\n'}
+[4.425052] (control) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[4.425199] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1\x1b[m\x1b[K:\n'}
+[4.425340] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kuse of \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 in parameter declaration only available with \xe2\x80\x98\x1b[01m\x1b[K-std=c++20\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K-fconcepts\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.425486] (control) StderrLine: {'line': b'   88 | bool hasReplied(const std::shared_ptr<DroneController>&node, \x1b[01;35m\x1b[Kauto\x1b[m\x1b[K& result);\n'}
+[4.425624] (control) StderrLine: {'line': b'      |                                                              \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[4.425758] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[4.425903] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:94:42:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kcannot bind non-const lvalue reference of type \xe2\x80\x98\x1b[01m\x1b[Kbool&\x1b[m\x1b[K\xe2\x80\x99 to an rvalue of type \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.426045] (control) StderrLine: {'line': b'   94 |     centering_payload(node, rate, posee, \x1b[01;31m\x1b[Kfalse\x1b[m\x1b[K, 0.2, 1.0, 30.0, 30.0, 0.2)\n'}
+[4.426178] (control) StderrLine: {'line': b'      |                                          \x1b[01;31m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[4.426406] (control) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1\x1b[m\x1b[K:\n'}
+[4.426542] (control) StderrLine: {'line': b'\x1b[01m\x1b[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:239:135:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  initializing argument 4 of \xe2\x80\x98\x1b[01m\x1b[Kvoid centering_payload(const std::shared_ptr<DroneController>&, rclcpp::Rate&, geometry_msgs::msg::PoseStamped&, bool&, float, float, float, float, float)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[4.426720] (control) StderrLine: {'line': b'  239 | void centering_payload(const std::shared_ptr<DroneController>&node, rclcpp::Rate &rate, geometry_msgs::msg::PoseStamped &posee, \x1b[01;36m\x1b[Kbool &centering_status\x1b[m\x1b[K, float step = 0.2, float tolerance = 10.0, float timeout = 3.0, float max_time = 30.0, float log_interval = 0.5);\n'}
+[4.426857] (control) StderrLine: {'line': b'      |                                                                                                                                 \x1b[01;36m\x1b[K~~~~~~^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[4.427006] (control) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/test_centering.dir/build.make:79: CMakeFiles/test_centering.dir/src/mission/test.cpp.o] Error 1\n'}
+[4.427133] (control) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:188: CMakeFiles/test_centering.dir/all] Error 2\n'}
+[4.427264] (control) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[4.428788] (control) CommandEnded: {'returncode': 2}
+[4.451589] (control) JobEnded: {'identifier': 'control', 'rc': 2}
+[4.462600] (-) EventReactorShutdown: {}

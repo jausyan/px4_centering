@@ -43,6 +43,7 @@
 #include <sensor_msgs/msg/range.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <std_msgs/msg/float64.hpp>
+#include <std_msgs/msg/float64_multi_array.hpp>
 #include <std_msgs/msg/bool.hpp>
 #include <std_srvs/srv/trigger.hpp>
 #include <vector>
@@ -140,6 +141,11 @@ public:
 
     int current_wp_();
     int reset_wp_();
+    
+    // Altitude offset calibration (for compensating sensor drift)
+    void setGroundAltitudeOffset(float offset);
+    float getGroundAltitudeOffset() const;
+    float getRelativeAltitude() const;  // Get altitude relative to calibrated ground level
 
 private:
     // Callback functions to receive messages
@@ -148,6 +154,7 @@ private:
     void pose_cb(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg);
     void gate_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
     void payload_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
+    void payload_pose_array_cb(const std_msgs::msg::Float64MultiArray::SharedPtr msg);
     void ember_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
     void bunder_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
     void vel_cb(const geometry_msgs::msg::TwistStamped::ConstSharedPtr msg);
@@ -210,6 +217,7 @@ private:
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr                pose_sub;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr                gate_sub;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr                payload_sub;
+    rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr               payload_array_sub;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr                ember_sub;
     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr                bunder_sub;
     rclcpp::Subscription<geometry_msgs::msg::TwistStamped>::SharedPtr               vel_sub;
@@ -223,6 +231,11 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr                    laser_sub;
 
     int wp_reached;
+    
+    // Ground altitude offset for compensating sensor drift
+    // This value represents the altitude reading when drone is on the ground
+    // Should be set during takeoff calibration and used throughout flight
+    float ground_altitude_offset_;
 
 };
 

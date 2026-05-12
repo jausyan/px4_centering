@@ -1,0 +1,30 @@
+[  8%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/test_centering.dir/utils/control_.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/control.dir/utils/control_.cpp.o[0m
+[ 33%] [1m[32mLinking CXX executable test_centering[0m
+[ 41%] [1m[32mLinking CXX executable control[0m
+[ 66%] Built target test_centering
+[100%] Built target control
+-- Install configuration: ""
+-- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/control
+-- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/control" to ""
+-- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/test_centering
+-- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/test_centering" to ""
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/launch
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config/config.yaml
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.sh
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.dsv
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.bash
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.sh
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.zsh
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.dsv
+-- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/package.dsv
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/packages/control
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig.cmake
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake
+-- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/package.xml

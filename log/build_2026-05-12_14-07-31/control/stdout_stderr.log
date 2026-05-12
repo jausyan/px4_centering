@@ -1,0 +1,734 @@
+[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+[0m
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/lib/ccache/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter
+-- Found std_msgs: 4.9.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+-- Found mavros_msgs: 2.12.0 (/opt/ros/humble/share/mavros_msgs/cmake)
+-- Found rclcpp: 16.0.15 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.8 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")
+-- Found FastRTPS: /opt/ros/humble/include
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: /home/el-system/backup/centering_experiment/src/control/include
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done (1.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/el-system/backup/centering_experiment/build/control
+[ 22%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/src/mission/control.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/src/mission/test.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/path.dir/src/mission/path.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/control_.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/path.dir/utils/control_.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/path.dir/src/testing/drone_controller.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/math_.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/path.dir/utils/math_.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/math_.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/control_.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/src/testing/drone_controller.cpp.o[0m
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kgeometry_msgs::msg::TwistStamped zero(geometry_msgs::msg::TwistStamped&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:205:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ktgt[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  205 | geometry_msgs::msg::TwistStamped zero([01;35m[Kgeometry_msgs::msg::TwistStamped& tgt[m[K){
+      |                                       [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kfloat dataRange(std::vector<float>)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:244:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  244 |     for (int i = 0; [01;35m[Ki < data.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kgeometry_msgs::msg::TwistStamped zero(geometry_msgs::msg::TwistStamped&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:205:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ktgt[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  205 | geometry_msgs::msg::TwistStamped zero([01;35m[Kgeometry_msgs::msg::TwistStamped& tgt[m[K){
+      |                                       [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kfloat dataRange(std::vector<float>)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:244:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  244 |     for (int i = 0; [01;35m[Ki < data.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kgeometry_msgs::msg::TwistStamped zero(geometry_msgs::msg::TwistStamped&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:205:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Ktgt[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+  205 | geometry_msgs::msg::TwistStamped zero([01;35m[Kgeometry_msgs::msg::TwistStamped& tgt[m[K){
+      |                                       [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:[m[K In function ‘[01m[Kfloat dataRange(std::vector<float>)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/math_.cpp:244:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<float>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  244 |     for (int i = 0; [01;35m[Ki < data.size()[m[K; i++)
+      |                     [01;35m[K~~^~~~~~~~~~~~~[m[K
+[ 72%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/geo_.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/geo_.cpp.o[0m
+[ 83%] [32mBuilding CXX object CMakeFiles/path.dir/utils/geo_.cpp.o[0m
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kfloat DroneController::getObstacleDistance(float, float)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:91:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kmin_angle[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   91 |     float [01;35m[Kmin_angle[m[K = angle - angle_tolerance/2;
+      |           [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kint DroneController::reset_wp_()[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:110:52:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  110 | int DroneController::reset_wp_()   {wp_reached = 0;[01;35m[K}[m[K
+      |                                                    [01;35m[K^[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:173:250:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  173 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                          [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:244:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                    [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:248:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  175 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                        [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  176 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:246:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  177 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                      [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  178 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  180 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:256:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  181 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:257:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  182 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                 [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K At global scope:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:225:38:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  225 | void DroneController::waitForService([01;35m[Kauto[m[K &client) {
+      |                                      [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:[m[K In function ‘[01m[Kvoid offset_waypoints(std::vector<double>&, std::vector<double>&, sensor_msgs::msg::NavSatFix, sensor_msgs::msg::NavSatFix)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:182:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  182 |     for (int i = 0; [01;35m[Ki < latitudes.size()[m[K; ++i) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kfloat DroneController::getObstacleDistance(float, float)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:91:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kmin_angle[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   91 |     float [01;35m[Kmin_angle[m[K = angle - angle_tolerance/2;
+      |           [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kint DroneController::reset_wp_()[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:110:52:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  110 | int DroneController::reset_wp_()   {wp_reached = 0;[01;35m[K}[m[K
+      |                                                    [01;35m[K^[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:173:250:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  173 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                          [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:244:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                    [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:248:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  175 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                        [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  176 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:246:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  177 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                      [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  178 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  180 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:256:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  181 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:257:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  182 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                 [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K At global scope:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:225:38:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  225 | void DroneController::waitForService([01;35m[Kauto[m[K &client) {
+      |                                      [01;35m[K^~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:167:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  167 |     void waitForService([01;35m[Kauto[m[K &client);
+      |                         [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kfloat DroneController::getObstacleDistance(float, float)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:91:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kmin_angle[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   91 |     float [01;35m[Kmin_angle[m[K = angle - angle_tolerance/2;
+      |           [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Kint DroneController::reset_wp_()[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:110:52:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  110 | int DroneController::reset_wp_()   {wp_reached = 0;[01;35m[K}[m[K
+      |                                                    [01;35m[K^[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:173:250:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  173 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::takeoff_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)             {waitForTakeoffService(); return this->takeoff_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                          [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:174:244:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandTOL; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandTOL_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  174 | rclcpp::Client<mavros_msgs::srv::CommandTOL>::SharedFuture DroneController::land_(const std::shared_ptr<mavros_msgs::srv::CommandTOL::Request>& request)                {waitForLandService(); return this->land_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                    [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:175:248:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandBool; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandBool_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  175 | rclcpp::Client<mavros_msgs::srv::CommandBool>::SharedFuture DroneController::arm_(const std::shared_ptr<mavros_msgs::srv::CommandBool::Request>& request)               {waitForArmingService(); return this->arming_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                        [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:176:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::SetMode; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::SetMode_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  176 | rclcpp::Client<mavros_msgs::srv::SetMode>::SharedFuture DroneController::setMode_(const std::shared_ptr<mavros_msgs::srv::SetMode::Request>& request)                   {waitForSetModeService(); return this->set_mode_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:177:246:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::CommandLong; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::CommandLong_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  177 | rclcpp::Client<mavros_msgs::srv::CommandLong>::SharedFuture DroneController::servo_(const std::shared_ptr<mavros_msgs::srv::CommandLong::Request>& request)             {waitForServoService(); return this->servo_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                      [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:178:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  178 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::closeCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                     {waitForCloseCamService(); return this->close_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:179:251:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = std_srvs::srv::Trigger; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<std_srvs::srv::Trigger_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  179 | rclcpp::Client<std_srvs::srv::Trigger>::SharedFuture DroneController::openCamera_(const std::shared_ptr<std_srvs::srv::Trigger::Request>& request)                      {waitForOpenCamService(); return this->open_cam_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                           [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:180:253:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::ParamSetV2; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::ParamSetV2_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  180 | rclcpp::Client<mavros_msgs::srv::ParamSetV2>::SharedFuture DroneController::setParam_(const std::shared_ptr<mavros_msgs::srv::ParamSetV2::Request>& request)            {waitForSetParamService(); return this->set_param_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                             [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:181:256:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointPush; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointPush_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  181 | rclcpp::Client<mavros_msgs::srv::WaypointPush>::SharedFuture DroneController::pushMission_(const std::shared_ptr<mavros_msgs::srv::WaypointPush::Request>& request)     {waitForSetParamService(); return this->push_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K In member function ‘[01m[Krclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear_Request_<std::allocator<void> > >&)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:182:257:[m[K [01;35m[Kwarning: [m[K‘[01m[Krclcpp::Client<ServiceT>::FutureAndRequestId::operator rclcpp::Client<ServiceT>::SharedFuture() [with ServiceT = mavros_msgs::srv::WaypointClear; rclcpp::Client<ServiceT>::SharedFuture = std::shared_future<std::shared_ptr<mavros_msgs::srv::WaypointClear_Response_<std::allocator<void> > > >][m[K’ is deprecated: FutureAndRequestId: use .future.share() instead of an implicit conversion [[01;35m[K-Wdeprecated-declarations[m[K]
+  182 | rclcpp::Client<mavros_msgs::srv::WaypointClear>::SharedFuture DroneController::clearMission_(const std::shared_ptr<mavros_msgs::srv::WaypointClear::Request>& request)  {waitForSetParamService(); return this->clear_mission_client->async_send_request(request[01;35m[K)[m[K;}
+      |                                                                                                                                                                                                                                                                 [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:20[m[K,
+                 from [01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:17[m[K:
+[01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:415:5:[m[K [01;36m[Knote: [m[Kdeclared here
+  415 |     [01;36m[Koperator[m[K SharedFuture() {return this->future.share();}
+      |     [01;36m[K^~~~~~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:[m[K At global scope:
+[01m[K/home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp:225:38:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+  225 | void DroneController::waitForService([01;35m[Kauto[m[K &client) {
+      |                                      [01;35m[K^~~~[m[K
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:[m[K In function ‘[01m[Kvoid offset_waypoints(std::vector<double>&, std::vector<double>&, sensor_msgs::msg::NavSatFix, sensor_msgs::msg::NavSatFix)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:182:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  182 |     for (int i = 0; [01;35m[Ki < latitudes.size()[m[K; ++i) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/test_lidar.dir/build.make:79: CMakeFiles/test_lidar.dir/src/mission/test.cpp.o] Error 1
+gmake[2]: *** [CMakeFiles/path.dir/build.make:107: CMakeFiles/path.dir/utils/control_.cpp.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[2]: *** Waiting for unfinished jobs....
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/control_lidar.dir/build.make:107: CMakeFiles/control_lidar.dir/utils/control_.cpp.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/control.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/control_lidar.dir/build.make:79: CMakeFiles/control_lidar.dir/src/mission/control.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:159: CMakeFiles/control_lidar.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/path.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/path.dir/build.make:79: CMakeFiles/path.dir/src/mission/path.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:191: CMakeFiles/path.dir/all] Error 2
+In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/utils/control_.cpp:1[m[K:
+[01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Klivox_ros_driver2/msg/custom_msg.hpp: No such file or directory
+   32 | #include [01;31m[K<livox_ros_driver2/msg/custom_msg.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/test_lidar.dir/build.make:107: CMakeFiles/test_lidar.dir/utils/control_.cpp.o] Error 1
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:[m[K In function ‘[01m[Kvoid offset_waypoints(std::vector<double>&, std::vector<double>&, sensor_msgs::msg::NavSatFix, sensor_msgs::msg::NavSatFix)[m[K’:
+[01m[K/home/el-system/backup/centering_experiment/src/control/utils/geo_.cpp:182:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kstd::vector<double>::size_type[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  182 |     for (int i = 0; [01;35m[Ki < latitudes.size()[m[K; ++i) {
+      |                     [01;35m[K~~^~~~~~~~~~~~~~~~~~[m[K
+gmake[1]: *** [CMakeFiles/Makefile2:223: CMakeFiles/test_lidar.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

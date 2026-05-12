@@ -12,8 +12,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/4.1.2/CMakeSystem.cmake"
   "ament_cmake_core/package.cmake"
   "ament_cmake_package_templates/templates.cmake"
-  "/home/el-system/centering_experiment/src/control/CMakeLists.txt"
-  "/home/el-system/centering_experiment/src/control/package.xml"
+  "/home/el-system/backup/centering_experiment/src/control/CMakeLists.txt"
+  "/home/el-system/backup/centering_experiment/src/control/package.xml"
   "/opt/cmake-4.1.2-linux-x86_64/share/cmake-4.1/Modules/CMakeCInformation.cmake"
   "/opt/cmake-4.1.2-linux-x86_64/share/cmake-4.1/Modules/CMakeCXXInformation.cmake"
   "/opt/cmake-4.1.2-linux-x86_64/share/cmake-4.1/Modules/CMakeCommonLanguageInclude.cmake"
@@ -811,6 +811,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   "CMakeFiles/control_uninstall.dir/DependInfo.cmake"
-  "CMakeFiles/control_lidar.dir/DependInfo.cmake"
-  "CMakeFiles/test_lidar.dir/DependInfo.cmake"
+  "CMakeFiles/control.dir/DependInfo.cmake"
+  "CMakeFiles/test_centering.dir/DependInfo.cmake"
   )

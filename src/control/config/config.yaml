@@ -2,7 +2,7 @@
   ros__parameters:
     gate_centering:
       takeoff_altitude: 1.3
-      forward_distance: 2.0
+      forward_distance: 1.0
       gate_width: 1.5               
       centering_tolerance: 0.15     
       waypoint_tolerance: 0.3

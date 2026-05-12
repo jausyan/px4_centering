@@ -1,0 +1,7 @@
+[  5%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/control_.cpp.o[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/path.dir/utils/control_.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/control_.cpp.o[0m
+[ 22%] [1m[32mLinking CXX executable test_lidar[0m
+[ 27%] [1m[32mLinking CXX executable control_lidar[0m
+[ 33%] [1m[32mLinking CXX executable path[0m
+[ 55%] Built target control_lidar

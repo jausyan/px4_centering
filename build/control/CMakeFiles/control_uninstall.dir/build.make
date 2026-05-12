@@ -53,10 +53,10 @@ RM = /opt/cmake-4.1.2-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/el-system/centering_experiment/src/control
+CMAKE_SOURCE_DIR = /home/el-system/backup/centering_experiment/src/control
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/el-system/centering_experiment/build/control
+CMAKE_BINARY_DIR = /home/el-system/backup/centering_experiment/build/control
 
 # Utility rule file for control_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/control_uninstall.dir/compiler_depend.make
 include CMakeFiles/control_uninstall.dir/progress.make
 
 CMakeFiles/control_uninstall:
-	/opt/cmake-4.1.2-linux-x86_64/bin/cmake -P /home/el-system/centering_experiment/build/control/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/opt/cmake-4.1.2-linux-x86_64/bin/cmake -P /home/el-system/backup/centering_experiment/build/control/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 CMakeFiles/control_uninstall.dir/codegen:
 .PHONY : CMakeFiles/control_uninstall.dir/codegen
@@ -85,6 +85,6 @@ CMakeFiles/control_uninstall.dir/clean:
 .PHONY : CMakeFiles/control_uninstall.dir/clean
 
 CMakeFiles/control_uninstall.dir/depend:
-	cd /home/el-system/centering_experiment/build/control && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/el-system/centering_experiment/src/control /home/el-system/centering_experiment/src/control /home/el-system/centering_experiment/build/control /home/el-system/centering_experiment/build/control /home/el-system/centering_experiment/build/control/CMakeFiles/control_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/el-system/backup/centering_experiment/build/control && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/el-system/backup/centering_experiment/src/control /home/el-system/backup/centering_experiment/src/control /home/el-system/backup/centering_experiment/build/control /home/el-system/backup/centering_experiment/build/control /home/el-system/backup/centering_experiment/build/control/CMakeFiles/control_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/control_uninstall.dir/depend
 

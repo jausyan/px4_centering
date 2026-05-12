@@ -1,7 +1,7 @@
 CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.o: \
- /home/el-system/centering_experiment/src/control/src/testing/drone_controller.cpp \
+ /home/el-system/backup/centering_experiment/src/control/src/testing/drone_controller.cpp \
  /usr/include/stdc-predef.h \
- /home/el-system/centering_experiment/src/control/include/drone_controller_.hpp \
+ /home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp \
  /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp \
  /usr/include/c++/11/csignal \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -619,7 +619,7 @@ CMakeFiles/control_lidar.dir/src/testing/drone_controller.cpp.o: \
  /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/thread_safe_synchronization.hpp \
  /opt/ros/humble/include/rclcpp/rclcpp/wait_set_policies/detail/write_preferring_read_write_lock.hpp \
  /opt/ros/humble/include/rclcpp/rclcpp/wait_set_template.hpp \
- /home/el-system/centering_experiment/src/control/include/math_.hpp \
+ /home/el-system/backup/centering_experiment/src/control/include/math_.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/point.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point__struct.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/point__builder.hpp \

@@ -1,0 +1,39 @@
+[0.010s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[0.048s] [ 50%] Built target control
+[0.055s] [ 58%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o[0m
+[3.701s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:30[m[K,
+[3.701s]                  from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[3.701s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/drone_controller_.hpp:169:25:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[3.701s]   169 |     void waitForService([01;35m[Kauto[m[K &client);
+[3.701s]       |                         [01;35m[K^~~~[m[K
+[3.701s] In file included from [01m[K/home/el-system/backup/centering_experiment/src/control/src/mission/test.cpp:1[m[K:
+[3.701s] [01m[K/home/el-system/backup/centering_experiment/src/control/include/control_.hpp:88:62:[m[K [01;35m[Kwarning: [m[Kuse of ‘[01m[Kauto[m[K’ in parameter declaration only available with ‘[01m[K-std=c++20[m[K’ or ‘[01m[K-fconcepts[m[K’
+[3.701s]    88 | bool hasReplied(const std::shared_ptr<DroneController>&node, [01;35m[Kauto[m[K& result);
+[3.701s]       |                                                              [01;35m[K^~~~[m[K
+[3.706s] [ 66%] [1m[32mLinking CXX executable test_centering[0m
+[6.045s] [100%] Built target test_centering
+[6.050s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --build /home/el-system/backup/centering_experiment/build/control -- -j12 -l12
+[6.055s] Invoking command in '/home/el-system/backup/centering_experiment/build/control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control
+[6.057s] -- Install configuration: ""
+[6.057s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/lib/control/control
+[6.058s] -- Installing: /home/el-system/backup/centering_experiment/install/control/lib/control/test_centering
+[6.082s] -- Set non-toolchain portion of runtime path of "/home/el-system/backup/centering_experiment/install/control/lib/control/test_centering" to ""
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/launch
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/config/config.yaml
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/package_run_dependencies/control
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/parent_prefix_path/control
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.sh
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/ament_prefix_path.dsv
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.sh
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/environment/path.dsv
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.bash
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.sh
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.zsh
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/local_setup.dsv
+[6.082s] -- Installing: /home/el-system/backup/centering_experiment/install/control/share/control/package.dsv
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/ament_index/resource_index/packages/control
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig.cmake
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/cmake/controlConfig-version.cmake
+[6.082s] -- Up-to-date: /home/el-system/backup/centering_experiment/install/control/share/control/package.xml
+[6.083s] Invoked command in '/home/el-system/backup/centering_experiment/build/control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/local/bin/cmake --install /home/el-system/backup/centering_experiment/build/control

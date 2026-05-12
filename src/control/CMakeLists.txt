@@ -23,16 +23,29 @@ find_package(mavros_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
+# find_package(livox_ros_driver2 REQUIRED)
 
-add_executable(control_lidar src/mission/control.cpp ${projectLibSources})
-ament_target_dependencies(control_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
+add_executable(control src/mission/control.cpp ${projectLibSources})
+ament_target_dependencies(control rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
 
-add_executable(test_lidar src/mission/test.cpp ${projectLibSources})
-ament_target_dependencies(test_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
+# add_executable(path src/mission/path.cpp ${projectLibSources})
+# ament_target_dependencies(path rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
+
+add_executable(test_centering src/mission/test.cpp ${projectLibSources})
+ament_target_dependencies(test_centering rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs)
+
+# add_executable(control_lidar src/mission/control.cpp ${projectLibSources})
+# ament_target_dependencies(control_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs livox_ros_driver2)
+
+# add_executable(path src/mission/path.cpp ${projectLibSources})
+# ament_target_dependencies(path rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs livox_ros_driver2)
+
+# add_executable(test_lidar src/mission/test.cpp ${projectLibSources})
+# ament_target_dependencies(test_lidar rclcpp std_msgs geometry_msgs sensor_msgs mavros_msgs std_srvs livox_ros_driver2)
 
 install(TARGETS
-  test_lidar
-  control_lidar
+  control
+  test_centering
   DESTINATION lib/${PROJECT_NAME}
 )
 

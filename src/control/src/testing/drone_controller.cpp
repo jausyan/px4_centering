@@ -17,6 +17,9 @@
 #include "drone_controller_.hpp"
 
 DroneController::DroneController() : Node("drone_controller") {
+    // Initialize ground altitude offset to 0.0 (will be calibrated during takeoff)
+    this->ground_altitude_offset_ = 0.0f;
+    
     this->local_pos_pub = this->create_publisher<geometry_msgs::msg::PoseStamped>("mavros/setpoint_position/local", 10);
     this->local_vel_pub = this->create_publisher<geometry_msgs::msg::TwistStamped>("mavros/setpoint_velocity/cmd_vel", 10);
     this->local_vel_pub_unstamped = this->create_publisher<geometry_msgs::msg::Twist>("mavros/setpoint_velocity/cmd_vel_unstamped", 10);
@@ -29,7 +32,7 @@ DroneController::DroneController() : Node("drone_controller") {
     this->land_client = this->create_client<mavros_msgs::srv::CommandTOL>("mavros/cmd/land");
     this->arming_client = this->create_client<mavros_msgs::srv::CommandBool>("mavros/cmd/arming");
     this->set_mode_client = this->create_client<mavros_msgs::srv::SetMode>("mavros/set_mode");
-    this->servo_client = this->create_client<mavros_msgs::srv::CommandLong>("/mavros/cmd/command");
+    this->servo_client = this->create_client<mavros_msgs::srv::CommandLong>("mavros/cmd/command");
     this->close_cam_client = this->create_client<std_srvs::srv::Trigger>("/close_cam");
     this->open_cam_client = this->create_client<std_srvs::srv::Trigger>("/open_cam");
     this->set_param_client = this->create_client<mavros_msgs::srv::ParamSetV2>("mavros/param/set");
@@ -43,6 +46,7 @@ DroneController::DroneController() : Node("drone_controller") {
     this->pose_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>("mavros/local_position/pose", qos, std::bind(&DroneController::pose_cb, this, std::placeholders::_1));
     this->gate_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>("/vision/front", qos, std::bind(&DroneController::gate_pose_cb, this, std::placeholders::_1));
     this->payload_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>("/vision/down/payload", qos, std::bind(&DroneController::payload_pose_cb, this, std::placeholders::_1));
+    this->payload_array_sub = this->create_subscription<std_msgs::msg::Float64MultiArray>("/payload_pose", qos, std::bind(&DroneController::payload_pose_array_cb, this, std::placeholders::_1));
     this->ember_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>("/vision/down/ember", qos, std::bind(&DroneController::ember_pose_cb, this, std::placeholders::_1));
     this->bunder_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>("/vision/down/outdoor", qos, std::bind(&DroneController::bunder_pose_cb, this, std::placeholders::_1));
     this->vel_sub = this->create_subscription<geometry_msgs::msg::TwistStamped>("mavros/local_position/velocity_body", qos, std::bind(&DroneController::vel_cb, this, std::placeholders::_1));
@@ -88,7 +92,7 @@ float DroneController::getObstacleDistance(float angle, float angle_tolerance) {
     float min_angle = angle - angle_tolerance/2;
     float angle_inc = 2*M_PI / this->curr_laserscan.ranges.size();
     for (int i = (int)((angle - angle_tolerance/2) / angle_inc); i < (int)(angle_tolerance / angle_inc); ++i) {
-        // this is very prone to noise, consider thresholding variance to detect invalid readings
+        // this is very prone to noise, consider thresholding vamavrosce to detect invalid readings
         if (this->curr_laserscan.ranges[this->curr_laserscan.ranges.size() % i] < min_distance) {
             min_distance = this->curr_laserscan.ranges[i];
             min_angle = i*angle_inc;
@@ -187,12 +191,60 @@ void DroneController::publishOpenCamera2(const std_msgs::msg::Bool &open) {this-
 void DroneController::publishSetpointRawGlobal(const mavros_msgs::msg::GlobalPositionTarget &setpoint) {this->setpoint_raw_global_pub->publish(setpoint);}
 void DroneController::publishSetpointRawLocal(const mavros_msgs::msg::PositionTarget &setpoint)        {this->setpoint_raw_local_pub->publish(setpoint);}
 
+// Altitude offset calibration functions
+void DroneController::setGroundAltitudeOffset(float offset) {
+    this->ground_altitude_offset_ = offset;
+    RCLCPP_INFO(this->get_logger(), "Ground altitude offset set to: %.3f m", offset);
+}
+
+float DroneController::getGroundAltitudeOffset() const {
+    return this->ground_altitude_offset_;
+}
+
+float DroneController::getRelativeAltitude() const {
+    // Return altitude relative to calibrated ground level
+    return this->curr_pose.pose.position.z - this->ground_altitude_offset_;
+}
+
 // Callback functions to receive messages
 void DroneController::state_cb(const mavros_msgs::msg::State::ConstSharedPtr msg)                   {curr_state = *msg;}
 void DroneController::gps_state_cb(const mavros_msgs::msg::GPSRAW::SharedPtr msg)                   {gps_state = *msg;}
 void DroneController::pose_cb(const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)            {curr_pose = *msg; quatToEuler(curr_euler, curr_pose.pose.orientation);}
 void DroneController::gate_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg)            {gate_pose = *msg;}
-void DroneController::payload_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg)         {payload_pose = *msg; if(msg->pose.position.x != 0.0 && msg->pose.position.y != 0.0 && msg->pose.position.z != 0.0) {nonzero_last_payload_pose = *msg; nonzero_drone_payload_pose = this->curr_pose;}}
+void DroneController::payload_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg)         {
+    payload_pose = *msg;
+    if (payload_pose.header.stamp.sec == 0 && payload_pose.header.stamp.nanosec == 0) {
+        payload_pose.header.stamp = this->now();
+    }
+    if (payload_pose.pose.position.x != 0.0 || payload_pose.pose.position.y != 0.0 || payload_pose.pose.position.z != 0.0) {
+        nonzero_last_payload_pose = payload_pose;
+        nonzero_drone_payload_pose = this->curr_pose;
+    }
+}
+void DroneController::payload_pose_array_cb(const std_msgs::msg::Float64MultiArray::SharedPtr msg)  {
+    if (msg->data.size() < 2) {
+        return;
+    }
+
+    geometry_msgs::msg::PoseStamped converted;
+    converted.header.stamp = this->now();
+    converted.header.frame_id = "camera_down";
+    converted.pose.position.x = static_cast<float>(msg->data[0]);
+    converted.pose.position.y = static_cast<float>(msg->data[1]);
+    if (msg->data.size() >= 3) {
+        converted.pose.position.z = static_cast<float>(msg->data[2]);
+    } else {
+        const float dx = converted.pose.position.x - 320.0f;
+        const float dy = converted.pose.position.y - 240.0f;
+        converted.pose.position.z = std::sqrt(dx * dx + dy * dy);
+    }
+
+    payload_pose = converted;
+    if (converted.pose.position.x != 0.0 || converted.pose.position.y != 0.0 || converted.pose.position.z != 0.0) {
+        nonzero_last_payload_pose = converted;
+        nonzero_drone_payload_pose = this->curr_pose;
+    }
+}
 void DroneController::ember_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg)           {ember_pose = *msg; if(msg->pose.position.x != 0.0 && msg->pose.position.y != 0.0 && msg->pose.position.z != 0.0) {nonzero_last_ember_pose = *msg; nonzero_drone_ember_pose = this->curr_pose;}}
 void DroneController::bunder_pose_cb(const geometry_msgs::msg::PoseStamped::SharedPtr msg)          {bunder_pose = *msg; if(msg->pose.position.x != 0.0 && msg->pose.position.y != 0.0 && msg->pose.position.z != 0.0) {nonzero_last_bunder_pose = *msg; nonzero_drone_bunder_pose = this->curr_pose;}}
 void DroneController::vel_cb(const geometry_msgs::msg::TwistStamped::ConstSharedPtr msg)            {curr_vel = *msg;}

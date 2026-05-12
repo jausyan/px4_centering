@@ -1,0 +1,6 @@
+[  8%] [32mBuilding CXX object CMakeFiles/control.dir/src/mission/control.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/control.dir/utils/control_.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/test_centering.dir/src/mission/test.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/test_centering.dir/utils/control_.cpp.o[0m
+[ 41%] [1m[32mLinking CXX executable control[0m
+[ 66%] Built target control

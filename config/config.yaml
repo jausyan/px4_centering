@@ -1,24 +1,52 @@
 /**:
   ros__parameters:
     gate_centering:
-      test_mode: false              
+      test_mode: true              
       takeoff_altitude: 1.3
-      forward_distance: 15.0
+      forward_distance: 6.5
       gate_width: 1.5               
-      centering_tolerance: 0.15     
+      centering_tolerance: 0.2    
       waypoint_tolerance: 0.3
       control_mode: "velocity"      
-      max_velocity: 0.2             
+      max_velocity: 1.0 
+      waypoint_speed: 2.6            
       proportional_gain: 0.5        
-      rotation_angle: 90.0
-      
-      detection_range_min: 1.5      # Min forward distance for gate detection (m)
-      detection_range_max: 2.5      # Max forward distance for gate detection (m)
-      roi_lateral: 0.5              # offset
-      cluster_epsilon: 0.15         # Max distance to group points 
-      min_cluster_points: 10        
+      rotation_angle: 90.0          
+      detection_range_min: 1.0      
+      detection_range_max: 10.0      
+      roi_lateral: 3.0              
+      cluster_epsilon: 0.15          
+      min_cluster_points: 5       
       min_pole_height: 0.5          
-      target_height: 0.75                    
+      target_height: 0.75
+
+    bezier_turn:
+      turn_radius: 2.5              
+      turn_speed: 0.5               
+      num_waypoints: 4             
+      waypoint_tolerance: 0.2
+
+    path_following:
+      waypoint_x:   [2.5, 10.5, 14.5, 16.5, 19.0, 18.0, 16.0, 12.0, 10.0, -2.85, -3.85, -4.35, -4.5]
+      waypoint_y:   [0.0, -0.95, -0.95, -0.95, -0.5, -7.5, -9.05, -9.05, -9.05, -8.672, -8.672, -5.0, 0.0]
+      waypoint_z:   [1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3]
+      waypoint_yaw: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      # waypoint_x:   [2.5, 2.5, 2.5]
+      # waypoint_y:   [0.0 -0.95, -0.95]
+      # waypoint_z:   [1.3, 1.3, 1.3]
+      # waypoint_yaw: [0.0, 0.0, 0.0]
+      speed: 1.0                       
+      tolerance: 0.75                   
+      auto_heading: true                
+      enable_bspline_smoothing: true
+      bspline_smoothness: 0.0001        
+      bspline_degree: 3                 
+      num_interpolation_points: 200     
+      enable_rdp_simplification: true
+      rdp_epsilon: 0.05            
+      slow_down_distance: 1.0           
+      enable_lateral_compensation: true 
+      lateral_compensation_factor: 15.0                       
 
     
       

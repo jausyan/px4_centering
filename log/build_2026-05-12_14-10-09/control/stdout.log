@@ -1,0 +1,6 @@
+[  5%] [32mBuilding CXX object CMakeFiles/path.dir/src/mission/path.cpp.o[0m
+[ 11%] [32mBuilding CXX object CMakeFiles/path.dir/utils/control_.cpp.o[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/src/mission/control.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/src/mission/test.cpp.o[0m
+[ 27%] [32mBuilding CXX object CMakeFiles/test_lidar.dir/utils/control_.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/control_lidar.dir/utils/control_.cpp.o[0m
